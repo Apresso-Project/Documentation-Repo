@@ -397,6 +397,26 @@
 
 ---
 
+### **RF-COMANDA-ESTADO — Ciclo de vida del estado de la comanda**
+
+**Tipo:** Funcional
+
+**Descripción:** El sistema deberá gestionar el ciclo de vida de cada comanda mediante el campo `estado`, con cinco valores y transiciones autorizadas por rol. La secuencia completa es: `pendiente` (comanda creada, no enviada a cocina) → `enviada` (mesero confirma y despacha a cocina) → `en_preparacion` (cocinero inicia la preparación) → `lista` (cocinero termina la preparación) → `cerrada` (cajero confirma el pago). Solo el actor autorizado puede ejecutar cada transición; cualquier intento de transición no permitida es rechazado con código de error 400.
+
+**Origen:** Diseño del equipo de desarrollo — el estado de la comanda es un concepto transversal a los módulos de mesero, cocina y caja.
+
+**Prioridad:** Alta
+
+**Criterios de aceptación:**
+
+1. *Dado* que el mesero confirma el envío de una comanda con estado `pendiente`, *cuando* lo hace, *entonces* el estado cambia a `enviada` y la comanda aparece en la pantalla de cocina (RF-18).
+2. *Dado* que el cocinero inicia la preparación de una comanda con estado `enviada`, *cuando* confirma el cambio, *entonces* el estado cambia a `en_preparacion` (RF-25).
+3. *Dado* que el cocinero termina la preparación de una comanda con estado `en_preparacion`, *cuando* confirma el cambio, *entonces* el estado cambia a `lista` y el mesero recibe un aviso (RF-26).
+4. *Dado* que el cajero confirma el pago de una comanda con estado `lista`, *cuando* lo registra, *entonces* el estado cambia a `cerrada` (RF-28).
+5. *Dado* que cualquier usuario intenta ejecutar una transición de estado no autorizada para su rol, *cuando* lo intenta, *entonces* el sistema rechaza la acción con código de error 400.
+
+---
+
 ### 1.4. Gestión de cocina
 
 ---
@@ -439,7 +459,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir al cocinero cambiar el estado de una comanda entre Pendiente, En preparación y Listo.
+**Descripción:** El sistema deberá permitir al cocinero avanzar el estado de una comanda según las dos transiciones autorizadas para su rol: de `enviada` a `en_preparacion` al iniciar la preparación, y de `en_preparacion` a `lista` al terminarla. El cocinero no puede ejecutar ninguna otra transición; en particular, el cierre de la comanda (`lista → cerrada`) es responsabilidad exclusiva del cajero al confirmar el pago (RF-28).
 
 **Origen:** Juan Sebastián Aragón Campo, anexo.
 
@@ -447,8 +467,10 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que un cocinero con sesión activa cambia el estado de una comanda, *cuando* confirma el cambio, *entonces* el nuevo estado se guarda y se muestra en las demás pantallas.
-2. *Dado* que un usuario que no es de cocina intenta cambiar el estado de una comanda, *cuando* lo intenta, *entonces* el sistema deniega el acceso.
+1. *Dado* que una comanda tiene estado `enviada` y el cocinero confirma el inicio de la preparación, *cuando* ejecuta el cambio, *entonces* el estado pasa a `en_preparacion` y el cambio se propaga a todos los dispositivos conectados en menos de 3 segundos.
+2. *Dado* que una comanda tiene estado `en_preparacion` y el cocinero confirma que terminó, *cuando* ejecuta el cambio, *entonces* el estado pasa a `lista` y el cambio se propaga a todos los dispositivos conectados en menos de 3 segundos.
+3. *Dado* que el cocinero intenta ejecutar cualquier transición no autorizada para su rol (por ejemplo, `lista → cerrada`), *cuando* lo intenta, *entonces* el sistema rechaza la acción con código de error 400.
+4. *Dado* que un usuario sin rol de cocinero intenta cambiar el estado de preparación de una comanda, *cuando* lo intenta, *entonces* el sistema deniega el acceso.
 
 ---
 

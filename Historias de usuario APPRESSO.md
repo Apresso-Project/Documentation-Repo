@@ -443,19 +443,21 @@
 
 ### **HU-25 — Actualización del estado de preparación (RF-25)**
 
-* **Historia de usuario:** Como cocinero, quiero cambiar el estado de una comanda entre Pendiente, En preparación y Listo, para que todos sepan en qué punto va el pedido.
+* **Historia de usuario:** Como cocinero, quiero marcar mis comandas como "en preparación" cuando empiezo a cocinarlas y como "lista" cuando termino, para que el mesero sepa cuándo puede recoger el pedido y llevarlo a la mesa.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que un cocinero con sesión activa cambia el estado de una comanda, *cuando* confirma el cambio, *entonces* el nuevo estado se guarda.
-  * *Dado* que se confirma un cambio de estado, *cuando* queda registrado, *entonces* incluye fecha, hora y usuario.
-  * *Dado* que un usuario que no es de cocina intenta cambiar el estado, *cuando* lo intenta, *entonces* el sistema lo impide.
+  * *Dado* que una comanda llega a cocina con estado `enviada` y el cocinero inicia su preparación, *cuando* confirma el cambio, *entonces* el estado pasa a `en preparación`.
+  * *Dado* que una comanda está en estado `en preparación` y el cocinero termina, *cuando* confirma el cambio, *entonces* el estado pasa a `lista`.
+  * *Dado* que se confirma cualquier cambio de estado, *cuando* queda registrado, *entonces* incluye fecha, hora y usuario responsable.
+  * *Dado* que el cocinero intenta ejecutar una transición no autorizada para su rol (por ejemplo, marcar una comanda como `cerrada`), *cuando* lo intenta, *entonces* el sistema rechaza la acción.
+  * *Dado* que un usuario sin rol de cocinero intenta cambiar el estado de preparación de una comanda, *cuando* lo intenta, *entonces* el sistema le deniega el acceso.
 * **Análisis INVEST:**
   * **I (Independiente):** Parcial; depende de HU-23.
-  * **N (Negociable):** Se puede discutir si los estados deben seguir un orden obligatorio.
-  * **V (Valiosa):** Da trazabilidad al pedido.
-  * **E (Estimable):** Alcance claro, con tres estados.
+  * **N (Negociable):** El diseño del botón de cambio de estado y el texto del mensaje de confirmación se pueden acordar. El orden de las transiciones está definido en RF-COMANDA-ESTADO y no es negociable.
+  * **V (Valiosa):** Da trazabilidad al pedido y coordina en tiempo real al cocinero con el mesero.
+  * **E (Estimable):** Alcance claro con dos transiciones permitidas para el cocinero.
   * **S (Pequeña):** Pequeña.
-  * **T (Testeable):** Se prueba cada transición y el control de permisos.
+  * **T (Testeable):** Se prueba cada transición permitida, los intentos de transiciones no autorizadas y el control de permisos.
 
 ---
 
