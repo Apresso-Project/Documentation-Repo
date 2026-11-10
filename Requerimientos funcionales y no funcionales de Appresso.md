@@ -401,7 +401,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá gestionar el ciclo de vida de cada comanda mediante el campo `estado`, con cinco valores y transiciones autorizadas por rol. La secuencia completa es: `pendiente` (comanda creada, no enviada a cocina) → `enviada` (mesero confirma y despacha a cocina) → `en_preparacion` (cocinero inicia la preparación) → `lista` (cocinero termina la preparación) → `cerrada` (cajero confirma el pago). Solo el actor autorizado puede ejecutar cada transición; cualquier intento de transición no permitida es rechazado con código de error 400.
+**Descripción:** El sistema deberá gestionar el ciclo de vida de cada comanda mediante el campo `estado`, con cinco valores y transiciones autorizadas por rol. La secuencia completa es: `pendiente` (comanda creada, no enviada a cocina) → `enviada` (mesero confirma y despacha a cocina) → `en_preparacion` (cocinero inicia la preparación) → `lista` (cocinero termina la preparación) → `cerrada` (cajero confirma el pago). Solo el actor autorizado puede ejecutar cada transición; cualquier intento de transición no permitida es rechazado con código de error 400. En las pantallas de cocina (RF-18, RF-19) se muestran solo tres de estos estados, con estos nombres: `enviada` como "Pendiente", `en_preparacion` como "En preparación" y `lista` como "Lista"; `pendiente` (aún no enviada) y `cerrada` no aparecen en cocina.
 
 **Origen:** Diseño del equipo de desarrollo — el estado de la comanda es un concepto transversal a los módulos de mesero, cocina y caja.
 
