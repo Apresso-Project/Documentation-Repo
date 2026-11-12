@@ -1,6 +1,6 @@
 # PRESUPUESTO — APPRESSO
 
-> **Estado:** borrador v0.1 (3 de noviembre de 2026), por aprobar por el patrocinador.
+> **Estado:** borrador v0.2 (12 de noviembre de 2026), por aprobar por el patrocinador. Cambio frente a la v0.1: el hosting pasó a planes gratuitos (Neon y Render), así que ya no hay costo por ese concepto.
 > **Responsable:** Felipe Salcedo (entregable 1.2.1 — Plan temporal, económico y de riesgos).
 > **Moneda:** pesos colombianos (COP).
 > **Fuentes:** [Cronograma](cronograma-Appresso.md) (horas por entregable) y [Plan de Riesgos](Plan%20de%20Riesgos%20Appresso.md) (costo de mitigación y reserva de contingencia).
@@ -13,11 +13,11 @@
 |----------|:-----:|-------------|
 | Tarifa única por hora-persona | **$15.000** | Referencia para un desarrollador junior en Colombia. Es la misma para todo el equipo, incluido el gerente y el tester. |
 | Horas por entregable | Las del cronograma | Se toma el esfuerzo (h) de cada entregable. Total: **371 h**. |
-| Hosting gestionado (backend + base de datos con copias de seguridad) | USD 15 al mes | Plan básico de un proveedor gestionado. Se cobran 2 meses (del despliegue de prueba al cierre del piloto). |
+| Hosting: backend en Render y base de datos en Neon | **$0** | Planes gratuitos elegidos el 10/11/2026. Si resultan insuficientes (R-14), se agrega el costo de un plan de pago. |
 | Dominio | USD 12 al año | Dominio .com. Si se prefiere .co, el valor es mayor. |
-| Certificado HTTPS | $0 | Suele venir incluido en el hosting gestionado. |
+| Certificado HTTPS | $0 | Incluido en el hosting (por confirmar en Render). |
 | Tasa de cambio | $4.000 por USD | Referencia; actualizar con la tasa del día de la compra. |
-| Reserva para costos directos | 25 % | Cubre el riesgo de que el hosting cueste más de lo previsto (R-12). |
+| Reserva para costos directos | 25 % | Cubre costos directos no previstos, como pasar a un plan de pago si los gratuitos no bastan (R-12, R-14). |
 
 ---
 
@@ -139,10 +139,10 @@ Son horas adicionales que no están en el cronograma (sección 5.4 del plan de r
 
 | Concepto | Cálculo | Costo |
 |----------|---------|------:|
-| Hosting gestionado | USD 15 × 2 meses × $4.000 | $120.000 |
+| Hosting (Render + Neon, planes gratuitos) | Gratuito | $0 |
 | Dominio | USD 12 × $4.000 | $48.000 |
 | Certificado HTTPS | Incluido en el hosting | $0 |
-| | **Total** | **$168.000** |
+| | **Total** | **$48.000** |
 
 ---
 
@@ -153,8 +153,8 @@ La reserva cubre los riesgos que quedan después de aplicar las respuestas (ries
 | Concepto | Cálculo | Costo |
 |----------|---------|------:|
 | Riesgos críticos residuales | 133,5 h × $15.000 | $2.002.500 |
-| Costos directos | 25 % × $168.000 | $42.000 |
-| | **Total** | **$2.044.500** |
+| Costos directos | 25 % × $48.000 | $12.000 |
+| | **Total** | **$2.014.500** |
 
 ---
 
@@ -162,12 +162,12 @@ La reserva cubre los riesgos que quedan después de aplicar las respuestas (ries
 
 | Concepto | Costo | % del total |
 |----------|------:|:-----------:|
-| Entregables del cronograma (371 h) | $5.565.000 | 60,4 % |
-| Respuestas a los riesgos críticos (96 h) | $1.440.000 | 15,6 % |
-| Costos directos (hosting y dominio) | $168.000 | 1,8 % |
-| **Estimación de costos** | **$7.173.000** | **77,8 %** |
-| Reserva de contingencia | $2.044.500 | 22,2 % |
-| **Presupuesto total (línea base de costos)** | **$9.217.500** | **100 %** |
+| Entregables del cronograma (371 h) | $5.565.000 | 61,4 % |
+| Respuestas a los riesgos críticos (96 h) | $1.440.000 | 15,9 % |
+| Costos directos (dominio; el hosting es gratuito) | $48.000 | 0,5 % |
+| **Estimación de costos** | **$7.053.000** | **77,8 %** |
+| Reserva de contingencia | $2.014.500 | 22,2 % |
+| **Presupuesto total (línea base de costos)** | **$9.067.500** | **100 %** |
 
 - **Horas totales:** 371 h de entregables + 96 h de respuestas + 133,5 h de reserva = **600,5 h**.
 - **Reserva de gestión:** no se incluye. Los imprevistos que no estén en el plan de riesgos requieren una decisión del patrocinador.
