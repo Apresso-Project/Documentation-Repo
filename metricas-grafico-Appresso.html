@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curva de trabajo acumulado — Appresso</title>
+<style>
+:root{--bg:#fff;--fg:#1c2128;--muted:#6a737d;--grid:#e4e7eb;--card:#f6f8fa;--pv:#2f6fdb;--ev:#1a8f4d;--ac:#c2610c;}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1318;--fg:#e6e9ee;--muted:#8b95a1;--grid:#262c34;--card:#171c22;--pv:#5b95f5;--ev:#46c47a;--ac:#f0904a;}}
+body{margin:0;padding:16px;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,Segoe UI,sans-serif}
+h1{font-size:20px;margin:0 0 4px} h2{font-size:16px;margin:24px 0 8px}
+p.sub{color:var(--muted);margin:0 0 12px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin:8px 0 12px;font-size:13px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:22px;height:0;border-top:3px solid;display:inline-block}
+.scroll{overflow:auto;border:1px solid var(--grid);border-radius:8px;background:var(--card)}
+svg text{fill:var(--fg);font-family:system-ui,Segoe UI,sans-serif}
+svg .m{fill:var(--muted)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{padding:6px 10px;border-bottom:1px solid var(--grid);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--muted);font-weight:600}
+.note{color:var(--muted);font-size:13px;margin-top:10px}
+</style>
+</head>
+<body>
+<h1>Curva de trabajo acumulado — Appresso</h1>
+<p class="sub">Eje Y: trabajo acumulado en % del BAC (371 h · $5.565.000). Eje X: semanas de lunes a sábado, con el corte al sábado. Regla 0/100: un paquete terminado vale 100 %, uno sin terminar vale 0 %.</p>
+<div class="legend">
+  <span><i class="sw" style="border-color:var(--pv)"></i>PV — valor planificado</span>
+  <span><i class="sw" style="border-color:var(--ev)"></i>EV — valor ganado</span>
+  <span><i class="sw" style="border-color:var(--ac);border-top-style:dashed"></i>AC — costo real</span>
+</div>
+<div class="scroll"><svg id="curva" role="img" aria-label="Curva de trabajo acumulado: PV, EV y AC por semana"></svg></div>
+
+<h2>Valores por corte</h2>
+<div class="scroll"><table id="tabla"></table></div>
+<p class="note" id="nota"></p>
+
+<script>
+// ---- DATOS: se agrega o completa una fila en cada corte semanal ----
+// semana, corte (sábado), pv = horas planificadas acumuladas, ev = horas ganadas acumuladas, ac = horas reales acumuladas.
+// ev / ac en null = todavía sin dato. 1 h = $15.000.
+const BAC_H = 371, TARIFA = 15000;
+const D = [
+  {s:'S1',  corte:'31/10', pv:25,  ev:0,    ac:18},    // AC aproximado (unas 18 h)
+  {s:'S2',  corte:'07/11', pv:65,  ev:25,   ac:40},    // 1.1.1 y 1.2.1 terminados; 8.1.1 no. AC aproximado (unas 40 h)
+  {s:'S3',  corte:'14/11', pv:113, ev:47,   ac:95},   // AC: horas reales estimadas por el equipo
+  {s:'S4',  corte:'21/11', pv:141, ev:null, ac:null},
+  {s:'S5',  corte:'28/11', pv:205, ev:null, ac:null},
+  {s:'S6',  corte:'05/12', pv:271, ev:null, ac:null},
+  {s:'S7',  corte:'12/12', pv:311, ev:null, ac:null},
+  {s:'S8',  corte:'19/12', pv:347, ev:null, ac:null},
+  {s:'S9',  corte:'26/12', pv:357, ev:null, ac:null},
+  {s:'S10', corte:'02/01', pv:371, ev:null, ac:null},
+];
+// -------------------------------------------------------------------
+
+const pct = h => h / BAC_H * 100;
+const fmtPct = h => h == null ? '—' : pct(h).toFixed(1).replace('.', ',') + ' %';
+const fmtH = h => h == null ? '—' : String(h).replace('.', ',') + ' h';
+const fmtCOP = h => h == null ? '—' : '$' + Math.round(h * TARIFA).toLocaleString('es-CO');
+const idx = (a, b) => (a == null || b == null || b === 0) ? '—' : (a / b).toFixed(2).replace('.', ',');
+const NS = 'http://www.w3.org/2000/svg';
+
+function el(name, attrs, text) {
+  const e = document.createElementNS(NS, name);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+function dibujar() {
+  const svg = document.getElementById('curva');
+  const W = 820, H = 420, L = 56, R = 24, T = 20, B = 52;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', W);
+  svg.setAttribute('height', H);
+  const iw = W - L - R, ih = H - T - B;
+  const x = i => L + iw * i / (D.length - 1);
+  const y = p => T + ih * (1 - p / 100);
+
+  for (let p = 0; p <= 100; p += 20) {
+    svg.appendChild(el('line', {x1:L, x2:W-R, y1:y(p), y2:y(p), stroke:'var(--grid)'}));
+    svg.appendChild(el('text', {x:L-8, y:y(p)+4, 'text-anchor':'end', 'font-size':12, class:'m'}, p + ' %'));
+  }
+  D.forEach((d, i) => {
+    svg.appendChild(el('text', {x:x(i), y:H-30, 'text-anchor':'middle', 'font-size':12}, d.s));
+    svg.appendChild(el('text', {x:x(i), y:H-14, 'text-anchor':'middle', 'font-size':11, class:'m'}, d.corte));
+  });
+
+  const series = [
+    {k:'pv', color:'var(--pv)', dash:null,  forma:'circulo',  nombre:'PV'},
+    {k:'ev', color:'var(--ev)', dash:null,  forma:'cuadro',   nombre:'EV'},
+    {k:'ac', color:'var(--ac)', dash:'6 4', forma:'rombo',    nombre:'AC'},
+  ];
+  series.forEach(s => {
+    const pts = D.map((d, i) => d[s.k] == null ? null : [x(i), y(pct(d[s.k])), d]);
+    const validos = pts.filter(Boolean);
+    // La línea solo une semanas consecutivas con dato: un hueco no se interpola.
+    let tramo = [];
+    const cerrar = () => {
+      if (tramo.length > 1) {
+        const path = el('polyline', {points: tramo.map(p => p[0] + ',' + p[1]).join(' '), fill:'none',
+          stroke:s.color, 'stroke-width':2.5});
+        if (s.dash) path.setAttribute('stroke-dasharray', s.dash);
+        svg.appendChild(path);
+      }
+      tramo = [];
+    };
+    pts.forEach(p => { if (p) tramo.push(p); else cerrar(); });
+    cerrar();
+    validos.forEach(([px, py, d]) => {
+      let m;
+      if (s.forma === 'circulo') m = el('circle', {cx:px, cy:py, r:4.5, fill:s.color});
+      else if (s.forma === 'cuadro') m = el('rect', {x:px-4.5, y:py-4.5, width:9, height:9, fill:s.color});
+      else m = el('polygon', {points:`${px},${py-6} ${px+6},${py} ${px},${py+6} ${px-6},${py}`, fill:s.color});
+      m.appendChild(el('title', {}, `${s.nombre} ${d.s} (${d.corte}): ${fmtPct(d[s.k])} · ${fmtH(d[s.k])} · ${fmtCOP(d[s.k])}`));
+      svg.appendChild(m);
+    });
+  });
+}
+
+function tabla() {
+  const t = document.getElementById('tabla');
+  let h = '<tr><th>Semana</th><th>Corte</th><th>PV</th><th>EV</th><th>AC</th><th>SV (EV−PV)</th><th>CV (EV−AC)</th><th>SPI</th><th>CPI</th></tr>';
+  D.forEach(d => {
+    const sv = d.ev == null ? null : d.ev - d.pv;
+    const cv = (d.ev == null || d.ac == null) ? null : d.ev - d.ac;
+    h += `<tr><td>${d.s}</td><td>${d.corte}${d.real ? ' (medido el ' + d.real + ')' : ''}</td>`
+      + `<td>${fmtPct(d.pv)} · ${fmtCOP(d.pv)}</td><td>${fmtPct(d.ev)} · ${fmtCOP(d.ev)}</td><td>${fmtPct(d.ac)} · ${fmtCOP(d.ac)}</td>`
+      + `<td>${sv == null ? '—' : fmtH(sv) + ' · ' + (sv < 0 ? '−' : '') + fmtCOP(Math.abs(sv))}</td>`
+      + `<td>${cv == null ? '—' : fmtH(cv) + ' · ' + (cv < 0 ? '−' : '') + fmtCOP(Math.abs(cv))}</td><td>${idx(d.ev, d.pv)}</td><td>${idx(d.ev, d.ac)}</td></tr>`;
+  });
+  t.innerHTML = h;
+  document.getElementById('nota').textContent =
+    'El EV de S1 y S2 es provisional (según lo informado por el equipo). El AC de S1 (unas 18 h), S2 (unas 40 h) y S3 (95 h) son estimaciones del equipo, porque no hay un registro de horas. Para actualizar: editar el arreglo D al inicio del script en cada corte (valores acumulados).';
+}
+
+dibujar();
+tabla();
+</script>
+</body>
+</html>

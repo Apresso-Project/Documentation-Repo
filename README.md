@@ -20,6 +20,9 @@ Asignaturas: Introducción a la Gestión de Proyectos de Software + Desarrollo d
 | `Plan de Calidad Appresso.md` | Atributos de calidad, prácticas comprometidas y definición de terminado |
 | `Presupuesto Appresso.md` | Costo de entregables, respuestas a riesgos, costos directos y reserva de contingencia |
 | `Control de Asistencia Appresso.md` | Asistencia a los dailies y registro de bloqueos y compromisos |
+| `Métricas de Proyecto Appresso.md` | Líneas base, valor planificado, ganado y costo real (EVM), métricas de flujo y calidad, tablero y cadencia semanal de revisión |
+| `metricas-grafico-Appresso.html` | Curva de trabajo acumulado (PV, EV y AC) por semana, con variaciones e índices |
+| `Registro de Horas Appresso.md` | Horas trabajadas por persona y paquete, fuente del costo real (AC) |
 
 ## Equipo (Descompiladores)
 

@@ -4,11 +4,15 @@
 
 | Parámetro | Valor |
 |-----------|-------|
-| Fecha de inicio | Martes 29 sep 2026 |
+| Fecha de inicio (día 0) | **Miércoles 28 oct 2026** (inicio real del desarrollo) |
+| Fin planificado | Lunes 28 dic 2026 (día hábil 49) |
+| Festivos descontados | 2/11, 16/11, 8/12, 25/12 y 1/1 |
 | Calendario | Lunes a sábado (6 días hábiles/semana) |
 | Dedicación diaria | 4 h/día |
 | Regla de conversión | Duración (d) = ⌈Esfuerzo (h) ÷ 4⌉ — redondeo al alza al día entero |
 | Tipo de dependencia | Fin-a-Inicio (FS) por defecto — PMBOK |
+
+> **Cambio CC-01 (aprobado el 15/11/2026):** el cronograma original usaba el 29/09/2026 como día 0. Se corrigió al 28/10/2026, fecha real de inicio del desarrollo. La secuencia, las duraciones y las dependencias no cambian; solo las fechas del calendario. Registro en [Métricas de Proyecto](Métricas%20de%20Proyecto%20Appresso.md), sección 2.4.
 
 ---
 
