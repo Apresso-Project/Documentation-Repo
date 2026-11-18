@@ -20,7 +20,7 @@ svg text{fill:var(--fg);font-family:system-ui,Segoe UI,sans-serif}
 </head>
 <body>
 <h1>Cronograma — Appresso</h1>
-<p class="sub">Inicio mié 28 oct 2026 (día 0, cambio CC-01) · lunes a sábado sin festivos · 49 días hábiles (fin estimado lun 28 dic 2026) · dependencias FS</p>
+<p class="sub">Inicio mié 28 oct 2026 (día 0, cambio CC-01) · lunes a domingo, domingos y festivos laborables (cambio CC-02) · 49 días (fin estimado mar 15 dic 2026) · dependencias FS</p>
 <div class="legend">
   <span><i class="sw" style="background:var(--crit)"></i>Ruta crítica (holgura 0)</span>
   <span><i class="sw" style="background:var(--norm)"></i>Actividad con holgura</span>
@@ -74,11 +74,11 @@ const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n);
 const NS='http://www.w3.org/2000/svg';
 function el(p,t,at,txt){const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);if(txt!=null)e.textContent=txt;p.appendChild(e);return e}
 
-// Fechas: lun–sáb desde mié 28 oct 2026 (día 1 = 28 oct), sin los festivos 2/11, 16/11, 8/12, 25/12 y 1/1
-const festivos=['2026-11-02','2026-11-16','2026-12-08','2026-12-25','2027-01-01'];
+// Fechas: lun–dom desde mié 28 oct 2026 (día 1 = 28 oct); domingos y festivos son días de trabajo (CC-02)
+const festivos=[];
 const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-const dates=[];{let d=new Date(2026,9,28);while(dates.length<50){if(d.getDay()!==0&&!festivos.includes(iso(d)))dates.push(new Date(d));d.setDate(d.getDate()+1)}}
-// Semana calendario (lun–sáb) contada desde la del 26 oct: S1 = 26–31 oct
+const dates=[];{let d=new Date(2026,9,28);while(dates.length<50){if(!festivos.includes(iso(d)))dates.push(new Date(d));d.setDate(d.getDate()+1)}}
+// Semana calendario (lun–dom) contada desde la del 26 oct: S1 = 26 oct–1 nov
 const sem=d=>Math.floor((dates[d]-new Date(2026,9,26))/(7*864e5))+1;
 const iniSem=d=>d===0||sem(d)!==sem(d-1);
 const fmt=d=>d.getDate()+'/'+(d.getMonth()+1);

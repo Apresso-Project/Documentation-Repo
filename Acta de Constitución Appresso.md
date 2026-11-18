@@ -11,7 +11,7 @@
 - **Responsable/Patrocinador:**: Pepito Pérez.
 - **Gerente del proyecto:** Andrés Felipe Salcedo Buitrago.
 - **Fecha de inicio esperada:** 28/10/2026.
-- **Fecha de finalización esperada:** 17/12/2026.
+- **Fecha de finalización esperada:** 15/12/2026.
 
 ## 2. Definición del problema
 
@@ -21,7 +21,7 @@ La cafetería registra hoy los pedidos, cuadres de caja a mano, el inventario se
 
 ## Objetivo general:
 
-Entregar, a más tardar el 17 de diciembre del año 2026, la versión v1.0 de Appresso funcionando en la cafetería CaffeBar, con registro de productos, toma de pedidos con envío a cocina, módulo de puntos de fidelidad y pago por QR, y validarla en una prueba piloto de [X] días con al menos [X] pedidos completados de principio a fin sin usar papel. El desarrollo sigue el esquema semver (semver.org): las siete funcionalidades principales del sistema se liberan de forma incremental como versiones v0.1 a v0.7, y su integración completa constituye la versión v1.0.
+Entregar, a más tardar el 15 de diciembre del año 2026, la versión v1.0 de Appresso funcionando en la cafetería CaffeBar, con registro de productos, toma de pedidos con envío a cocina, módulo de puntos de fidelidad y pago por QR, y validarla en una prueba piloto de [X] días con al menos [X] pedidos completados de principio a fin sin usar papel. El desarrollo sigue el esquema semver (semver.org): cada módulo funcional que se cierra se etiqueta en el repositorio como una versión interna (v0.x), y el despliegue en producción, que se hace una sola vez, constituye la versión v1.0.
 
 ## Objetivos específicos:
 
@@ -33,7 +33,7 @@ Entregar, a más tardar el 17 de diciembre del año 2026, la versión v1.0 de Ap
 | Procesar pagos y gestionar la caja diaria | (1) Los saldos de efectivo y transferencia se mantienen siempre separados y nunca se mezclan. (2) El informe de cierre satisface la ecuación: saldo final = saldo inicial + ingresos − egresos, verificado con pruebas automatizadas. (3) Las solicitudes de retiro del cajero llegan como notificación push al administrador en ≤ 5 s, incluso con la app cerrada. |
 | Registrar clientes y operar el sistema de fidelización | (1) Un cliente nuevo se registra en menos de 4 minutos. (2) El saldo de puntos aumenta en exactamente 1 punto por cada pago confirmado y se refleja en pantalla en ≤ 2 s. (3) El cliente puede canjear una recompensa disponible según su saldo de puntos; el descuento de puntos configurado se ejecuta de inmediato. |
 | Garantizar la calidad, seguridad y cumplimiento normativo del sistema | (1) La suite de pruebas unitarias cubre al menos el 70 % de la lógica crítica, medido con la herramienta de cobertura del proyecto. (2) Las contraseñas se almacenan con hash (bcrypt o equivalente); todas las comunicaciones usan HTTPS; los tokens de sesión se guardan en Android Keystore. (3) El formulario de registro exige la aceptación explícita del tratamiento de datos personales (Ley 1581 de 2012). |
-| Desplegar y validar la versión v1.0 en un entorno de producción real | (1) El backend responde en producción con HTTPS antes del 17 de diciembre de 2026. (2) La prueba piloto completa al menos [X] pedidos de principio a fin sin usar papel. (3) Un nuevo integrante puede levantar el entorno de desarrollo siguiendo la documentación técnica sin asistencia adicional. |
+| Desplegar y validar la versión v1.0 en un entorno de producción real | (1) El backend responde en producción con HTTPS antes del 15 de diciembre de 2026. (2) La prueba piloto completa al menos [X] pedidos de principio a fin sin usar papel. (3) Un nuevo integrante puede levantar el entorno de desarrollo siguiendo la documentación técnica sin asistencia adicional. |
 
 ## 4. Alcance
 
@@ -69,7 +69,7 @@ Entregar, a más tardar el 17 de diciembre del año 2026, la versión v1.0 de Ap
 
 - **Tiempo:** el desarrollo del proyecto estará limitado al tiempo establecido por el cronograma definido por el equipo.
 - **Recursos:** el proyecto estará condicionado por la disponibilidad de recursos humanos, económicos y tecnológicos del equipo de desarrollo y de la cafetería.
-- **Conectividad:** el funcionamiento de las funciones que requieran comunicación entre administrador, meseros y cocina rquieren de conexión a Internet Wi-fi.
+- **Conectividad:** el funcionamiento de las funciones que requieran comunicación entre administrador, meseros y cocina requieren de conexión a Internet Wi-fi.
 - **Dispositivos:** el uso de la aplicación estará condicionado a que la cafetería disponga de dispositivos con sistema operativo Android compatibles para los usuarios que participen en la operación.
 - **Información:** la configuración inicial del sistema precisa que el administrador proporcione información actualizada sobre productos, precios, disponibilidad y reglas del programa de fidelización.
 - **Pruebas:** el plan de pruebas comprende: (1) **pruebas unitarias** sobre la lógica crítica de negocio — cálculo de totales, ecuación de cierre de caja y acumulación/descuento de puntos de fidelidad; (2) **pruebas de integración** para los flujos principales — comanda completa (creación → cocina → pago → puntos) y cierre de jornada; (3) **pruebas E2E** sobre los módulos de pedidos, caja y fidelización; (4) **pruebas de rendimiento** para verificar los tiempos de respuesta definidos en los requisitos no funcionales (sincronización con cocina ≤ 3 s, carga de menú ≤ 2 s, búsqueda de cliente ≤ 2 s); (5) **pruebas de control de acceso por rol** para verificar que cada endpoint y pantalla rechaza correctamente a roles no autorizados. La prueba piloto con usuarios reales estará condicionada a la disponibilidad y autorización de la cafetería CaffeBar y su personal.
@@ -109,10 +109,10 @@ Entregar, a más tardar el 17 de diciembre del año 2026, la versión v1.0 de Ap
 | Aprobación del acta y del plan                                         | [29 de septiembre 2026] |
 | Requisitos aprobados por el cliente                                    | [10 de octubre ]        
 | Diseño y prototipo aprobado                                            | [27 de octubre 2026]    |
-| Inicio de desarrollo (Sprint 0)                                        | [28 de octubre 2026]    |
-| Módulos de administración, pedidos y cocina terminados                 | [15 de noviembre 2026]  |
-| Módulo de fidelización (puntos y recompensas) y pago por QR terminados | [29 de noviembre 2026]  |
-| Prueba piloto y entrega final                                          | [17 de diciembre 2026]  |
+| Inicio de desarrollo (Sprint 1)                                        | [28 de octubre 2026]    |
+| Módulos de administración, pedidos y cocina terminados                 | [30 de noviembre 2026]  |
+| Módulo de fidelización (puntos y recompensas) y pago por QR terminados | [10 de diciembre 2026]  |
+| Prueba piloto y entrega final                                          | [15 de diciembre 2026]  |
 
 ## 10. Aprobación
 

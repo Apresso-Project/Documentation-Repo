@@ -37,7 +37,7 @@
 | Código | Entregable | Fel | Sti | Seb | Bol | Góm | Dav | CL | RC |
 |--------|-----------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:--:|
 | 1.1.1 | Documentos de inicio y planificación estructural | RA | C | C | C | C | C | C |  |
-| 1.2.1 | Plan temporal, económico y riesgos | RA | C | C | C | C | I | I |  |
+| 1.2.1 | Plan temporal, económico y de riesgos | RA | C | C | C | C | I | I |  |
 | 1.3.1 | Seguimiento, control y cierre del proyecto | RA | I | I | I | I | I | I | ★ |
 
 ### Bloque 2 — Gestión de usuarios y permisos
@@ -46,7 +46,7 @@
 |--------|-----------|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:--:|
 | 2.1.1 | Módulo de autenticación | C | RA | I | R | I | C | I | ★ |
 | 2.2.1 | Módulo de administración de usuarios | C | RA | I | R | I | I | I |  |
-| 2.3.1 | Control de acceso y acceso remoto del administrador | C | R | I | RA | I | C | I | ★ |
+| 2.3.1 | Control de acceso por rol y acceso remoto del administrador | C | R | I | RA | I | C | I | ★ |
 
 ### Bloque 3 — Catálogo e inventario
 
@@ -101,7 +101,7 @@
 | 8.2.1 | Módulo de sincronización en tiempo real | C | I | I | I | RA | C | I |  |
 | 8.3.1 | Módulo de pruebas | C | R | I | I | RA | C | I | ★ |
 | 8.4.1 | Módulo de seguridad y cumplimiento normativo | C | I | R | I | RA | R | I |  |
-| 8.5.1 | Módulo de despliegue y documentación técnica | R | I | I | I | RA | I | A | ★ |
+| 8.5.1 | Módulo de despliegue y documentación técnica | R | I | I | I | RA | I | C | ★ |
 
 ---
 
@@ -115,4 +115,4 @@
 | Bol (Bolaños) | 13 | 6 | 2 | 16 |
 | Góm (Gómez) | 14 | 9 | 2 | 15 |
 | Dav (David) | 1 | 0 | 14 | 16 |
-| CL (Cliente) | 0 | 1 | 6 | 24 |
+| CL (Cliente) | 0 | 0 | 7 | 24 |

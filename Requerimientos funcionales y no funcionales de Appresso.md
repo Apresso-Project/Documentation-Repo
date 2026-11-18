@@ -10,7 +10,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir que los usuarios registrados inicien sesión mediante credenciales válidas con el correo electrónico y la contraseña para acceder a la aplicación.
+**Descripción:** El sistema deberá permitir que los usuarios registrados inicien sesión mediante credenciales válidas para acceder a la aplicación: el personal (administrador, cajero, mesero y cocinero) con su correo electrónico y contraseña, y el cliente únicamente con su número de documento y contraseña.
 
 **Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, reunión por Meet.
 
@@ -20,6 +20,9 @@
 
 1. *Dado* que el usuario se encuentra registrado en el sistema, *cuando* ingresa un correo electrónico y una contraseña válidos y hace clic en el botón de inicio de sesión, *entonces* el sistema valida las credenciales correctamente y le otorga acceso a la interfaz principal de la aplicación.
 2. *Dado* que un usuario intenta iniciar sesión, *cuando* ingresa un correo electrónico no registrado o una contraseña incorrecta, *entonces* el sistema deniega el acceso y muestra un mensaje de error notificando que las credenciales son inválidas.
+3. *Dado* que un cliente se encuentra registrado, *cuando* ingresa su número de documento y su contraseña válidos y presiona el botón de inicio de sesión, *entonces* el sistema le otorga acceso a las funciones de su rol.
+4. *Dado* que un cliente ingresa un número de documento no registrado o una contraseña incorrecta, *cuando* intenta iniciar sesión, *entonces* el sistema deniega el acceso y muestra un mensaje de error notificando que las credenciales son inválidas.
+5. *Dado* que un cliente intenta iniciar sesión con un correo electrónico, o un integrante del personal con un número de documento, *cuando* lo intenta, *entonces* el sistema deniega el acceso.
 
 ---
 
@@ -36,8 +39,11 @@
 **Criterios de aceptación:**
 
 1. *Dado* que el administrador ha iniciado sesión, *cuando* crea o edita la información de un usuario y guarda los cambios, *entonces* el sistema actualiza la base de datos y refleja los datos del usuario en la lista global de usuarios.
-2. *Dado* que el administrador gestiona una cuenta existente, *cuando* le asigna o cambia un rol autorizado (ej. Administrador, Usuario, etc.) y confirma la acción, *entonces* el sistema actualiza los permisos de dicha cuenta inmediatamente.
-3. *Dado* que un usuario no administrador intenta acceder al módulo de gestión de cuentas o asignaciones de roles, *cuando* ingresa a la ruta correspondiente, *entonces* el sistema deniega el acceso y muestra un mensaje "Acceso no autorizado".
+2. *Dado* que el administrador gestiona una cuenta existente, *cuando* le asigna o cambia un rol autorizado (Administrador, Cajero, Mesero, Cocinero o Cliente) y confirma la acción, *entonces* el sistema actualiza los permisos de dicha cuenta inmediatamente.
+3. *Dado* que un usuario no administrador intenta acceder al módulo de gestión de cuentas o asignaciones de roles, *cuando* ingresa a la ruta correspondiente, *entonces* el sistema deniega el acceso y muestra el mensaje "No tienes permiso para realizar esta acción."
+4. *Dado* que el administrador crea o edita un usuario con un correo electrónico que ya pertenece a otra cuenta (sin distinguir mayúsculas de minúsculas), *cuando* guarda los cambios, *entonces* el sistema rechaza la operación e indica que el correo ya está registrado.
+5. *Dado* que el administrador ha iniciado sesión, *cuando* intenta desactivar su propia cuenta o cambiar su propio rol, *entonces* el sistema rechaza la operación.
+6. *Dado* que solo queda un administrador activo, *cuando* se intenta desactivarlo o quitarle el rol de administrador, *entonces* el sistema rechaza la operación para que siempre exista al menos un administrador activo.
 
 ---
 
@@ -45,7 +51,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá presentar a cada usuario las funcionalidades correspondientes a su rol: administrador, cajero, mesero, cocinero o cliente.
+**Descripción:** El sistema deberá presentar a cada usuario las funcionalidades correspondientes a su rol: administrador, cajero, mesero, cocinero o cliente. El administrador tiene acceso a todas las funciones de la plataforma, incluidas las de los demás roles de personal (decisión del equipo, noviembre de 2026); la única excepción es consultar los puntos de fidelidad de un cliente, que depende de un registro de cliente que la cuenta del administrador no tiene.
 
 **Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, reunión por Meet.
 
@@ -53,7 +59,7 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que un usuario inicia sesión con un rol específico (Administrador, Cajero, Mesero, Cocinero o Cliente), *cuando* navega en la plataforma, *entonces* el sistema le despliega únicamente el menú y las herramientas asignadas a su rol.
+1. *Dado* que un usuario inicia sesión con un rol específico (Administrador, Cajero, Mesero, Cocinero o Cliente), *cuando* navega en la plataforma, *entonces* el sistema le despliega el menú y las herramientas asignadas a su rol (al administrador, las de todos los roles).
 2. *Dado* que un usuario con rol de Cliente, Mesero o Cocinero intenta realizar acciones reservadas para Administrador o Cajero (como ver reportes financieros o procesar cobros), *cuando* intenta interactuar con dichas funciones, *entonces* el sistema no las muestra disponibles o bloquea la acción notificando falta de permisos.
 3. *Dado* que el administrador modifica el rol de un usuario activo en el sistema, *cuando* ese usuario vuelve a cargar la interfaz o inicia sesión de nuevo, *entonces* las funcionalidades disponibles se ajustan de inmediato al nuevo rol.
 
@@ -72,7 +78,7 @@
 **Criterios de aceptación:**
 
 1. *Dado* que un usuario autenticado intenta ejecutar una función no permitida desde la app (o manipulando solicitudes a la API móvil), *cuando* la app envía la petición, *entonces* el servidor deniega la acción y responde con un código de error de autorización (ej. 403 Forbidden), evitando cualquier cambio en los datos.
-2. *Dado* que un usuario intenta interactuar con un módulo o acción restringida, *cuando* presiona sobre el componente, *entonces* la app le despliega una alerta nativa o diálogo informativo con el mensaje "No cuentas con los permisos necesarios para realizar esta operación".
+2. *Dado* que un usuario intenta interactuar con un módulo o acción restringida, *cuando* presiona sobre el componente, *entonces* la app le muestra un aviso emergente en pantalla con el mensaje "No tienes permiso para realizar esta acción."
 
 ---
 
@@ -187,7 +193,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá mostrar a los meseros los productos agrupados por categoría, con su precio, disponibilidad y cantidad existente.
+**Descripción:** El sistema deberá mostrar a los meseros los productos activos con existencias, agrupados por categoría, con su precio y cantidad existente. Los productos agotados o desactivados no aparecen en el menú.
 
 **Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, reunión por Meet.
 
@@ -196,7 +202,7 @@
 **Criterios de aceptación:**
 
 1. *Dado* que un mesero abre la sección de menú en la app móvil, *cuando* selecciona una categoría (ej. Bebidas, Platos Fuertes, Postres), *entonces* la app despliega los productos correspondientes con su nombre, precio formateado y stock disponible.
-2. *Dado* que el mesero explora el catálogo, *cuando* visualiza un producto sin unidades, *entonces* la app le marca visualmente el producto como "Agotado" o "No disponible".
+2. *Dado* que un producto no tiene unidades o está desactivado, *cuando* el mesero explora el catálogo, *entonces* la app no lo muestra.
 
 ---
 
@@ -217,11 +223,11 @@
 
 ---
 
-### **RF-13 — Inhabilitación automática de productos agotados**
+### **RF-13 — Ocultamiento automático de productos agotados**
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá identificar como no disponibles para nuevos pedidos los productos cuyas existencias disponibles sean cero.
+**Descripción:** El sistema deberá excluir del menú y de la selección de nuevos pedidos los productos cuyas existencias disponibles sean cero.
 
 **Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, reunión por Meet.
 
@@ -229,8 +235,8 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que las existencias de un producto llegan a cero (0), *cuando* un mesero consulta el menú en la app, *entonces* el botón de agregar a comanda para dicho producto se deshabilita automáticamente y se marca como "Agotado".
-2. *Dado* que un producto estaba agotado y el administrador hace un ingreso manual de existencias, *cuando* el mesero actualiza la vista del menú, *entonces* el producto vuelve a habilitarse para nuevos pedidos.
+1. *Dado* que las existencias de un producto llegan a cero (0), *cuando* un mesero consulta el menú en la app, *entonces* el producto no aparece y no se puede agregar a una comanda.
+2. *Dado* que un producto estaba agotado y el administrador hace un ingreso manual de existencias, *cuando* el mesero actualiza la vista del menú, *entonces* el producto vuelve a aparecer y puede agregarse a nuevos pedidos.
 
 ---
 
@@ -252,6 +258,25 @@
 ---
 
 ### 1.3. Gestión de comandas y pedidos
+
+---
+
+### **RF-64 — Creación de mesas**
+
+**Tipo:** Funcional
+
+**Descripción:** El sistema deberá permitir exclusivamente al administrador crear las mesas del establecimiento, cada una con un número o nombre único. Las mesas creadas quedan disponibles y aparecen en el mapa de mesas que usan los meseros para abrir comandas (RF-15).
+
+**Origen:** Decisión del equipo de desarrollo, noviembre de 2026.
+
+**Prioridad:** Alta
+
+**Criterios de aceptación:**
+
+1. *Dado* que el administrador tiene sesión iniciada, *cuando* registra una mesa con un número o nombre y confirma la acción, *entonces* la mesa queda creada como disponible y aparece en el mapa de mesas de los meseros.
+2. *Dado* que ya existe una mesa con ese número o nombre, *cuando* el administrador intenta crear otra igual, *entonces* el sistema no la crea e indica que ya existe.
+3. *Dado* que el administrador deja vacío el número o nombre, *cuando* intenta crear la mesa, *entonces* el sistema no la crea e indica el campo inválido.
+4. *Dado* que un usuario con rol distinto a administrador intenta crear una mesa, *cuando* lo intenta, *entonces* no dispone de esa opción y el sistema lo rechaza.
 
 ---
 
@@ -286,7 +311,7 @@
 
 1. *Dado* que un mesero con sesión activa tiene una mesa seleccionada, *cuando* agrega un producto con su cantidad y observaciones, *entonces* la comanda muestra el producto, la cantidad y las observaciones.
 2. *Dado* que un producto tiene pocas unidades, *cuando* el mesero lo consulta, *entonces* el sistema muestra la cantidad restante disponible.
-3. *Dado* que un producto está agotado o desactivado, *cuando* el mesero intenta agregarlo, *entonces* el sistema impide la adición e informa al mesero.
+3. *Dado* que un producto está agotado o desactivado (por ejemplo, porque se agotó mientras armaba la comanda), *cuando* el mesero intenta agregarlo, *entonces* el sistema impide la adición e informa al mesero.
 
 ---
 
@@ -324,6 +349,8 @@
 1. *Dado* que una comanda tiene al menos un producto, *cuando* el mesero la confirma, *entonces* aparece en las pantallas de cocina en menos de 3 segundos con estado "Pendiente".
 2. *Dado* que una comanda está vacía, *cuando* el mesero intenta confirmarla, *entonces* el sistema no la envía.
 3. *Dado* que falla la conexión al intentar confirmar, *cuando* ocurre el error, *entonces* el sistema avisa al mesero y no marca la comanda como enviada.
+4. *Dado* que una comanda se confirma y se envía, *cuando* el sistema la procesa, *entonces* las existencias de sus productos se descuentan del inventario.
+5. *Dado* que un producto de la comanda no tiene existencias suficientes, *cuando* el mesero la confirma, *entonces* el sistema no la envía, indica qué producto no alcanza y no descuenta ninguna existencia.
 
 ---
 
@@ -331,7 +358,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir a los usuarios autorizados consultar las comandas registradas con su mesa, los productos, el total y el estado actual (Pendiente, En preparación o Listo).
+**Descripción:** El sistema deberá permitir a los usuarios autorizados consultar las comandas registradas con su mesa, los productos, el total y el estado actual (Pendiente, En preparación, Lista, Cerrada o Cancelada, esta última para una comanda cerrada sin pago registrado).
 
 **Origen:** El cliente Pepito Pérez — dueño, entrevista.
 
@@ -349,7 +376,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir al mesero agregar productos a una comanda ya enviada y aún no pagada, validando las existencias de inventario. Los productos ya enviados no se eliminan y la comanda conserva el registro original.
+**Descripción:** El sistema deberá permitir al mesero agregar productos a una comanda ya enviada, validando las existencias de inventario, y eliminar productos de ella, mientras la comanda no esté cerrada (pagada). Los cambios no borran el registro: el historial conserva lo que se agregó y lo que se eliminó (RF-27).
 
 **Origen:** El cliente Pepito Pérez — dueño, entrevista sobre clientes que añaden pedidos después del cierre de la comanda.
 
@@ -359,7 +386,8 @@
 
 1. *Dado* que una comanda está enviada y no pagada, *cuando* el mesero agrega un producto con existencias suficientes, *entonces* la comanda se actualiza y el total se recalcula.
 2. *Dado* que un producto no tiene existencias suficientes, *cuando* el mesero intenta agregarlo, *entonces* el sistema rechaza la adición.
-3. *Dado* que una comanda ya está pagada, *cuando* el mesero intenta modificarla, *entonces* el sistema no lo permite.
+3. *Dado* que una comanda ya está cerrada (pagada o cancelada), *cuando* el mesero intenta modificarla (agregar o eliminar productos), *entonces* el sistema no lo permite.
+4. *Dado* que una comanda enviada y no cerrada tiene un producto, *cuando* el mesero lo elimina, *entonces* la comanda se actualiza, el total se recalcula y las existencias de ese producto se reintegran.
 
 ---
 
@@ -367,7 +395,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá notificar a cocina cada adición o modificación de una comanda ya enviada, resaltando visualmente los productos añadidos para distinguirlos de los originales.
+**Descripción:** El sistema deberá notificar a cocina cada adición, eliminación o modificación de una comanda ya enviada, resaltando visualmente los productos añadidos para distinguirlos de los originales y señalando los eliminados.
 
 **Origen:** El cliente Pepito Pérez — dueño, entrevista para evitar pérdida de información y confusión.
 
@@ -377,6 +405,7 @@
 
 1. *Dado* que a una comanda ya enviada se le agrega un producto, *cuando* ocurre la modificación, *entonces* en menos de 3 segundos la pantalla de cocina muestra una alerta y marca el producto nuevo como "Agregado".
 2. *Dado* que llega el cambio a cocina, *cuando* se muestra, *entonces* los productos originales conservan su estado previo.
+3. *Dado* que a una comanda ya enviada se le elimina un producto, *cuando* ocurre la modificación, *entonces* en menos de 3 segundos la pantalla de cocina muestra una alerta y marca el producto como "Eliminado".
 
 ---
 
@@ -397,11 +426,31 @@
 
 ---
 
+### **RF-63 — Cancelación de comandas**
+
+**Tipo:** Funcional
+
+**Descripción:** El sistema deberá permitir al mesero y al administrador cancelar una comanda que no esté cerrada ni cancelada (estados `pendiente`, `enviada`, `en_preparacion` o `lista`). Al cancelarla, la comanda pasa al estado `cerrada` y queda registrada en el historial como cancelada: una comanda cerrada sin pago registrado es una comanda cancelada. Se reintegran al inventario las existencias que se habían descontado, la mesa queda disponible, la comanda deja de aparecer en las pantallas de cocina y el cambio se refleja en todos los dispositivos. La cancelación no borra el registro (RF-27). Una comanda cancelada no admite modificaciones ni pagos.
+
+**Origen:** Decisión del equipo de desarrollo, noviembre de 2026 (entregable 4.2.2 de la EDT).
+
+**Prioridad:** Alta
+
+**Criterios de aceptación:**
+
+1. *Dado* que una comanda está en estado `pendiente`, `enviada`, `en_preparacion` o `lista`, *cuando* el mesero o el administrador la cancela y confirma la acción, *entonces* el estado pasa a `cerrada`, queda registrada como cancelada y el cambio se refleja en todos los dispositivos conectados en menos de 3 segundos.
+2. *Dado* que se cancela una comanda ya enviada, *cuando* el sistema la procesa, *entonces* desaparece de las pantallas de cocina, las existencias de sus productos se reintegran al inventario y la mesa queda disponible.
+3. *Dado* que una comanda ya está cerrada (pagada o cancelada), *cuando* alguien intenta cancelarla, *entonces* el sistema no lo permite.
+4. *Dado* que un usuario que no es mesero ni administrador intenta cancelar una comanda, *cuando* lo intenta, *entonces* el sistema le deniega el acceso.
+5. *Dado* que se cancela una comanda, *cuando* el administrador consulta su historial, *entonces* ve la fecha, la hora y el usuario que la canceló.
+
+---
+
 ### **RF-COMANDA-ESTADO — Ciclo de vida del estado de la comanda**
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá gestionar el ciclo de vida de cada comanda mediante el campo `estado`, con cinco valores y transiciones autorizadas por rol. La secuencia completa es: `pendiente` (comanda creada, no enviada a cocina) → `enviada` (mesero confirma y despacha a cocina) → `en_preparacion` (cocinero inicia la preparación) → `lista` (cocinero termina la preparación) → `cerrada` (cajero confirma el pago). Solo el actor autorizado puede ejecutar cada transición; cualquier intento de transición no permitida es rechazado con código de error 400. En las pantallas de cocina (RF-18, RF-19) se muestran solo tres de estos estados, con estos nombres: `enviada` como "Pendiente", `en_preparacion` como "En preparación" y `lista` como "Lista"; `pendiente` (aún no enviada) y `cerrada` no aparecen en cocina.
+**Descripción:** El sistema deberá gestionar el ciclo de vida de cada comanda mediante el campo `estado`, con cinco valores y transiciones autorizadas por rol. La secuencia completa es: `pendiente` (comanda creada, no enviada a cocina) → `enviada` (mesero confirma y despacha a cocina) → `en_preparacion` (cocinero inicia la preparación) → `lista` (cocinero termina la preparación) → `cerrada` (se confirma el pago). Además, una comanda que no esté cerrada puede pasar directamente a `cerrada` si el mesero o el administrador la cancela (RF-63); una comanda cerrada sin pago registrado es una comanda cancelada. Cada transición la ejecuta el rol autorizado o el administrador; cualquier intento de transición no permitida es rechazado con código de error 400. En las pantallas de cocina (RF-18, RF-19) se muestran solo tres de estos estados, con estos nombres: `enviada` como "Pendiente", `en_preparacion` como "En preparación" y `lista` como "Lista"; `pendiente` (aún no enviada) y `cerrada` no aparecen en cocina.
 
 **Origen:** Diseño del equipo de desarrollo — el estado de la comanda es un concepto transversal a los módulos de mesero, cocina y caja.
 
@@ -412,8 +461,9 @@
 1. *Dado* que el mesero confirma el envío de una comanda con estado `pendiente`, *cuando* lo hace, *entonces* el estado cambia a `enviada` y la comanda aparece en la pantalla de cocina (RF-18).
 2. *Dado* que el cocinero inicia la preparación de una comanda con estado `enviada`, *cuando* confirma el cambio, *entonces* el estado cambia a `en_preparacion` (RF-25).
 3. *Dado* que el cocinero termina la preparación de una comanda con estado `en_preparacion`, *cuando* confirma el cambio, *entonces* el estado cambia a `lista` y el mesero recibe un aviso (RF-26).
-4. *Dado* que el cajero confirma el pago de una comanda con estado `lista`, *cuando* lo registra, *entonces* el estado cambia a `cerrada` (RF-28).
+4. *Dado* que se confirma el pago de una comanda con estado `lista` (el cajero, el mesero si es transferencia, o el administrador), *cuando* lo registra, *entonces* el estado cambia a `cerrada` (RF-28).
 5. *Dado* que cualquier usuario intenta ejecutar una transición de estado no autorizada para su rol, *cuando* lo intenta, *entonces* el sistema rechaza la acción con código de error 400.
+6. *Dado* que el mesero o el administrador cancela una comanda que no está cerrada, *cuando* confirma la acción, *entonces* el estado cambia a `cerrada` y queda registrada como cancelada (RF-63).
 
 ---
 
@@ -459,7 +509,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir al cocinero avanzar el estado de una comanda según las dos transiciones autorizadas para su rol: de `enviada` a `en_preparacion` al iniciar la preparación, y de `en_preparacion` a `lista` al terminarla. El cocinero no puede ejecutar ninguna otra transición; en particular, el cierre de la comanda (`lista → cerrada`) es responsabilidad exclusiva del cajero al confirmar el pago (RF-28).
+**Descripción:** El sistema deberá permitir al cocinero, y al administrador, avanzar el estado de una comanda según las dos transiciones autorizadas para el rol de cocinero: de `enviada` a `en_preparacion` al iniciar la preparación, y de `en_preparacion` a `lista` al terminarla. El cocinero no puede ejecutar ninguna otra transición; en particular, el cierre de la comanda (`lista → cerrada`) corresponde a quien confirma el pago (RF-28): el cajero, el mesero si es transferencia, o el administrador.
 
 **Origen:** Juan Sebastián Aragón Campo, anexo.
 
@@ -470,7 +520,7 @@
 1. *Dado* que una comanda tiene estado `enviada` y el cocinero confirma el inicio de la preparación, *cuando* ejecuta el cambio, *entonces* el estado pasa a `en_preparacion` y el cambio se propaga a todos los dispositivos conectados en menos de 3 segundos.
 2. *Dado* que una comanda tiene estado `en_preparacion` y el cocinero confirma que terminó, *cuando* ejecuta el cambio, *entonces* el estado pasa a `lista` y el cambio se propaga a todos los dispositivos conectados en menos de 3 segundos.
 3. *Dado* que el cocinero intenta ejecutar cualquier transición no autorizada para su rol (por ejemplo, `lista → cerrada`), *cuando* lo intenta, *entonces* el sistema rechaza la acción con código de error 400.
-4. *Dado* que un usuario sin rol de cocinero intenta cambiar el estado de preparación de una comanda, *cuando* lo intenta, *entonces* el sistema deniega el acceso.
+4. *Dado* que un usuario que no es cocinero ni administrador intenta cambiar el estado de preparación de una comanda, *cuando* lo intenta, *entonces* el sistema deniega el acceso.
 
 ---
 
@@ -525,6 +575,7 @@
 
 1. *Dado* que se confirma un pago, *cuando* queda registrado, *entonces* incluye todos sus datos y suma al saldo correcto: efectivo a la caja, transferencia al saldo de transferencias.
 2. *Dado* que una comanda ya fue pagada, *cuando* se intenta registrar un segundo pago sobre ella, *entonces* el sistema no lo admite.
+3. *Dado* que se confirma el pago de una comanda, *cuando* queda registrado, *entonces* la comanda pasa a estado `cerrada`.
 
 ---
 
@@ -532,7 +583,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir exclusivamente a los cajeros confirmar pagos en efectivo.
+**Descripción:** El sistema deberá permitir a los cajeros y al administrador confirmar pagos en efectivo.
 
 **Origen:** El cliente Pepito Pérez — dueño, entrevista (solo los cajeros aceptan efectivo); Juan Sebastián Aragón Campo, anexo.
 
@@ -540,8 +591,8 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que un usuario con rol de cajero confirma un pago en efectivo, *cuando* lo registra, *entonces* este se suma a la caja a su nombre.
-2. *Dado* que un mesero u otro rol intenta confirmar un pago en efectivo, *cuando* lo intenta, *entonces* la opción no está disponible y el sistema rechaza la operación si se intenta por otra vía.
+1. *Dado* que un usuario con rol de cajero o de administrador confirma un pago en efectivo, *cuando* lo registra, *entonces* este se suma a la caja a su nombre.
+2. *Dado* que un mesero, un cocinero o un cliente intenta confirmar un pago en efectivo, *cuando* lo intenta, *entonces* la opción no está disponible y el sistema rechaza la operación si se intenta por otra vía.
 
 ---
 
@@ -549,7 +600,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir a los meseros y cajeros mostrar el código QR de pago y registrar la confirmación de una transferencia una vez verificada su recepción. El valor confirmado se suma al saldo de transferencias, independiente del efectivo.
+**Descripción:** El sistema deberá permitir a los meseros, cajeros y al administrador mostrar el código QR de pago y registrar la confirmación de una transferencia una vez verificada su recepción. El valor confirmado se suma al saldo de transferencias, independiente del efectivo. Cada paso se detalla en RF-40 (QR), RF-41 (confirmación), RF-42 (saldo) y RF-43 (doble confirmación).
 
 **Origen:** El cliente Pepito Pérez — dueño, entrevista; Juan Sebastián Aragón Campo, anexo.
 
@@ -557,8 +608,8 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que un mesero o cajero con una comanda lista para pagar selecciona el pago por transferencia, *cuando* lo solicita, *entonces* el sistema muestra el código QR en pantalla.
-2. *Dado* que el mesero o cajero confirma la transferencia, *cuando* la confirma, *entonces* el pago queda registrado como transferencia y suma al saldo de transferencias, no a la caja.
+1. *Dado* que un mesero, cajero o administrador con una comanda lista para pagar selecciona el pago por transferencia, *cuando* lo solicita, *entonces* el sistema muestra el código QR en pantalla.
+2. *Dado* que el mesero, cajero o administrador confirma la transferencia, *cuando* la confirma, *entonces* el pago queda registrado como transferencia y suma al saldo de transferencias, no a la caja.
 3. *Dado* que una transferencia ya fue confirmada, *cuando* se intenta confirmar de nuevo, *entonces* el sistema no lo permite.
 
 ---
@@ -726,7 +777,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir a meseros y cajeros visualizar desde sus dispositivos el código QR configurado por el establecimiento para recibir transferencias.
+**Descripción:** El sistema deberá permitir a meseros, cajeros y al administrador visualizar desde sus dispositivos el código QR configurado por el establecimiento para recibir transferencias.
 
 **Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, llamada por Meet.
 
@@ -734,8 +785,9 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que un mesero o cajero con sesión iniciada selecciona el pago por transferencia, *cuando* lo solicita, *entonces* el sistema muestra en pantalla el código QR configurado.
+1. *Dado* que un mesero, cajero o administrador con sesión iniciada selecciona el pago por transferencia, *cuando* lo solicita, *entonces* el sistema muestra en pantalla el código QR configurado.
 2. *Dado* que el código QR se muestra en pantalla, *cuando* el cliente lo escanea, *entonces* dirige a la cuenta de recepción de transferencias del establecimiento.
+3. *Dado* que el código QR se muestra, *cuando* el cliente lo escanea con un celular en condiciones normales de luz, *entonces* tiene tamaño y contraste suficientes para escanearse.
 
 ---
 
@@ -743,7 +795,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir a los meseros y cajeros registrar manualmente la confirmación de una transferencia, mediante un botón, después de verificar visualmente el comprobante presentado por el cliente, sin requerir integración con una pasarela de pagos.
+**Descripción:** El sistema deberá permitir a los meseros, cajeros y al administrador registrar manualmente la confirmación de una transferencia, mediante un botón, después de verificar visualmente el comprobante presentado por el cliente, sin requerir integración con una pasarela de pagos.
 
 **Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, llamada por Meet.
 
@@ -751,9 +803,9 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que hay un pago por transferencia pendiente de confirmar, *cuando* el mesero o cajero presiona el botón de confirmación, *entonces* el sistema registra el pago como confirmado y guarda el cambio en la base de datos.
+1. *Dado* que hay un pago por transferencia pendiente de confirmar, *cuando* el mesero, cajero o administrador presiona el botón de confirmación, *entonces* el sistema registra el pago como confirmado y guarda el cambio en la base de datos.
 2. *Dado* que hay un pago por transferencia que no ha sido confirmado, *cuando* se consulta el saldo de transferencias, *entonces* ese pago no está incluido en el saldo.
-3. *Dado* que un usuario con un rol distinto a mesero o cajero consulta un pago pendiente, *cuando* lo abre, *entonces* no dispone del botón de confirmación.
+3. *Dado* que un usuario con un rol distinto a mesero, cajero o administrador consulta un pago pendiente, *cuando* lo abre, *entonces* no dispone del botón de confirmación.
 
 ---
 
@@ -786,16 +838,16 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que un pago por transferencia ya fue confirmado, *cuando* un mesero o cajero intenta confirmarlo otra vez (por ejemplo, con doble pulsación), *entonces* el sistema no lo vuelve a sumar e informa que ya fue confirmado.
+1. *Dado* que un pago por transferencia ya fue confirmado, *cuando* un mesero, cajero o administrador intenta confirmarlo otra vez (por ejemplo, con doble pulsación), *entonces* el sistema no lo vuelve a sumar e informa que ya fue confirmado.
 2. *Dado* que un pago ya fue confirmado, *cuando* se consulta el saldo de transferencias, *entonces* el valor de ese pago aparece una sola vez.
 
 ---
 
-### **RF-44 — Cierre de caja**
+### **RF-44 — Cierre de caja (cierre de la jornada)**
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir a cualquier cajero ejecutar el cierre de caja del día mediante un botón de cierre y una confirmación de la acción.
+**Descripción:** El sistema deberá permitir a cualquier cajero, o al administrador, ejecutar el cierre de la jornada mediante un botón "Cerrar jornada" y una confirmación de la acción. Cerrar la jornada, cerrar el día y cerrar la caja son la misma acción.
 
 **Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, llamada por Meet.
 
@@ -803,9 +855,9 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que un cajero tiene sesión iniciada, *cuando* presiona el botón de cierre de caja, *entonces* el sistema solicita confirmar la acción.
-2. *Dado* que el cajero confirma el cierre, *cuando* el sistema lo procesa, *entonces* el cierre queda registrado con la fecha y el cajero que lo ejecutó.
-3. *Dado* que el cajero cancela la confirmación, *cuando* vuelve a la caja, *entonces* no se registra ningún cierre.
+1. *Dado* que un cajero o el administrador tiene sesión iniciada, *cuando* presiona el botón "Cerrar jornada", *entonces* el sistema solicita confirmar la acción.
+2. *Dado* que el cajero confirma el cierre, *cuando* el sistema lo procesa, *entonces* el cierre queda registrado con la fecha y el usuario (cajero o administrador) que lo ejecutó.
+3. *Dado* que quien cierra cancela la confirmación, *cuando* vuelve a la caja, *entonces* no se registra ningún cierre.
 
 ---
 
@@ -830,7 +882,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** Durante el cierre, el sistema deberá permitir al administrador registrar el valor de efectivo que queda como base de la siguiente jornada y el valor del excedente que retira.
+**Descripción:** Durante el cierre, el sistema deberá permitir al cajero o al administrador registrar el valor de efectivo que queda como base de la siguiente jornada, y al administrador registrar además el valor del excedente que retira. El cajero no retira directamente: si hay excedente por retirar, envía una solicitud de retiro (RF-34) que el administrador debe aprobar (RF-36).
 
 **Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, llamada por Meet.
 
@@ -840,6 +892,9 @@
 
 1. *Dado* que el administrador está cerrando la jornada e ingresó una base y un retiro cuya suma no supera el efectivo disponible, *cuando* presiona "Confirmar", *entonces* el sistema guarda la base y el retiro con fecha y usuario y muestra el mensaje "Base y retiro registrados".
 2. *Dado* que la suma de la base y el retiro es mayor al efectivo disponible, *cuando* el administrador presiona "Confirmar", *entonces* el sistema no guarda nada y muestra "La base y el retiro superan el efectivo disponible ($XXX)".
+3. *Dado* que el cajero está cerrando la jornada e ingresó una base que no supera el efectivo disponible, *cuando* presiona "Confirmar", *entonces* el sistema guarda la base con fecha y usuario y muestra el mensaje "Base registrada".
+4. *Dado* que la base que ingresa el cajero es mayor al efectivo disponible, *cuando* presiona "Confirmar", *entonces* el sistema no guarda nada y muestra "La base supera el efectivo disponible ($XXX)".
+5. *Dado* que el cajero cierra la jornada y hay excedente por retirar, *cuando* consulta las opciones del cierre, *entonces* no dispone de la opción de registrar el retiro y debe enviar una solicitud de retiro (RF-34), que el administrador aprueba o rechaza (RF-36).
 
 ---
 
@@ -855,7 +910,7 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que el administrador completó los pasos del cierre, *cuando* presiona "Cerrar jornada", *entonces* el sistema genera y guarda un informe con saldo inicial, ingresos, egresos, base reservada y saldo final, separados por efectivo y transferencia, donde saldo final = saldo inicial + ingresos − egresos.
+1. *Dado* que se completaron los pasos del cierre (incluido el registro de la base y el retiro, RF-47), *cuando* el cajero o el administrador presiona "Cerrar jornada" (el mismo cierre de RF-44), *entonces* el sistema genera y guarda un informe con saldo inicial, ingresos, egresos, base reservada y saldo final, separados por efectivo y transferencia, donde saldo final = saldo inicial + ingresos − egresos.
 2. *Dado* que existe el informe de una jornada cerrada y ya se abrió una nueva jornada, *cuando* el administrador consulta los informes anteriores, *entonces* el sistema muestra el informe de esa jornada sin cambios.
 
 ---
@@ -872,7 +927,7 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que la jornada anterior está cerrada con una base de $[X]$, *cuando* el administrador presiona "Abrir jornada", *entonces* el sistema crea la nueva jornada con saldo inicial de efectivo de $[X]$ y conserva las jornadas anteriores consultables.
+1. *Dado* que la jornada anterior está cerrada con una base de $X, *cuando* el administrador presiona "Abrir jornada", *entonces* el sistema crea la nueva jornada con saldo inicial de efectivo de $X y conserva las jornadas anteriores consultables.
 2. *Dado* que la jornada anterior no está cerrada, *cuando* el administrador intenta abrir una nueva jornada, *entonces* el sistema muestra "Debes cerrar la jornada anterior antes de abrir una nueva."
 
 ---
@@ -885,7 +940,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir registrar un cliente con nombre, apellido, número de documento y número de celular, exigiendo que acepte el tratamiento de sus datos personales (Ley 1581 de 2012).
+**Descripción:** El sistema deberá permitir registrar un cliente con nombre, apellido, número de documento, número de celular y una contraseña de entre 8 y 72 caracteres, con la que iniciará sesión junto con su número de documento, exigiendo que acepte el tratamiento de sus datos personales (Ley 1581 de 2012).
 
 **Origen:** El cliente Pepito Pérez — dueño; acta de constitución, 29 de septiembre del 2026.
 
@@ -893,9 +948,10 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que el cliente ingresó nombre, apellido, número de documento y celular, y aceptó el tratamiento de datos personales, *cuando* presiona "Registrarme", *entonces* el sistema crea el registro con 0 puntos de fidelidad y muestra "Registro exitoso. ¡Ya puedes empezar a acumular tus puntos de fidelidad!" en menos de 4 minutos desde que inició el formulario.
+1. *Dado* que el cliente ingresó nombre, apellido, número de documento, celular y contraseña, y aceptó el tratamiento de datos personales, *cuando* presiona "Registrarme", *entonces* el sistema crea el registro con 0 puntos de fidelidad y muestra "Registro exitoso. ¡Ya puedes empezar a acumular tus puntos de fidelidad!" en menos de 4 minutos desde que inició el formulario.
 2. *Dado* que falta algún dato o el cliente no aceptó el tratamiento de datos, *cuando* presiona "Registrarme", *entonces* el sistema no guarda el registro, resalta lo que falta y muestra "Completa todos los datos y acepta el tratamiento de datos personales."
 3. *Dado* que ya existe un cliente con ese número de documento, *cuando* otro registro intenta usar el mismo documento, *entonces* el sistema muestra "Este documento ya está registrado."
+4. *Dado* que la contraseña tiene menos de 8 o más de 72 caracteres, *cuando* presiona "Registrarme", *entonces* el sistema no guarda el registro y muestra "La contraseña debe tener entre 8 y 72 caracteres."
 
 ---
 
@@ -997,7 +1053,7 @@
 **Criterios de aceptación:**
 
 1. *Dado* que el cliente está registrado, *cuando* el mesero ingresa su número de documento, *entonces* el sistema muestra los puntos de fidelidad del cliente en máximo 2 segundos.
-2. *Dado* que el usuario no es mesero ni administrador, *cuando* intenta consultar los puntos de fidelidad de un cliente, *entonces* el sistema le niega el acceso y muestra "No tienes permiso para esta acción."
+2. *Dado* que el usuario no es mesero ni administrador, *cuando* intenta consultar los puntos de fidelidad de un cliente, *entonces* el sistema le niega el acceso y muestra "No tienes permiso para realizar esta acción."
 
 ---
 
@@ -1396,7 +1452,7 @@
 
 **Tipo:** No funcional (Usabilidad y experiencia de usuario)
 
-**Descripción:** El sistema deberá diferenciar visualmente los productos disponibles, con existencias bajas y agotados, utilizando textos o indicadores que permitan reconocer su estado sin depender exclusivamente de los colores.
+**Descripción:** El sistema deberá diferenciar visualmente los productos disponibles y con existencias bajas (los agotados no se muestran en el menú, RF-13), utilizando textos o indicadores que permitan reconocer su estado sin depender exclusivamente de los colores.
 
 **Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, llamada por Meet (mostrar si no hay o quedan pocas unidades, con su cantidad).
 
@@ -1404,8 +1460,8 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que se muestra un producto en el menú, *cuando* el usuario lo consulta, *entonces*: si sus existencias superan el umbral mínimo, aparece como "Disponible" con su cantidad; si son iguales o inferiores al umbral y mayores a cero, aparece "Pocas unidades" con la cantidad restante; si son cero, aparece "Agotado".
-2. *Dado* que la lista de productos se ve en escala de grises, *cuando* el usuario la revisa, *entonces* los tres estados siguen siendo distinguibles por su texto o ícono.
+1. *Dado* que se muestra un producto en el menú, *cuando* el usuario lo consulta, *entonces*: si sus existencias superan el umbral mínimo, aparece como "Disponible" con su cantidad; si son iguales o inferiores al umbral y mayores a cero, aparece "Pocas unidades" con la cantidad restante; si son cero, el producto no se muestra (RF-13).
+2. *Dado* que la lista de productos se ve en escala de grises, *cuando* el usuario la revisa, *entonces* los dos estados siguen siendo distinguibles por su texto o ícono.
 3. *Dado* que se mide el contraste de cualquier indicador de estado con el fondo, *cuando* se verifica, *entonces* es de al menos 4,5:1.
 
 ---
@@ -1424,7 +1480,7 @@
 
 1. *Dado* que una comanda se muestra en el televisor de cocina y el cocinero la observa a 3 metros de distancia, *cuando* la lee, *entonces* puede leer la mesa, los productos, las cantidades y las observaciones.
 2. *Dado* que una comanda tiene observaciones, *cuando* se muestra, *entonces* estas aparecen completas, sin truncar y resaltadas con fondo o ícono distinto al resto del texto.
-3. *Dado* que una comanda tiene un estado asignado, *cuando* se muestra, *entonces* su estado aparece escrito ("Pendiente", "En preparación", "Listo") y no solo representado por color.
+3. *Dado* que una comanda tiene un estado asignado, *cuando* se muestra, *entonces* su estado aparece escrito ("Pendiente", "En preparación", "Lista") y no solo representado por color.
 4. *Dado* que una comanda tiene productos agregados después del envío, *cuando* se muestra, *entonces* los productos nuevos se distinguen de los originales (RF-21).
 
 ---
@@ -1558,7 +1614,7 @@
 **Criterios de aceptación:**
 
 1. *Dado* que se conecta un televisor con resolución 1920 × 1080 mediante el mecanismo definido, *cuando* se abre la vista de cocina, *entonces* se muestra completa en orientación horizontal y sin elementos cortados.
-2. *Dado* que la vista de cocina está abierta durante la jornada, *cuando* pasa el tiempo sin interacción, *entonces* la pantalla no se suspende ni cierra la sesión.
+2. *Dado* que la vista de cocina está abierta durante la jornada con la sesión del cocinero, *cuando* pasa el tiempo sin interacción, *entonces* la pantalla no se suspende ni cierra la sesión (el cocinero está exceptuado del cierre por inactividad de RNF-26).
 3. *Dado* que el televisor se reinicia o pierde la conexión, *cuando* se recupera, *entonces* la vista vuelve a mostrar las comandas activas sin registrarlas de nuevo.
 
 ---
@@ -1576,7 +1632,7 @@
 **Criterios de aceptación:**
 
 1. *Dado* que el administrador está fuera del local y tiene Internet, *cuando* inicia sesión, *entonces* el servidor aplica las mismas validaciones de credenciales y rol que dentro del local (RNF-07), y la comunicación se realiza por HTTPS (RNF-06).
-2. *Dado* que una sesión no tiene actividad durante 30 minutos, *cuando* el administrador intenta realizar una acción, *entonces* el sistema le solicita autenticarse de nuevo.
+2. *Dado* que una sesión no tiene actividad durante 30 minutos, *cuando* el administrador (o cualquier otro usuario, salvo el cocinero) intenta realizar una acción, *entonces* el sistema le solicita autenticarse de nuevo. Esta regla no aplica a la sesión del cocinero, que mantiene abierta la vista de cocina (RNF-25).
 3. *Dado* que se registran 5 intentos fallidos consecutivos de inicio de sesión, *cuando* se intenta un sexto, *entonces* el acceso a esa cuenta se bloquea durante 15 minutos.
 
 ---

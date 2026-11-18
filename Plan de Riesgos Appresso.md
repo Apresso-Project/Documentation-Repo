@@ -1,6 +1,6 @@
 ﻿# PLAN DE RIESGOS — APPRESSO
 
-> **Estado:** borrador v0.3 (3 de noviembre de 2026). Lista de riesgos candidatos para revisar con el equipo.
+> **Estado:** borrador v0.3 (3 de noviembre de 2026). Evaluación inicial. Método de evaluación revisado el 17/11/2026. El [seguimiento](Seguimiento%20de%20Riesgos%20Appresso.md) contiene la evaluación y las respuestas vigentes, y los riesgos R-13 a R-16 (agregados el 12/11), que no están en este plan.
 > **Responsable:** Felipe Salcedo (entregable 1.2.1 — Plan temporal, económico y de riesgos).
 
 ## 1. Cómo se redactan los riesgos
@@ -21,7 +21,7 @@ lo que provocaría    [efecto sobre el proyecto]
 
 - La causa debe ser un hecho que hoy se pueda comprobar (un documento, una fecha, un número), no una opinión ni algo futuro.
 - El evento debe ser incierto: puede pasar o no. Si ya pasó, es un problema, no un riesgo.
-- El efecto debe tocar un objetivo del proyecto: plazo (17/12/2026), alcance, costo o calidad.
+- El efecto debe tocar un objetivo del proyecto: plazo (15/12/2026), alcance, costo o calidad.
 
 ---
 
@@ -29,8 +29,8 @@ lo que provocaría    [efecto sobre el proyecto]
 
 ### R-01 — Plazo de la ruta crítica frente a la fecha de entrega
 
-**Debido a** que el cronograma calcula la ruta crítica en 49 días hábiles (lunes a sábado) con holgura cero en 14 entregables, y que el desarrollo inició el 28/10/2026 (Sprint 0) y no el 29/09 que usa el cronograma como día 0,
-**podría ocurrir que** la fecha de fin proyectada de la ruta crítica supere el 17/12/2026,
+**Debido a** que el cronograma calcula la ruta crítica en 49 días (calendario de lunes a domingo, CC-02) con holgura cero en 14 entregables, y que el desarrollo inició el 28/10/2026 (Sprint 0) y no el 29/09 que usaba el cronograma como día 0,
+**podría ocurrir que** la fecha de fin proyectada de la ruta crítica supere el 15/12/2026,
 **lo que provocaría** que la v1.0 no esté desplegada ni validada en la prueba piloto en la fecha comprometida.
 
 ### R-02 — Disponibilidad del equipo por la carga académica
@@ -41,7 +41,7 @@ lo que provocaría    [efecto sobre el proyecto]
 
 ### R-03 — Concentración de la carga en Diego Gómez
 
-**Debido a** que el RACI asigna a Gómez 14 entregables como R y 9 como A, incluyendo 3 de la ruta crítica (8.1.1, 8.3.1, 8.5.1),
+**Debido a** que el RACI asigna a Gómez 14 entregables como R y 9 como A, incluyendo 5 de la ruta crítica (3.1.1, 3.3.1, 8.1.1, 8.3.1 y 8.5.1),
 **podría ocurrir que** Gómez se enferme, se sobrecargue o no esté disponible unos días,
 **lo que provocaría** que se bloqueen arquitectura, pruebas y despliegue, que no tienen holgura.
 
@@ -77,7 +77,7 @@ lo que provocaría    [efecto sobre el proyecto]
 
 ### R-09 — Alcance amplio frente al tiempo disponible
 
-**Debido a** que el acta compromete siete funcionalidades con 31 entregables y que el documento de requerimientos ya tiene más de 50 requisitos funcionales (incluyendo notificaciones push, acceso remoto y promociones),
+**Debido a** que el acta compromete siete funcionalidades con 31 entregables y que el documento de requerimientos ya tiene 63 requisitos funcionales (incluyendo notificaciones push, acceso remoto y promociones),
 **podría ocurrir que** el equipo no alcance a implementar todo con calidad en el plazo,
 **lo que provocaría** que se entreguen módulos incompletos o se recorte alcance sin acordarlo antes con el cliente.
 
@@ -101,7 +101,7 @@ lo que provocaría    [efecto sobre el proyecto]
 
 ### R-12 — Despliegue en producción sin experiencia ni entorno definido
 
-**Debido a** que el acta exige el backend en producción con HTTPS antes del 17/12/2026, que el despliegue (8.5.1) dura 3 días al final de la ruta crítica, y que el equipo no tiene experiencia desplegando y todavía no se ha elegido el hosting ni se ha registrado un costo para él,
+**Debido a** que el acta exige el backend en producción con HTTPS antes del 15/12/2026, que el despliegue (8.5.1) dura 3 días al final de la ruta crítica, y que el equipo no tiene experiencia desplegando y, aunque el 10/11 se eligió el hosting (Render para el backend y Neon para la base de datos, con planes gratuitos), aún no hay un despliegue de prueba y el costo registrado para el hosting no corresponde a esa elección,
 **podría ocurrir que** surjan problemas de configuración (servidor, base de datos, certificado HTTPS, variables de entorno) o que el hosting elegido tenga un costo o limitaciones no previstas,
 **lo que provocaría** que la app no esté en producción para el piloto, o que se necesite un gasto adicional no contemplado en el presupuesto.
 
@@ -114,16 +114,28 @@ Se usa una escala de 5 niveles para la probabilidad y otra para el impacto (1 = 
 
 ### 4.1 Probabilidad
 
-| Nivel | Categoría | Probabilidad de que ocurra antes del 17/12/2026 | Criterio orientativo |
+| Nivel | Categoría | Probabilidad de que ocurra antes del 15/12/2026 | Criterio orientativo |
 |:-----:|-----------|:-----------------------------------------------:|----------------------|
 | 1 | Muy baja | < 10 % | Solo ocurriría por una circunstancia excepcional |
-| 2 | Baja | 10 % – 30 % | Puede ocurrir, pero no hay señales hoy |
-| 3 | Media | 30 % – 50 % | Hay señales parciales; ocurre en proyectos parecidos |
-| 4 | Alta | 50 % – 70 % | Ya hay señales claras en los documentos o en el equipo |
+| 2 | Baja | 10 % a menos de 30 % | Puede ocurrir, pero no hay señales hoy |
+| 3 | Media | 30 % a menos de 50 % | Hay señales parciales; ocurre en proyectos parecidos |
+| 4 | Alta | 50 % a 70 % inclusive | Ya hay señales claras en los documentos o en el equipo |
 | 5 | Muy alta | > 70 % | Es casi seguro si no se actúa |
 
 
-### 4.2 Matriz de nivel de riesgo (P × I)
+### 4.2 Criterios de impacto
+
+Valorar la consecuencia si ocurre el evento. Si afecta varios objetivos, usar el nivel más alto aplicable y registrar la evidencia o el supuesto. Los umbrales propuestos se aplican en la próxima revisión del equipo.
+
+| Nivel | Plazo | Costo adicional frente al BAC | Alcance o calidad |
+|---|---|---|---|
+| 1 | Sin mover hitos, hasta 1 día de holgura consumido | Menos de 1 % | Ajuste menor sin afectar criterios de aceptación |
+| 2 | Más de 1 día de holgura consumido, sin mover hitos | Desde 1 % hasta menos de 3 % | Defecto menor con solución temporal |
+| 3 | Hito interno se retrasa hasta 2 días | Desde 3 % hasta menos de 5 % | Falla un criterio de un módulo y existe una solución temporal |
+| 4 | Hito interno se retrasa más de 2 días o se compromete un entregable crítico | Desde 5 % hasta menos de 10 % | Falla un criterio crítico de caja, comandas o seguridad y se requiere retrabajo antes del piloto |
+| 5 | Se incumple la fecha de entrega o se pierde el piloto | 10 % o más | El piloto resulta inviable o se produce un incumplimiento normativo |
+
+### 4.3 Matriz de nivel de riesgo (P × I)
 
 Cada celda muestra el color del nivel y los riesgos ubicados en ella. El nivel de un riesgo es el producto de su probabilidad por su impacto.
 
@@ -152,7 +164,7 @@ Cada celda muestra el color del nivel y los riesgos ubicados en ella. El nivel d
 | R-08 | Información del cliente | 3 | 3 | 9 | 🟡 Medio |
 | R-06 | Conexión a Internet | 2 | 4 | 8 | 🟡 Medio |
 
-### 4.3 Clasificación y qué se hace en cada nivel
+### 4.4 Clasificación y qué se hace en cada nivel
 
 | Puntaje | Nivel | Tratamiento |
 |:-------:|-------|-------------|
@@ -162,40 +174,31 @@ Cada celda muestra el color del nivel y los riesgos ubicados en ella. El nivel d
 | 15 – 25 | 🔴 Crítico | Plan de respuesta inmediato, reserva de contingencia y aviso al patrocinador |
 ---
 
-## 5. Costo esperado y respuesta a los riesgos críticos
+## 5. Método vigente y evaluación inicial de los riesgos críticos
 
-El análisis se hace solo con los riesgos en rojo (🔴 Crítico): **R-01, R-02, R-10, R-11 y R-12**. Los demás se vigilan en el seguimiento según el nivel de la sección 4.3.
+### 5.1 Método vigente
 
-### 5.1 Método
+- Registrar por separado los días de atraso sobre la ruta crítica, la capacidad perdida y el costo incremental. El costo incremental incluye horas adicionales de respuesta o retrabajo y gastos directos. Valorar las horas a la tarifa del presupuesto y respaldarlas con tareas, responsables y horas estimadas.
+- Para un riesgo abierto, comparar el costo esperado sin respuesta (probabilidad × costo incremental) con el costo de la respuesta más la exposición posterior (probabilidad residual × costo incremental residual). Registrar cómo se estimó cada probabilidad y qué evidencia permite reducirla. Revisar también los criterios de aceptación y las consecuencias sobre la fecha de entrega.
+- Para un riesgo materializado, registrar el impacto ocurrido, las horas o gastos incurridos y el costo de las acciones pendientes. Si queda otro evento incierto, estimar su exposición por separado.
+- Usar el mismo identificador para rastrear cada gasto y asignarlo una sola vez. Cuando varios riesgos explican el mismo retrabajo, registrar un costo compartido y sus riesgos relacionados. Una respuesta aprobada se presupuesta como trabajo previsto. La reserva cubre la exposición residual cuantificada y los gastos de contingencia aprobados.
+- Para riesgos altos y críticos, registrar una fecha preventiva, un disparador medible, un responsable y la evidencia de cumplimiento. Revisar costos y fechas en cada reunión y después de un cambio de línea base.
 
-Para cada riesgo se comparan dos opciones:
+Las secciones 5.2 a 5.4 conservan las hipótesis y respuestas del ejercicio inicial para trazabilidad. En ese ejercicio se usó el punto medio de probabilidad (60 % para P4 y 40 % para P3) y 371 h de esfuerzo base. Las horas de atraso y bloqueo allí valoradas representan aproximaciones históricas de exposición, con posible solapamiento. Consultar el seguimiento para decidir acciones y el presupuesto para consultar su estado financiero.
 
-| Opción | Costo esperado |
-|--------|----------------|
-| No hacer nada | Probabilidad × Impacto |
-| Mitigar | (Probabilidad reducida × Impacto) + Costo de mitigar |
-
-Se elige la opción con menor costo esperado. Si mitigar cuesta más que el riesgo, lo legítimo es aceptarlo y dejarlo escrito.
-
-**Unidad:** horas-persona. Todavía no hay presupuesto ni tarifa por hora; al hacer el presupuesto se multiplican estas horas por la tarifa que se defina. Los gastos directos en pesos (p. ej. hosting) se anotan aparte.
-
-**Referencia:** el esfuerzo total planeado en el cronograma es de **371 h** (suma de los 31 entregables).
-
-**Probabilidad:** se usa el punto medio del rango de cada nivel de la sección 4.1: nivel 4 = 60 %, nivel 3 = 40 %.
-
-### 5.2 Impacto en horas-persona (supuestos)
+### 5.2 Impacto en horas-persona (supuestos) (evaluación inicial)
 
 > Todas las cifras de esta tabla son supuestos del gerente, por validar con el equipo.
 
 | Riesgo | Nivel P / I | P | Impacto (h) | Cómo se calculó |
 |:------:|:-----------:|:--:|:-----------:|-----------------|
-| R-01 | 4 / 5 | 60 % | 160 | ≈ 8 días hábiles de retraso (hasta el ~23-29/12 según festivos) × 5 personas × 4 h |
+| R-01 | 4 / 5 | 60 % | 160 | ≈ 8 días hábiles de retraso (hasta el ~23/12 con el calendario de lunes a domingo) × 5 personas × 4 h |
 | R-02 | 4 / 4 | 60 % | 90 | Capacidad perdida: 1 de cada 4 h/día durante ~18 días hábiles de parciales y entregas × 5 personas |
 | R-10 | 4 / 4 | 60 % | 80 | 5 días de retraso en 8.1.1 × 4 personas bloqueadas (los demás entregables dependen de él) × 4 h |
 | R-11 | 4 / 4 | 60 % | 64 | Retrabajo de la sincronización (8.2.1) y de los módulos que la usan: 8 días × 2 personas × 4 h |
 | R-12 | 3 / 5 | 40 % | 120 | Despliegue de emergencia y repetición de la validación: 10 días × 3 personas × 4 h (más el hosting en pesos, pendiente) |
 
-### 5.3 Comparación: no hacer nada frente a mitigar
+### 5.3 Comparación: no hacer nada frente a mitigar (evaluación inicial)
 
 | Riesgo | Costo esperado sin hacer nada (h) | P reducida | Riesgo residual (h) | Costo de mitigar (h) | Costo esperado mitigando (h) | Ahorro (h) | Decisión |
 |:------:|:---:|:---:|:---:|:---:|:---:|:---:|----------|
@@ -206,18 +209,18 @@ Se elige la opción con menor costo esperado. Si mitigar cuesta más que el ries
 | R-12 | 48,0 | 15 % | 18,0 | 20 | **38,0** | 10,0 | Transferir y mitigar |
 | **Total** | **284,4** | | **133,5** | **96** | **229,5** | **54,9** | |
 
-En los cinco riesgos mitigar cuesta menos que no hacer nada. El ahorro de R-11 es el más pequeño (6,4 h), así que si el equipo necesita recortar esfuerzo, esa mitigación es la primera que se puede reducir.
+La comparación inicial arroja un ahorro teórico de 54,9 h bajo sus supuestos. La validación de la latencia y la reconexión de R-11 se mantiene ligada al criterio de aceptación de 8.2.1.
 
-### 5.4 Respuesta a cada riesgo crítico
+### 5.4 Respuesta a cada riesgo crítico (evaluación inicial)
 
 | Riesgo | Tipo de respuesta | Acciones | Costo (h) | Responsable | Disparador |
 |:------:|-------------------|----------|:---------:|-------------|------------|
-| R-01 | **Mitigar** + **Escalar** | Recalcular el cronograma con el inicio real (28/10) y los festivos; paralelizar lo que tiene holgura; si la fecha de fin proyectada supera el 17/12, escalar al docente y al patrocinador para acordar fecha o recorte de alcance (p. ej. 7.4.1 promociones), y registrar que se escaló | 32 | Felipe | Fecha de fin recalculada > 17/12, o cualquier retraso en un entregable de la ruta crítica |
+| R-01 | **Mitigar** + **Escalar** | Recalcular el cronograma con el inicio real (28/10) y el calendario vigente; paralelizar lo que tiene holgura; si la fecha de fin proyectada supera el 15/12, escalar al docente y al patrocinador para acordar fecha o recorte de alcance (p. ej. 7.4.1 promociones), y registrar que se escaló | 32 | Felipe | Fecha de fin recalculada > 15/12, o cualquier retraso en un entregable de la ruta crítica |
 | R-02 | **Mitigar** | Pedir a cada integrante su calendario de parciales y entregas; adelantar trabajo antes de esas semanas; reasignar en la reunión de seguimiento | 12 | Felipe | Un integrante informa que no cumplirá las 4 h/día, o un entregable crítico cierra con más de 1 día de retraso |
 | R-10 | **Mitigar** | Tutorial dirigido de Spring Boot para Gómez y Bolaños (8 h cada uno) antes de entregables que dependan del backend; revisión de código entre ambos | 16 | Diego Gómez | 8.1.1 o 2.1.1 con más de 1 día de retraso |
 | R-11 | **Mitigar** | Prototipo corto de STOMP/SockJS con reconexión automática (8 h) y prueba de latencia con varios dispositivos (8 h) antes de dar 8.2.1 por terminado | 16 | Diego Gómez | Prueba de latencia > 3 s o desconexiones sin reconexión |
-| R-12 | **Transferir** + **Mitigar** | Elegir un hosting gestionado que ya entregue HTTPS y base de datos configurados (transfiere esa parte al proveedor) y hacer un despliegue de prueba temprano, antes de 8.5.1 | 20 + hosting | Felipe y Diego Gómez | Hosting sin elegir al 15/11, o despliegue de prueba fallido |
+| R-12 | **Transferir** + **Mitigar** | Elegir un hosting gestionado que ya entregue HTTPS y base de datos configurados (transfiere esa parte al proveedor) y hacer un despliegue de prueba temprano, antes de 8.5.1 | 20 + hosting | Felipe y Diego Gómez | Despliegue de prueba sin hacer o fallido antes de 8.5.1 (el hosting ya se eligió el 10/11) |
 
 ### 5.5 Reserva de contingencia
 
-La reserva de contingencia se calcula con el costo esperado de los riesgos residuales: **133,5 h** (≈ 36 % de las 371 h planeadas). El costo de las mitigaciones (**96 h**) es trabajo adicional que debe quedar en el cronograma y en el presupuesto. Ambos valores pasan al presupuesto, donde se convierten a pesos con la tarifa que se defina.
+El ejercicio inicial estimó 133,5 h de exposición residual y 96 h de respuestas. El [presupuesto](Presupuesto%20Appresso.md#5-reserva-de-contingencia) conserva esas cifras como antecedente y el [seguimiento](Seguimiento%20de%20Riesgos%20Appresso.md) recoge los datos necesarios para actualizar la estimación vigente.

@@ -4,11 +4,13 @@
 
 ### **HU-01 — Autenticación de usuarios (RF-01)**
 
-* **Historia de usuario:** Como usuario registrado del sistema, quiero iniciar sesión mediante mis credenciales de correo electrónico y contraseña, para acceder de manera segura a la interfaz principal y a las funciones correspondientes a mi perfil.
+* **Historia de usuario:** Como usuario registrado del sistema, quiero iniciar sesión mediante mis credenciales (correo electrónico y contraseña si soy personal; número de documento y contraseña si soy cliente), para acceder de manera segura a la interfaz principal y a las funciones correspondientes a mi perfil.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
   * *Dado* que el usuario se encuentra registrado en el sistema, *cuando* ingresa un correo electrónico y una contraseña válidos y hace clic en el botón de inicio de sesión, *entonces* el sistema valida las credenciales correctamente y le otorga acceso a la interfaz principal de la aplicación.
   * *Dado* que un usuario intenta iniciar sesión, *cuando* ingresa un correo electrónico no registrado o una contraseña incorrecta, *entonces* el sistema deniega el acceso y muestra un mensaje de error notificando que las credenciales son inválidas.
+  * *Dado* que un cliente registrado ingresa su número de documento y su contraseña válidos, *cuando* presiona el botón de inicio de sesión, *entonces* el sistema le otorga acceso a las funciones de su rol.
+  * *Dado* que un cliente intenta iniciar sesión con un correo electrónico, o un integrante del personal con un número de documento, *cuando* lo intenta, *entonces* el sistema deniega el acceso.
 * **Análisis INVEST:**
   * **I (Independiente):** Es independiente y constituye la base de autenticación de todo el sistema.
   * **N (Negociable):** Se puede negociar la adición de recuperación de contraseña por correo.
@@ -25,8 +27,11 @@
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
   * *Dado* que el administrador ha iniciado sesión, *cuando* crea o edita la información de un usuario y guarda los cambios, *entonces* el sistema actualiza la base de datos y refleja los datos del usuario en la lista global de usuarios.
-  * *Dado* que el administrador gestiona una cuenta existente, *cuando* le asigna o cambia un rol autorizado (ej. Administrador, Usuario, etc.) y confirma la acción, *entonces* el sistema actualiza los permisos de dicha cuenta inmediatamente.
-  * *Dado* que un usuario no administrador intenta acceder al módulo de gestión de cuentas o asignaciones de roles, *cuando* ingresa a la ruta correspondiente, *entonces* el sistema deniega el acceso y muestra un mensaje de "Acceso no autorizado".
+  * *Dado* que el administrador gestiona una cuenta existente, *cuando* le asigna o cambia un rol autorizado (Administrador, Cajero, Mesero, Cocinero o Cliente) y confirma la acción, *entonces* el sistema actualiza los permisos de dicha cuenta inmediatamente.
+  * *Dado* que un usuario no administrador intenta acceder al módulo de gestión de cuentas o asignaciones de roles, *cuando* ingresa a la ruta correspondiente, *entonces* el sistema deniega el acceso y muestra el mensaje "No tienes permiso para realizar esta acción."
+  * *Dado* que el administrador crea o edita un usuario con un correo electrónico que ya pertenece a otra cuenta (sin distinguir mayúsculas de minúsculas), *cuando* guarda los cambios, *entonces* el sistema rechaza la operación e indica que el correo ya está registrado.
+  * *Dado* que el administrador ha iniciado sesión, *cuando* intenta desactivar su propia cuenta o cambiar su propio rol, *entonces* el sistema rechaza la operación.
+  * *Dado* que solo queda un administrador activo, *cuando* se intenta desactivarlo o quitarle el rol de administrador, *entonces* el sistema rechaza la operación para que siempre exista al menos un administrador activo.
 * **Análisis INVEST:**
   * **I (Independiente):** Depende lógicamente de HU-01 (autenticación).
   * **N (Negociable):** Los campos específicos del formulario de usuario pueden ajustarse.
@@ -39,10 +44,10 @@
 
 ### **HU-03 — Acceso según el rol (RF-03)**
 
-* **Historia de usuario:** Como usuario del sistema, quiero que se me presenten únicamente las funcionalidades correspondientes a mi rol (administrador, cajero, mesero, cocinero o cliente), para operar de manera adecuada sin exceder mis privilegios.
+* **Historia de usuario:** Como usuario del sistema, quiero que se me presenten las funcionalidades correspondientes a mi rol (administrador, cajero, mesero, cocinero o cliente; el administrador tiene acceso a todas), para operar de manera adecuada sin exceder mis privilegios.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que un usuario inicia sesión con un rol específico, *cuando* navega en la plataforma, *entonces* el sistema le despliega únicamente el menú y las herramientas asignadas a su rol.
+  * *Dado* que un usuario inicia sesión con un rol específico, *cuando* navega en la plataforma, *entonces* el sistema le despliega el menú y las herramientas asignadas a su rol (al administrador, las de todos los roles).
   * *Dado* que un usuario con rol de Cliente, Mesero o Cocinero intenta realizar acciones reservadas para Administrador o Cajero, *cuando* intenta interactuar con dichas funciones, *entonces* el sistema no las muestra disponibles o bloquea la acción notificando falta de permisos.
   * *Dado* que el administrador modifica el rol de un usuario activo, *cuando* ese usuario vuelve a iniciar sesión, *entonces* las funcionalidades disponibles se ajustan de inmediato al nuevo rol.
 * **Análisis INVEST:**
@@ -57,11 +62,11 @@
 
 ### **HU-04 — Restricción de operaciones no autorizadas (RF-04)**
 
-* **Historia de usuario:** Como administrador de seguridad del sistema, quiero impedir que cualquier usuario ejecute operaciones no autorizadas para su rol (tanto en interfaz como a nivel de API), para proteger la integridad de los datos de la app.
+* **Historia de usuario:** Como administrador, quiero impedir que cualquier usuario ejecute operaciones no autorizadas para su rol (tanto en interfaz como a nivel de API), para proteger la integridad de los datos de la app.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
   * *Dado* que un usuario autenticado intenta ejecutar una función no permitida desde la app o manipulando solicitudes a la API móvil, *cuando* la app envía la petición, *entonces* el servidor deniega la acción y responde con un código de error de autorización (ej. 403 Forbidden) evitando cambios en los datos.
-  * *Dado* que un usuario intenta interactuar con un módulo o acción restringida, *cuando* presiona sobre el componente, *entonces* la app le despliega una alerta nativa o diálogo informativo con el mensaje "No cuentas con los permisos necesarios para realizar esta operación".
+  * *Dado* que un usuario intenta interactuar con un módulo o acción restringida, *cuando* presiona sobre el componente, *entonces* la app le muestra un aviso emergente en pantalla con el mensaje "No tienes permiso para realizar esta acción."
 * **Análisis INVEST:**
   * **I (Independiente):** Complementa directamente el control de roles (HU-03).
   * **N (Negociable):** El diseño exacto de la alerta móvil o el formato del mensaje de error.
@@ -163,7 +168,7 @@
 * **Historia de usuario:** Como administrador, quiero que el sistema genere una alerta visual cuando las existencias de un producto alcancen o bajen del umbral mínimo configurado, para tomar acción oportuna.
 * **Prioridad:** Media
 * **Criterios de aceptación:**
-  * *Dado* que el stock disponible de un producto disminuye por debajo del umbral mínimo, *cuando* ocurre dicho movimiento, *entonces* la app muestra un indicador visual destacado (ej. etiqueta o icono de advertencia) en la lista de inventario.
+  * *Dado* que el stock disponible de un producto disminuye y alcanza o queda por debajo del umbral mínimo, *cuando* ocurre dicho movimiento, *entonces* la app muestra un indicador visual destacado (ej. etiqueta o icono de advertencia) en la lista de inventario.
   * *Dado* que existen productos con stock crítico, *cuando* el administrador abre la app móvil, *entonces* visualiza un resumen o módulo de advertencia con los productos que requieren reabastecimiento.
 * **Análisis INVEST:**
   * **I (Independiente):** Depende de HU-08 y HU-09.
@@ -177,11 +182,11 @@
 
 ### **HU-11 — Consulta del menú disponible para meseros (RF-11)**
 
-* **Historia de usuario:** Como mesero, quiero visualizar los productos agrupados por categoría con su precio, disponibilidad y stock existente, para ofrecer al cliente alternativas reales de servicio.
+* **Historia de usuario:** Como mesero, quiero visualizar los productos disponibles agrupados por categoría con su precio y stock existente, para ofrecer al cliente alternativas reales de servicio.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que el mesero abre la sección de menú en la app, *cuando* selecciona una categoría (ej. Bebidas, Panadería, Cocina), *entonces* la app despliega los productos con nombre, precio formateado y existencias disponibles.
-  * *Dado* que el mesero explora el catálogo, *cuando* visualiza un producto sin unidades, *entonces* la app lo marca claramente como "Agotado" o "No disponible".
+  * *Dado* que el mesero abre la sección de menú en la app, *cuando* selecciona una categoría (ej. Bebidas, Platos Fuertes, Postres), *entonces* la app despliega los productos con nombre, precio formateado y existencias disponibles.
+  * *Dado* que un producto no tiene unidades o está desactivado, *cuando* el mesero explora el catálogo, *entonces* la app no lo muestra.
 * **Análisis INVEST:**
   * **I (Independiente):** Depende de la existencia de un catálogo creado por el administrador (HU-06).
   * **N (Negociable):** Distribución visual de tarjetas o listados en la interfaz móvil.
@@ -209,16 +214,16 @@
 
 ---
 
-### **HU-13 — Identificación automática de productos agotados (RF-13)**
+### **HU-13 — Ocultamiento automático de productos agotados (RF-13)**
 
-* **Historia de usuario:** Como mesero, quiero que el sistema identifique y deshabilite de forma automática para nuevos pedidos los productos cuyas existencias sean cero, para no generar frustración en el servicio.
+* **Historia de usuario:** Como mesero, quiero que el sistema oculte de forma automática del menú los productos cuyas existencias sean cero, para no ofrecer lo que no hay y no generar frustración en el servicio.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que el stock de un producto llega a cero (0), *cuando* un mesero consulta el menú, *entonces* el botón de agregar a la comanda se deshabilita automáticamente y se marca como "Agotado".
-  * *Dado* que un producto agotado recibe un reabastecimiento manual por parte del administrador, *cuando* el mesero refresca la vista del menú, *entonces* el producto se habilita de nuevo para la venta.
+  * *Dado* que el stock de un producto llega a cero (0), *cuando* un mesero consulta el menú, *entonces* el producto no aparece y no se puede agregar a la comanda.
+  * *Dado* que un producto agotado recibe un reabastecimiento manual por parte del administrador, *cuando* el mesero refresca la vista del menú, *entonces* el producto vuelve a aparecer y se puede vender de nuevo.
 * **Análisis INVEST:**
   * **I (Independiente):** Depende de los movimientos de inventario y la vista de menú.
-  * **N (Negociable):** Estilos visuales de bloqueo (opacidad, marcas de agua).
+  * **N (Negociable):** Si el producto desaparece del menú al instante o al refrescar la vista.
   * **V (Valiosa):** Automatiza la sincronización entre bodega y salón.
   * **E (Estimable):** Requerimiento técnico directo basado en estados de stock.
   * **S (Pequeña):** Ajustada para una iteración estándar.
@@ -265,12 +270,12 @@
 * **Historia de usuario:** Como mesero, quiero agregar a la comanda de una mesa los productos, las cantidades y las preferencias del cliente, para tomar pedidos completos sin usar papel.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que un mesero tiene una mesa seleccionada, *cuando* agrega un producto con su cantidad y una preferencia, *entonces* la comanda los muestra.
+  * *Dado* que un mesero tiene una mesa seleccionada, *cuando* agrega un producto con su cantidad y una preferencia (texto libre de hasta 100 caracteres), *entonces* la comanda los muestra.
   * *Dado* que un producto tiene pocas unidades, *cuando* el mesero lo consulta, *entonces* ve la cantidad restante.
-  * *Dado* que un producto está agotado o desactivado, *cuando* el mesero intenta agregarlo, *entonces* el sistema lo impide e informa.
+  * *Dado* que un producto está agotado o desactivado (por ejemplo, porque se agotó mientras armaba la comanda), *cuando* el mesero intenta agregarlo, *entonces* el sistema lo impide e informa.
 * **Análisis INVEST:**
   * **I (Independiente):** Parcial; depende de que exista el inventario (productos y existencias).
-  * **N (Negociable):** Se puede discutir cómo se ingresan las preferencias (texto libre u opciones).
+  * **N (Negociable):** El diseño del campo de preferencias se puede acordar; el texto es libre y de hasta 100 caracteres (RF-16).
   * **V (Valiosa):** El mesero deja de usar papel y el cliente recibe lo que pidió.
   * **E (Estimable):** Alcance claro y conocido.
   * **S (Pequeña):** Cabe en un sprint.
@@ -304,6 +309,8 @@
   * *Dado* que una comanda tiene al menos un producto, *cuando* el mesero la confirma, *entonces* aparece en cocina en menos de 3 segundos con estado "Pendiente".
   * *Dado* que una comanda está vacía, *cuando* el mesero intenta confirmarla, *entonces* el sistema no la envía.
   * *Dado* que hay una falla de conexión al confirmar, *cuando* ocurre, *entonces* el sistema avisa y no la marca como enviada.
+  * *Dado* que una comanda se confirma y se envía, *cuando* el sistema la procesa, *entonces* las existencias de sus productos se descuentan del inventario.
+  * *Dado* que un producto de la comanda no tiene existencias suficientes, *cuando* el mesero la confirma, *entonces* el sistema no la envía, indica qué producto no alcanza y no descuenta ninguna existencia.
 * **Análisis INVEST:**
   * **I (Independiente):** Parcial; depende de HU-16 y de la pantalla de cocina (HU-23).
   * **N (Negociable):** Se puede discutir el comportamiento sin conexión.
@@ -335,30 +342,32 @@
 
 ### **HU-20 — Modificación de comandas enviadas (RF-20)**
 
-* **Historia de usuario:** Como mesero, quiero agregar productos a una comanda ya enviada cuando el cliente pide algo más, para atenderlo sin crear un pedido nuevo.
+* **Historia de usuario:** Como mesero, quiero agregar o eliminar productos de una comanda ya enviada, mientras no esté cerrada, cuando el cliente cambia su pedido, para atenderlo sin crear un pedido nuevo.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
   * *Dado* que una comanda está enviada y no pagada, *cuando* el mesero agrega un producto con existencias, *entonces* se actualiza y el total se recalcula.
   * *Dado* que un producto no tiene existencias suficientes, *cuando* el mesero intenta agregarlo, *entonces* el sistema lo rechaza.
-  * *Dado* que una comanda ya está pagada, *cuando* el mesero intenta modificarla, *entonces* el sistema no lo permite.
+  * *Dado* que una comanda enviada y no cerrada tiene un producto, *cuando* el mesero lo elimina, *entonces* la comanda se actualiza, el total se recalcula y las existencias de ese producto se reintegran.
+  * *Dado* que una comanda ya está cerrada (pagada o cancelada), *cuando* el mesero intenta modificarla (agregar o eliminar productos), *entonces* el sistema no lo permite.
 * **Análisis INVEST:**
   * **I (Independiente):** Parcial; depende de HU-16 y HU-18.
-  * **N (Negociable):** Se puede discutir si también se permite quitar productos.
+  * **N (Negociable):** El diseño de la pantalla y las reglas para eliminar productos que ya están en preparación o listos se pueden acordar con el dueño.
   * **V (Valiosa):** Cubre un caso muy frecuente del servicio.
-  * **E (Estimable):** Alcance acotado a agregar.
+  * **E (Estimable):** Alcance acotado a agregar y eliminar productos.
   * **S (Pequeña):** Pequeña.
-  * **T (Testeable):** Se prueba con comanda enviada, sin stock y pagada.
+  * **T (Testeable):** Se prueba con comanda enviada, con producto eliminado, sin stock y pagada.
 
 ---
 
 ### **HU-21 — Notificación de cambios a cocina (RF-21)**
 
-* **Historia de usuario:** Como cocinero, quiero ser avisado y ver resaltado lo que se añadió a una comanda en curso, para preparar el cambio sin confundirlo con lo original.
+* **Historia de usuario:** Como cocinero, quiero ser avisado y ver resaltado lo que se añadió o se eliminó en una comanda en curso, para preparar el cambio sin confundirlo con lo original.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
   * *Dado* que a una comanda en cocina se le agrega un producto, *cuando* ocurre, *entonces* en menos de 3 segundos aparece una alerta en pantalla.
   * *Dado* que llega el producto nuevo, *cuando* se muestra, *entonces* aparece resaltado como "Agregado".
   * *Dado* que llega el cambio, *cuando* se muestra, *entonces* los productos originales conservan su estado.
+  * *Dado* que a una comanda en cocina se le elimina un producto, *cuando* ocurre, *entonces* en menos de 3 segundos aparece una alerta y el producto se marca como "Eliminado".
 * **Análisis INVEST:**
   * **I (Independiente):** Parcial; depende de HU-20 y HU-23.
   * **N (Negociable):** El tipo de alerta (visual o sonora) se puede negociar.
@@ -450,7 +459,7 @@
   * *Dado* que una comanda está en estado `en preparación` y el cocinero termina, *cuando* confirma el cambio, *entonces* el estado pasa a `lista`.
   * *Dado* que se confirma cualquier cambio de estado, *cuando* queda registrado, *entonces* incluye fecha, hora y usuario responsable.
   * *Dado* que el cocinero intenta ejecutar una transición no autorizada para su rol (por ejemplo, marcar una comanda como `cerrada`), *cuando* lo intenta, *entonces* el sistema rechaza la acción.
-  * *Dado* que un usuario sin rol de cocinero intenta cambiar el estado de preparación de una comanda, *cuando* lo intenta, *entonces* el sistema le deniega el acceso.
+  * *Dado* que un usuario que no es cocinero ni administrador intenta cambiar el estado de preparación de una comanda, *cuando* lo intenta, *entonces* el sistema le deniega el acceso.
 * **Análisis INVEST:**
   * **I (Independiente):** Parcial; depende de HU-23.
   * **N (Negociable):** El diseño del botón de cambio de estado y el texto del mensaje de confirmación se pueden acordar. El orden de las transiciones está definido en RF-COMANDA-ESTADO y no es negociable.
@@ -468,7 +477,7 @@
 * **Criterios de aceptación:**
   * *Dado* que se produce un cambio de estado en cocina, *cuando* se confirma, *entonces* la tableta del mesero lo muestra en menos de 3 segundos.
   * *Dado* que llega el cambio, *cuando* se refleja, *entonces* no hace falta recargar la pantalla.
-  * *Dado* que una comanda es marcada como "Listo", *cuando* llega a la tableta, *entonces* el mesero la identifica con claridad.
+  * *Dado* que una comanda es marcada como "Lista", *cuando* llega a la tableta, *entonces* el mesero la identifica con claridad.
 * **Análisis INVEST:**
   * **I (Independiente):** Parcial; depende de HU-25.
   * **N (Negociable):** Se puede negociar el tipo de aviso (visual o sonoro).
@@ -505,6 +514,7 @@
   * *Dado* que se confirma un pago, *cuando* se registra, *entonces* guarda valor, medio, fecha, hora y usuario.
   * *Dado* que el pago es en efectivo, *cuando* se registra, *entonces* suma a la caja; si es transferencia, suma al saldo de transferencias.
   * *Dado* que una comanda ya está pagada, *cuando* se intenta pagar otra vez, *entonces* el sistema lo rechaza.
+  * *Dado* que se confirma el pago de una comanda, *cuando* queda registrado, *entonces* la comanda pasa a estado `cerrada`.
 * **Análisis INVEST:**
   * **I (Independiente):** Parcial; depende de HU-29 y HU-41 para generar los pagos.
   * **N (Negociable):** Se puede negociar el nivel de detalle del registro.
@@ -520,9 +530,9 @@
 * **Historia de usuario:** Como cajero, quiero registrar los pagos en efectivo que recibo, para que cada peso de la caja quede asociado a un responsable y se evite el descuadre.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que un cajero con sesión activa confirma un pago en efectivo, *cuando* lo registra, *entonces* se suma a la caja a su nombre.
-  * *Dado* que un mesero u otro rol intenta confirmar un pago en efectivo, *cuando* lo intenta, *entonces* la opción no está disponible.
-  * *Dado* que se intenta confirmar el pago en efectivo por otra vía con un rol no cajero, *cuando* ocurre, *entonces* el sistema lo rechaza.
+  * *Dado* que un cajero o el administrador con sesión activa confirma un pago en efectivo, *cuando* lo registra, *entonces* se suma a la caja a su nombre.
+  * *Dado* que un mesero, un cocinero o un cliente intenta confirmar un pago en efectivo, *cuando* lo intenta, *entonces* la opción no está disponible.
+  * *Dado* que se intenta confirmar el pago en efectivo por otra vía con un rol que no es cajero ni administrador, *cuando* ocurre, *entonces* el sistema lo rechaza.
 * **Análisis INVEST:**
   * **I (Independiente):** Parcial; comparte registro con HU-28.
   * **N (Negociable):** Se puede negociar si se calcula el cambio al recibir el dinero.
@@ -533,21 +543,21 @@
 
 ---
 
-### **HU-30 — Visualización del código QR para transferencias (RF-30)**
+### **HU-30 — Pago por transferencia con código QR (RF-30)**
 
-* **Historia de usuario:** Como mesero o cajero, quiero mostrar el código QR de pago en la tableta, para cobrar por transferencia sin stickers ni papeles que se dañen o no se lean de noche.
+* **Historia de usuario:** Como mesero, cajero o administrador, quiero mostrar el código QR de pago y confirmar la transferencia desde la misma tableta, para cobrar por transferencia sin stickers ni papeles que se dañen o no se lean de noche.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que hay una comanda lista para pagar, *cuando* el mesero o cajero lo solicita, *entonces* se muestra el código QR en pantalla.
-  * *Dado* que el código QR se muestra, *cuando* el cliente lo intenta escanear, *entonces* tiene tamaño y contraste suficientes para escanearse con un celular.
-  * *Dado* que un usuario sin rol de mesero o cajero intenta mostrarlo, *cuando* lo intenta, *entonces* el sistema lo impide.
+  * *Dado* que hay una comanda lista para pagar, *cuando* el mesero, cajero o administrador solicita el pago por transferencia, *entonces* se muestra el código QR en pantalla.
+  * *Dado* que el mesero, cajero o administrador confirma la transferencia, *cuando* la confirma, *entonces* el pago queda registrado como transferencia y suma al saldo de transferencias, no a la caja.
+  * *Dado* que una transferencia ya fue confirmada, *cuando* se intenta confirmar de nuevo, *entonces* el sistema no lo permite.
 * **Análisis INVEST:**
-  * **I (Independiente):** Sí; se puede desarrollar casi sola mostrando un QR fijo del negocio.
+  * **I (Independiente):** Historia compuesta: reúne de punta a punta lo que detallan HU-40 (mostrar el QR), HU-41 (confirmar), HU-42 (saldo) y HU-43 (doble confirmación). Se prueba como flujo completo.
   * **N (Negociable):** Se puede negociar si el QR es fijo o incluye el valor.
   * **V (Valiosa):** Reemplaza los stickers y mejora el cobro.
   * **E (Estimable):** Alcance claro.
-  * **S (Pequeña):** Pequeña.
-  * **T (Testeable):** Se prueba escaneando el QR con un celular.
+  * **S (Pequeña):** Pequeña si se construye sobre HU-40 a HU-43.
+  * **T (Testeable):** Se prueba el flujo completo: mostrar el QR, confirmar y verificar el saldo.
 
 ---
 
@@ -667,7 +677,7 @@
   * *Dado* que se consulta el detalle de cualquier movimiento registrado (pago, ingreso o retiro), *cuando* el usuario lo abre, *entonces* se muestran el valor, el concepto, la fecha y el solicitante.
   * *Dado* que se consulta el detalle de un retiro aprobado por el administrador, *cuando* el usuario lo abre, *entonces* se muestra también la autorización del administrador.
 * **Análisis INVEST:**
-  * **I (Independiente):** Es transversal; se verifica junto con HU-30, HU-32, HU-33 y HU-36.
+  * **I (Independiente):** Es transversal; se verifica junto con HU-28, HU-32, HU-33 y HU-36.
   * **N (Negociable):** Qué se muestra como "concepto" en cada tipo de movimiento se puede acordar.
   * **V (Valiosa):** Da trazabilidad y reduce disputas sobre el dinero.
   * **E (Estimable):** Los campos están definidos.
@@ -712,13 +722,14 @@
 
 ### **HU-40 — Visualización del código QR en dispositivos (RF-40)**
 
-* **Historia de usuario:** Como mesero o cajero, quiero mostrar el código QR del establecimiento desde mi dispositivo, para que el cliente pueda pagar por transferencia.
+* **Historia de usuario:** Como mesero, cajero o administrador, quiero mostrar el código QR del establecimiento desde mi dispositivo, para que el cliente pueda pagar por transferencia.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que el mesero o cajero tiene sesión iniciada, *cuando* selecciona el pago por transferencia, *entonces* el sistema muestra en pantalla el código QR configurado.
+  * *Dado* que el mesero, cajero o administrador tiene sesión iniciada, *cuando* selecciona el pago por transferencia, *entonces* el sistema muestra en pantalla el código QR configurado.
   * *Dado* que el código QR se muestra, *cuando* el cliente lo escanea, *entonces* dirige a la cuenta de recepción de transferencias del establecimiento.
+  * *Dado* que el código QR se muestra, *cuando* el cliente lo intenta escanear con un celular en condiciones normales de luz, *entonces* tiene tamaño y contraste suficientes para escanearse.
 * **Análisis INVEST:**
-  * **I (Independiente):** Depende del inicio de sesión por roles y del flujo de pago de pedidos; no necesita HU-30 para mostrar el QR.
+  * **I (Independiente):** Depende del inicio de sesión por roles y del flujo de pago de pedidos; HU-30 es el flujo completo que incluye esta historia.
   * **N (Negociable):** Tamaño y ubicación del QR en pantalla se pueden acordar.
   * **V (Valiosa):** Habilita el pago por transferencia en el local.
   * **E (Estimable):** Una pantalla que muestra una imagen configurada.
@@ -729,12 +740,12 @@
 
 ### **HU-41 — Registro manual de confirmación de transferencia (RF-41)**
 
-* **Historia de usuario:** Como mesero o cajero, quiero confirmar manualmente una transferencia después de revisar el comprobante que me muestra el cliente, para registrar el pago sin depender de una pasarela de pagos.
+* **Historia de usuario:** Como mesero, cajero o administrador, quiero confirmar manualmente una transferencia después de revisar el comprobante que me muestra el cliente, para registrar el pago sin depender de una pasarela de pagos.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que hay un pago por transferencia pendiente de confirmar, *cuando* el mesero o cajero presiona el botón de confirmación, *entonces* el sistema registra el pago como confirmado y guarda el cambio en la base de datos.
+  * *Dado* que hay un pago por transferencia pendiente de confirmar, *cuando* el mesero, cajero o administrador presiona el botón de confirmación, *entonces* el sistema registra el pago como confirmado y guarda el cambio en la base de datos.
   * *Dado* que hay un pago por transferencia que no ha sido confirmado, *cuando* se consulta el saldo de transferencias, *entonces* ese pago no está incluido.
-  * *Dado* que un usuario con un rol distinto a mesero o cajero consulta un pago pendiente, *cuando* lo abre, *entonces* no dispone del botón de confirmación.
+  * *Dado* que un usuario con un rol distinto a mesero, cajero o administrador consulta un pago pendiente, *cuando* lo abre, *entonces* no dispone del botón de confirmación.
 * **Análisis INVEST:**
   * **I (Independiente):** Depende del inicio de sesión por roles y del flujo de pago de pedidos; HU-42 y HU-43 dependen de esta.
   * **N (Negociable):** La ubicación y el aspecto del botón se pueden acordar.
@@ -767,7 +778,7 @@
 * **Historia de usuario:** Como cajero, quiero que el sistema impida contabilizar dos veces una misma transferencia, para evitar saldos inflados por errores como una doble pulsación.
 * **Prioridad:** Media
 * **Criterios de aceptación:**
-  * *Dado* que un pago por transferencia ya fue confirmado, *cuando* el mesero o cajero intenta confirmarlo otra vez, *entonces* el sistema no lo vuelve a sumar e informa que ya fue confirmado.
+  * *Dado* que un pago por transferencia ya fue confirmado, *cuando* el mesero, cajero o administrador intenta confirmarlo otra vez, *entonces* el sistema no lo vuelve a sumar e informa que ya fue confirmado.
   * *Dado* que un pago ya fue confirmado, *cuando* se consulta el saldo de transferencias, *entonces* el valor de ese pago aparece una sola vez.
 * **Análisis INVEST:**
   * **I (Independiente):** Depende de HU-41, ya que protege su flujo.
@@ -779,14 +790,14 @@
 
 ---
 
-### **HU-44 — Cierre de caja (RF-44)**
+### **HU-44 — Cierre de caja y de la jornada (RF-44)**
 
-* **Historia de usuario:** Como cajero, quiero cerrar la caja del día con un botón y una confirmación, para dar por terminada la jornada de forma controlada.
+* **Historia de usuario:** Como cajero o administrador, quiero cerrar la jornada (la caja del día) con un botón y una confirmación, para darla por terminada de forma controlada.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que el cajero tiene sesión iniciada, *cuando* presiona el botón de cierre de caja, *entonces* el sistema solicita confirmar la acción.
-  * *Dado* que el cajero confirma el cierre, *cuando* el sistema lo procesa, *entonces* el cierre queda registrado con la fecha y el cajero que lo ejecutó.
-  * *Dado* que el cajero cancela la confirmación, *cuando* vuelve a la caja, *entonces* no se registra ningún cierre.
+  * *Dado* que el cajero o el administrador tiene sesión iniciada, *cuando* presiona el botón "Cerrar jornada", *entonces* el sistema solicita confirmar la acción.
+  * *Dado* que el cajero confirma el cierre, *cuando* el sistema lo procesa, *entonces* el cierre queda registrado con la fecha y el usuario (cajero o administrador) que lo ejecutó.
+  * *Dado* que quien cierra cancela la confirmación, *cuando* vuelve a la caja, *entonces* no se registra ningún cierre.
 * **Análisis INVEST:**
   * **I (Independiente):** Depende del inicio de sesión por roles; HU-45 muestra los resultados al cierre.
   * **N (Negociable):** El texto de la confirmación se puede acordar.
@@ -799,7 +810,7 @@
 
 ### **HU-45 — Cálculo de ingresos, egresos y saldos al cierre (RF-45)**
 
-* **Historia de usuario:** Como cajero, quiero ver al cerrar la caja los ingresos, egresos y saldos finales del día separados por efectivo y transferencias, para cuadrar la jornada.
+* **Historia de usuario:** Como cajero o administrador, quiero ver al cerrar la jornada (la caja) los ingresos, egresos y saldos finales del día separados por efectivo y transferencias, para cuadrar la jornada.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
   * *Dado* que se ejecuta el cierre, *cuando* el sistema lo procesa, *entonces* muestra el total de ingresos, el total de egresos y el saldo final de efectivo, cada uno por separado de los de transferencias.
@@ -816,11 +827,14 @@
 
 ### **HU-47 — Registro de base y retiro al cierre de jornada (RF-47)**
 
-* **Historia de usuario:** Como administrador, quiero registrar la base de efectivo para la siguiente jornada y el excedente que retiré al cerrar, para saber cuánto dinero queda en la caja y cuánto salió.
+* **Historia de usuario:** Como cajero o administrador, quiero registrar la base de efectivo para la siguiente jornada (y, si soy administrador, el excedente que retiro al cerrar), para saber cuánto dinero queda en la caja y cuánto salió.
 * **Prioridad:** Media
 * **Criterios de aceptación:**
   * *Dado* que el administrador está cerrando la jornada y la suma de la base y el retiro no supera el efectivo disponible, *cuando* presiona "Confirmar", *entonces* el sistema guarda ambos valores con fecha y usuario y muestra "Base y retiro registrados".
-  * *Dado* que la suma de la base y el retiro es mayor al efectivo disponible, *cuando* el administrador presiona "Confirmar", *entonces* el sistema no guarda nada y muestra "La base y el retiro superan el efectivo disponible ($[X])."
+  * *Dado* que la suma de la base y el retiro es mayor al efectivo disponible, *cuando* el administrador presiona "Confirmar", *entonces* el sistema no guarda nada y muestra "La base y el retiro superan el efectivo disponible ($XXX)."
+  * *Dado* que el cajero está cerrando la jornada y la base que ingresó no supera el efectivo disponible, *cuando* presiona "Confirmar", *entonces* el sistema guarda la base con fecha y usuario y muestra "Base registrada".
+  * *Dado* que la base que ingresa el cajero es mayor al efectivo disponible, *cuando* presiona "Confirmar", *entonces* el sistema no guarda nada y muestra "La base supera el efectivo disponible ($XXX)".
+  * *Dado* que el cajero cierra la jornada y hay excedente por retirar, *cuando* consulta las opciones del cierre, *entonces* no dispone de la opción de registrar el retiro y debe enviar una solicitud de retiro (HU-34), que el administrador aprueba o rechaza (HU-36).
 * **Análisis INVEST:**
   * **I (Independiente):** Depende del flujo de cierre (HU-48) y del cálculo de efectivo disponible.
   * **N (Negociable):** Se puede decidir si la base se escribe a mano o se sugiere un valor.
@@ -836,7 +850,7 @@
 * **Historia de usuario:** Como administrador, quiero un informe de cierre con saldos iniciales, ingresos, egresos, base reservada y saldos finales, para revisar cómo le fue al negocio en el día y consultarlo después.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que el administrador completó los pasos del cierre, *cuando* presiona "Cerrar jornada", *entonces* el sistema genera y guarda un informe con saldo inicial, ingresos, egresos, base reservada y saldo final, separados por efectivo y transferencia, donde saldo final = saldo inicial + ingresos − egresos.
+  * *Dado* que se completaron los pasos del cierre (incluido el registro de la base y el retiro, HU-47), *cuando* el cajero o el administrador presiona "Cerrar jornada" (el mismo cierre de HU-44), *entonces* el sistema genera y guarda un informe con saldo inicial, ingresos, egresos, base reservada y saldo final, separados por efectivo y transferencia, donde saldo final = saldo inicial + ingresos − egresos.
   * *Dado* que existe el informe de una jornada cerrada y ya se abrió una nueva jornada, *cuando* el administrador consulta los informes anteriores, *entonces* el sistema muestra el informe de esa jornada sin cambios.
 * **Análisis INVEST:**
   * **I (Independiente):** No. Necesita pagos y retiros registrados (RF-28, HU-47).
@@ -853,7 +867,7 @@
 * **Historia de usuario:** Como administrador, quiero abrir una nueva jornada con la base de efectivo del cierre anterior, para empezar el día con el dinero correcto sin conservar jornadas viejas abiertas.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que la jornada anterior está cerrada con una base de $[X]$, *cuando* el administrador presiona "Abrir jornada", *entonces* el sistema crea la nueva jornada con saldo inicial de efectivo de $[X]$ y conserva las jornadas anteriores consultables.
+  * *Dado* que la jornada anterior está cerrada con una base de $X, *cuando* el administrador presiona "Abrir jornada", *entonces* el sistema crea la nueva jornada con saldo inicial de efectivo de $X y conserva las jornadas anteriores consultables.
   * *Dado* que la jornada anterior no está cerrada, *cuando* el administrador intenta abrir una nueva jornada, *entonces* el sistema muestra "Debes cerrar la jornada anterior antes de abrir una nueva."
 * **Análisis INVEST:**
   * **I (Independiente):** Depende de HU-47 y HU-48, porque toma la base del cierre.
@@ -867,12 +881,13 @@
 
 ### **HU-50 — Registro de clientes (RF-50)**
 
-* **Historia de usuario:** Como cliente, quiero registrarme con mi nombre, apellido, documento y celular, y aceptar el tratamiento de mis datos, para empezar a acumular mis puntos de fidelidad en pocos minutos.
+* **Historia de usuario:** Como cliente, quiero registrarme con mi nombre, apellido, documento, celular y una contraseña, y aceptar el tratamiento de mis datos, para empezar a acumular mis puntos de fidelidad en pocos minutos.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que el cliente ingresó nombre, apellido, documento y celular, y aceptó el tratamiento de datos personales, *cuando* presiona "Registrarme", *entonces* el sistema crea el registro con 0 puntos de fidelidad y muestra "Registro exitoso. ¡Ya puedes empezar a acumular tus puntos de fidelidad!" en menos de 4 minutos desde que inició el formulario.
+  * *Dado* que el cliente ingresó nombre, apellido, documento, celular y contraseña, y aceptó el tratamiento de datos personales, *cuando* presiona "Registrarme", *entonces* el sistema crea el registro con 0 puntos de fidelidad y muestra "Registro exitoso. ¡Ya puedes empezar a acumular tus puntos de fidelidad!" en menos de 4 minutos desde que inició el formulario.
   * *Dado* que falta algún dato o el cliente no aceptó el tratamiento de datos, *cuando* presiona "Registrarme", *entonces* el sistema no guarda el registro, resalta lo que falta y muestra "Completa todos los datos y acepta el tratamiento de datos personales."
   * *Dado* que ya existe un cliente con ese documento, *cuando* otro registro intenta usarlo, *entonces* el sistema muestra "Este documento ya está registrado."
+  * *Dado* que la contraseña tiene menos de 8 o más de 72 caracteres, *cuando* presiona "Registrarme", *entonces* el sistema no guarda el registro y muestra "La contraseña debe tener entre 8 y 72 caracteres."
 * **Análisis INVEST:**
   * **I (Independiente):** Sí. Es el punto de partida de las historias de fidelización.
   * **N (Negociable):** El texto de la autorización y el diseño del formulario se pueden acordar.
@@ -974,13 +989,13 @@
 * **Prioridad:** Media
 * **Criterios de aceptación:**
   * *Dado* que el cliente está registrado, *cuando* el mesero ingresa su documento, *entonces* el sistema muestra los puntos de fidelidad del cliente en máximo 2 segundos.
-  * *Dado* que el usuario no es mesero ni administrador, *cuando* intenta consultar los puntos de fidelidad de un cliente, *entonces* el sistema le niega el acceso y muestra "No tienes permiso para esta acción."
+  * *Dado* que el usuario no es mesero ni administrador, *cuando* intenta consultar los puntos de fidelidad de un cliente, *entonces* el sistema le niega el acceso y muestra "No tienes permiso para realizar esta acción."
 * **Análisis INVEST:**
-  * **I (Independiente):** Depende de HU-51, y casi se solapa con ella.
+  * **I (Independiente):** Se verifica junto con HU-51: la búsqueda por documento (RF-51) y la consulta de puntos (RF-57) son la misma pantalla; se mantiene como historia aparte solo por trazabilidad con RF-57.
   * **N (Negociable):** Se puede mostrar en la misma pantalla de búsqueda.
   * **V (Valiosa):** Mejora el trato con el cliente.
   * **E (Estimable):** Muy sencilla si ya existe HU-51.
-  * **S (Pequeña):** Es muy pequeña. Conviene fusionarla con HU-51.
+  * **S (Pequeña):** Es muy pequeña; se implementa dentro de HU-51 y aquí solo se verifica el control de permisos.
   * **T (Testeable):** Se prueba con un mesero y con un rol sin permiso.
 
 ---
@@ -1071,3 +1086,42 @@
   * **E (Estimable):** Tiene un alcance definido, centrado en consultar y presentar las promociones vigentes.
   * **S (Pequeña):** Puede completarse en una iteración si el módulo de promociones ya está implementado.
   * **T (Testeable):** Se comprueba consultando promociones vigentes, vencidas, inactivas y no publicadas.
+
+---
+
+### **HU-63 — Cancelación de comandas (RF-63)**
+
+* **Historia de usuario:** Como mesero o administrador, quiero cancelar una comanda que ya no se va a preparar ni cobrar, para que cocina deje de prepararla y el inventario quede correcto.
+* **Prioridad:** Alta
+* **Criterios de aceptación:**
+  * *Dado* que una comanda está en estado `pendiente`, `enviada`, `en_preparacion` o `lista`, *cuando* el mesero o el administrador la cancela y confirma la acción, *entonces* el estado pasa a `cerrada`, queda registrada como cancelada y el cambio se refleja en todos los dispositivos conectados en menos de 3 segundos.
+  * *Dado* que se cancela una comanda ya enviada, *cuando* el sistema la procesa, *entonces* desaparece de las pantallas de cocina, las existencias de sus productos se reintegran al inventario y la mesa queda disponible.
+  * *Dado* que una comanda ya está cerrada (pagada o cancelada), *cuando* alguien intenta cancelarla, *entonces* el sistema no lo permite.
+  * *Dado* que un usuario que no es mesero ni administrador intenta cancelar una comanda, *cuando* lo intenta, *entonces* el sistema le deniega el acceso.
+  * *Dado* que se cancela una comanda, *cuando* el administrador consulta su historial, *entonces* ve la fecha, la hora y el usuario que la canceló.
+* **Análisis INVEST:**
+  * **I (Independiente):** Parcial; depende de HU-18 (envío) y de la reposición de existencias (HU-08).
+  * **N (Negociable):** Si se pide un motivo de cancelación y el diseño de la confirmación se pueden acordar.
+  * **V (Valiosa):** Evita que cocina prepare pedidos anulados y deja el inventario y el historial correctos.
+  * **E (Estimable):** Un cierre anticipado de la comanda con marca de cancelación, el reintegro de existencias y la propagación a cocina.
+  * **S (Pequeña):** Pequeña.
+  * **T (Testeable):** Se prueba cancelar en cada estado permitido, una comanda cerrada o ya cancelada, y un rol sin permiso.
+
+---
+
+### **HU-64 — Creación de mesas (RF-64)**
+
+* **Historia de usuario:** Como administrador, quiero crear las mesas del establecimiento, para que los meseros puedan abrir comandas sobre ellas.
+* **Prioridad:** Alta
+* **Criterios de aceptación:**
+  * *Dado* que el administrador tiene sesión iniciada, *cuando* registra una mesa con un número o nombre y confirma la acción, *entonces* la mesa queda creada como disponible y aparece en el mapa de mesas de los meseros.
+  * *Dado* que ya existe una mesa con ese número o nombre, *cuando* el administrador intenta crear otra igual, *entonces* el sistema no la crea e indica que ya existe.
+  * *Dado* que el administrador deja vacío el número o nombre, *cuando* intenta crear la mesa, *entonces* el sistema no la crea e indica el campo inválido.
+  * *Dado* que un usuario con rol distinto a administrador intenta crear una mesa, *cuando* lo intenta, *entonces* no dispone de esa opción y el sistema lo rechaza.
+* **Análisis INVEST:**
+  * **I (Independiente):** Solo depende del inicio de sesión por roles; HU-15 depende de esta.
+  * **N (Negociable):** El formulario y la disposición de las mesas en el mapa se pueden acordar.
+  * **V (Valiosa):** Sin mesas los meseros no pueden abrir comandas.
+  * **E (Estimable):** Un formulario, una validación de unicidad y un registro.
+  * **S (Pequeña):** Pequeña.
+  * **T (Testeable):** Se prueba creando una mesa, repitiendo el nombre, con el campo vacío y con otro rol.

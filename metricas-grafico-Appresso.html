@@ -25,7 +25,7 @@ th{color:var(--muted);font-weight:600}
 </head>
 <body>
 <h1>Curva de trabajo acumulado — Appresso</h1>
-<p class="sub">Eje Y: trabajo acumulado en % del BAC (371 h · $5.565.000). Eje X: semanas de lunes a sábado, con el corte al sábado. Regla 0/100: un paquete terminado vale 100 %, uno sin terminar vale 0 %.</p>
+<p class="sub">Eje Y: trabajo acumulado en % del BAC ($5.773.000: 371 h de mano de obra y costos directos). Eje X: semanas (lunes a domingo), con el corte al sábado. Regla 0/100: un paquete terminado vale 100 %, uno sin terminar vale 0 %.</p>
 <div class="legend">
   <span><i class="sw" style="border-color:var(--pv)"></i>PV — valor planificado</span>
   <span><i class="sw" style="border-color:var(--ev)"></i>EV — valor ganado</span>
@@ -39,27 +39,25 @@ th{color:var(--muted);font-weight:600}
 
 <script>
 // ---- DATOS: se agrega o completa una fila en cada corte semanal ----
-// semana, corte (sábado), pv = horas planificadas acumuladas, ev = horas ganadas acumuladas, ac = horas reales acumuladas.
-// ev / ac en null = todavía sin dato. 1 h = $15.000.
-const BAC_H = 371, TARIFA = 15000;
+// semana, corte (sábado), pv = valor planificado acumulado, ev = valor ganado acumulado, ac = costo real acumulado.
+// Todo en pesos e incluye los costos directos (Claude Code y dominio). ev / ac en null = todavía sin dato.
+// Calendario de lunes a domingo (CC-02): el plan termina el 15/12, así que el PV llega al 100 % en S8.
+const BAC = 5773000;
 const D = [
-  {s:'S1',  corte:'31/10', pv:25,  ev:0,    ac:18},    // AC aproximado (unas 18 h)
-  {s:'S2',  corte:'07/11', pv:65,  ev:25,   ac:40},    // 1.1.1 y 1.2.1 terminados; 8.1.1 no. AC aproximado (unas 40 h)
-  {s:'S3',  corte:'14/11', pv:113, ev:47,   ac:95},   // AC: horas reales estimadas por el equipo
-  {s:'S4',  corte:'21/11', pv:141, ev:null, ac:null},
-  {s:'S5',  corte:'28/11', pv:205, ev:null, ac:null},
-  {s:'S6',  corte:'05/12', pv:271, ev:null, ac:null},
-  {s:'S7',  corte:'12/12', pv:311, ev:null, ac:null},
-  {s:'S8',  corte:'19/12', pv:347, ev:null, ac:null},
-  {s:'S9',  corte:'26/12', pv:357, ev:null, ac:null},
-  {s:'S10', corte:'02/01', pv:371, ev:null, ac:null},
+  {s:'S1', corte:'31/10', pv:455000,  ev:80000,  ac:350000},   // AC aproximado (unas 18 h + Claude Code)
+  {s:'S2', corte:'07/11', pv:1295000, ev:455000, ac:680000},   // 1.1.1 y 1.2.1 terminados; 8.1.1 no. AC aproximado (unas 40 h + Claude Code)
+  {s:'S3', corte:'14/11', pv:2195000, ev:785000, ac:1505000},  // AC: 95 h estimadas por el equipo + Claude Code
+  {s:'S4', corte:'21/11', pv:2465000, ev:null,   ac:null},
+  {s:'S5', corte:'28/11', pv:4225000, ev:null,   ac:null},     // incluye el segundo pago de Claude Code
+  {s:'S6', corte:'05/12', pv:4975000, ev:null,   ac:null},
+  {s:'S7', corte:'12/12', pv:5563000, ev:null,   ac:null},     // incluye el dominio
+  {s:'S8', corte:'19/12', pv:5773000, ev:null,   ac:null},
 ];
 // -------------------------------------------------------------------
 
-const pct = h => h / BAC_H * 100;
-const fmtPct = h => h == null ? '—' : pct(h).toFixed(1).replace('.', ',') + ' %';
-const fmtH = h => h == null ? '—' : String(h).replace('.', ',') + ' h';
-const fmtCOP = h => h == null ? '—' : '$' + Math.round(h * TARIFA).toLocaleString('es-CO');
+const pct = v => v / BAC * 100;
+const fmtPct = v => v == null ? '—' : pct(v).toFixed(1).replace('.', ',') + ' %';
+const fmtCOP = v => v == null ? '—' : '$' + Math.round(v).toLocaleString('es-CO');
 const idx = (a, b) => (a == null || b == null || b === 0) ? '—' : (a / b).toFixed(2).replace('.', ',');
 const NS = 'http://www.w3.org/2000/svg';
 
@@ -115,7 +113,7 @@ function dibujar() {
       if (s.forma === 'circulo') m = el('circle', {cx:px, cy:py, r:4.5, fill:s.color});
       else if (s.forma === 'cuadro') m = el('rect', {x:px-4.5, y:py-4.5, width:9, height:9, fill:s.color});
       else m = el('polygon', {points:`${px},${py-6} ${px+6},${py} ${px},${py+6} ${px-6},${py}`, fill:s.color});
-      m.appendChild(el('title', {}, `${s.nombre} ${d.s} (${d.corte}): ${fmtPct(d[s.k])} · ${fmtH(d[s.k])} · ${fmtCOP(d[s.k])}`));
+      m.appendChild(el('title', {}, `${s.nombre} ${d.s} (${d.corte}): ${fmtPct(d[s.k])} · ${fmtCOP(d[s.k])}`));
       svg.appendChild(m);
     });
   });
@@ -129,12 +127,12 @@ function tabla() {
     const cv = (d.ev == null || d.ac == null) ? null : d.ev - d.ac;
     h += `<tr><td>${d.s}</td><td>${d.corte}${d.real ? ' (medido el ' + d.real + ')' : ''}</td>`
       + `<td>${fmtPct(d.pv)} · ${fmtCOP(d.pv)}</td><td>${fmtPct(d.ev)} · ${fmtCOP(d.ev)}</td><td>${fmtPct(d.ac)} · ${fmtCOP(d.ac)}</td>`
-      + `<td>${sv == null ? '—' : fmtH(sv) + ' · ' + (sv < 0 ? '−' : '') + fmtCOP(Math.abs(sv))}</td>`
-      + `<td>${cv == null ? '—' : fmtH(cv) + ' · ' + (cv < 0 ? '−' : '') + fmtCOP(Math.abs(cv))}</td><td>${idx(d.ev, d.pv)}</td><td>${idx(d.ev, d.ac)}</td></tr>`;
+      + `<td>${sv == null ? '—' : (sv < 0 ? '−' : '') + fmtCOP(Math.abs(sv))}</td>`
+      + `<td>${cv == null ? '—' : (cv < 0 ? '−' : '') + fmtCOP(Math.abs(cv))}</td><td>${idx(d.ev, d.pv)}</td><td>${idx(d.ev, d.ac)}</td></tr>`;
   });
   t.innerHTML = h;
   document.getElementById('nota').textContent =
-    'El EV de S1 y S2 es provisional (según lo informado por el equipo). El AC de S1 (unas 18 h), S2 (unas 40 h) y S3 (95 h) son estimaciones del equipo, porque no hay un registro de horas. Para actualizar: editar el arreglo D al inicio del script en cada corte (valores acumulados).';
+    'El EV de S1 y S2 es provisional (según lo informado por el equipo). El AC de S1 (unas 18 h), S2 (unas 40 h) y S3 (95 h) son estimaciones del equipo, más $80.000 de Claude Code (por confirmar). Para actualizar: editar el arreglo D al inicio del script en cada corte (valores acumulados, en pesos).';
 }
 
 dibujar();
