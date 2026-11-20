@@ -73,6 +73,19 @@
 |  |  |  |
 | **Total** | | **14** |
 
+
+## 3.1.1 — Productos y categorías
+
+| Nombre | Semana | Horas |
+|--------|:------:|:-----:|
+| Diego Gómez | S3 |  |
+| Juan Aragón | S3 | 15 |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+| **Total** | | **15** |
+
 ## 8.1.1 — Módulo de configuración de arquitectura del proyecto
 
 | Nombre | Semana | Horas |
