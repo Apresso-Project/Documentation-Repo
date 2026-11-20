@@ -54,8 +54,8 @@
 
 **Código:** 2.2.1
 **Nombre:** Módulo de administración de usuarios
-**Descripción:** Entregable que incluye la pantalla del administrador para listar, crear, editar y desactivar cuentas (con selector de rol y confirmación de cambios) y los endpoints de CRUD de usuarios en el backend (con validación de campos, correo único sin distinguir mayúsculas, control de acceso exclusivo para el administrador y reglas de protección: nadie puede desactivarse a sí mismo ni cambiar su propio rol, y siempre queda al menos un administrador activo).
-**Criterio de aceptación:** El administrador puede crear, editar y desactivar usuarios; los cambios se reflejan en la lista sin recargar; otros roles no acceden a la pantalla. Cada endpoint responde con error 403 para roles no autorizados. Se rechaza un correo repetido, que el administrador desactive su propia cuenta o cambie su propio rol, y dejar al sistema sin administrador activo. Las pruebas cubren creación, edición, desactivación, esas reglas y acceso no autorizado.
+**Descripción:** Entregable que incluye la pantalla del administrador para listar, crear, editar y desactivar las cuentas del personal (con selector de rol y confirmación de cambios) y los endpoints de CRUD de usuarios en el backend (con validación de campos, correo único sin distinguir mayúsculas, control de acceso exclusivo para el administrador y reglas de protección: nadie puede desactivarse a sí mismo ni cambiar su propio rol, y siempre queda al menos un administrador activo). Las cuentas de cliente no se gestionan en este módulo: las crea el propio cliente al registrarse (7.1.1).
+**Criterio de aceptación:** El administrador puede crear, editar y desactivar usuarios; los cambios se reflejan en la lista sin recargar; otros roles no acceden a la pantalla. Cada endpoint responde con error 403 para roles no autorizados. Se rechaza un correo repetido, que el administrador desactive su propia cuenta o cambie su propio rol, y dejar al sistema sin administrador activo. Las cuentas de cliente no aparecen en la lista ni se pueden crear o editar desde este módulo. Las pruebas cubren creación, edición, desactivación, esas reglas y acceso no autorizado.
 **Responsable:** Stiven Mujanajinsoy (Android) / Diego Bolaños (Backend)
 **Esfuerzo estimado:** 10 h
 **Depende de:** 2.1.1
@@ -244,8 +244,8 @@
 
 **Código:** 7.1.1
 **Nombre:** Módulo de registro y búsqueda de clientes
-**Descripción:** Entregable que integra el formulario de registro de clientes (nombre, apellido, número de documento y celular, con aceptación obligatoria del tratamiento de datos personales según la Ley 1581 de 2012) y el campo de búsqueda por número de documento para mesero y administrador, que devuelve el nombre y los puntos de fidelidad del cliente o ofrece la opción de registrarlo si no existe.
-**Criterio de aceptación:** Un registro completo con autorización crea el cliente con 0 puntos en menos de 4 minutos; campos incompletos, sin autorización o con documento duplicado son rechazados con el mensaje correspondiente. Un documento registrado devuelve el cliente en menos de 2 segundos; uno no registrado muestra "Cliente no encontrado" con opción de registro. Roles sin permiso son bloqueados.
+**Descripción:** Entregable que integra (1) el formulario con el que el propio cliente crea su cuenta desde la app (nombre, apellido, número de documento, celular, correo electrónico y contraseña, con aceptación obligatoria del tratamiento de datos personales según la Ley 1581 de 2012); (2) el inicio de sesión del cliente con su número de documento y su contraseña, y la recuperación de la contraseña mediante un código enviado a su correo; y (3) el campo de búsqueda por número de documento para mesero y administrador, que devuelve el nombre y los puntos de fidelidad del cliente o indica que no está registrado.
+**Criterio de aceptación:** Un registro completo con autorización crea la cuenta del cliente con 0 puntos en menos de 4 minutos; campos incompletos, sin autorización, con una contraseña de menos de 8 o más de 72 caracteres, o con documento o correo duplicado son rechazados con el mensaje correspondiente. El cliente inicia sesión con su documento y su contraseña, y puede restablecer la contraseña con un código de un solo uso enviado a su correo. Un documento registrado devuelve el cliente en menos de 2 segundos; uno no registrado muestra "Cliente no encontrado" e indica que el cliente puede registrarse desde la app. Roles sin permiso son bloqueados.
 **Responsable:** Sebastián Aragón (A, Android) / Diego Gómez (R, Backend)
 **Esfuerzo estimado:** 8 h
 **Depende de:** 8.1.1, 2.3.1
@@ -328,8 +328,8 @@
 
 **Código:** 8.4.1
 **Nombre:** Módulo de seguridad y cumplimiento normativo
-**Descripción:** Entregable que garantiza los requisitos de seguridad y legales del sistema: (1) implementación de HTTPS en todas las comunicaciones, hash de contraseñas con bcrypt y almacenamiento de tokens en Android Keystore; y (2) mecanismos requeridos por la Ley 1581 de 2012: texto de autorización en el registro de clientes, trazabilidad del consentimiento y mecanismo para solicitar la eliminación de datos personales.
-**Criterio de aceptación:** Las contraseñas no se almacenan en texto plano; todas las comunicaciones usan HTTPS; los tokens se almacenan en Android Keystore. El registro de clientes exige la aceptación explícita; el texto de autorización cumple los requisitos legales; existe un mecanismo documentado para solicitar la eliminación de datos.
+**Descripción:** Entregable que garantiza los requisitos de seguridad y legales del sistema: (1) implementación de HTTPS en todas las comunicaciones, hash de contraseñas con bcrypt y almacenamiento de tokens en Android Keystore; y (2) mecanismos requeridos por la Ley 1581 de 2012: texto de autorización en el registro de clientes, trazabilidad del consentimiento y mecanismo para que el cliente solicite desde la app la eliminación de sus datos personales.
+**Criterio de aceptación:** Las contraseñas no se almacenan en texto plano; todas las comunicaciones usan HTTPS; los tokens se almacenan en Android Keystore. El registro de clientes exige la aceptación explícita; el texto de autorización cumple los requisitos legales; el cliente puede solicitar desde la app la eliminación de sus datos y el mecanismo está documentado.
 **Responsable:** Diego Gómez (A, Backend) / Sebastián Aragón (R, Android) / David Ascencio (R, QA)
 **Esfuerzo estimado:** 10 h
 **Depende de:** 8.1.1, 7.1.1

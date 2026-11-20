@@ -13,7 +13,7 @@
   * *Dado* que un cliente intenta iniciar sesión con un correo electrónico, o un integrante del personal con un número de documento, *cuando* lo intenta, *entonces* el sistema deniega el acceso.
 * **Análisis INVEST:**
   * **I (Independiente):** Es independiente y constituye la base de autenticación de todo el sistema.
-  * **N (Negociable):** Se puede negociar la adición de recuperación de contraseña por correo.
+  * **N (Negociable):** El diseño de la pantalla y los mensajes se pueden acordar. La recuperación de la contraseña del cliente se trata en HU-65.
   * **V (Valiosa):** Garantiza que solo el personal autorizado y clientes entren a la plataforma móvil.
   * **E (Estimable):** Complejidad baja y acotada.
   * **S (Pequeña):** Cabe perfectamente dentro de un sprint corto.
@@ -23,15 +23,16 @@
 
 ### **HU-02 — Administración de usuarios (RF-02)**
 
-* **Historia de usuario:** Como administrador, quiero gestionar las cuentas de usuario y asignarles los roles autorizados, para controlar quiénes tienen acceso a la aplicación móvil.
+* **Historia de usuario:** Como administrador, quiero gestionar las cuentas del personal y asignarles los roles autorizados, para controlar quiénes tienen acceso a la aplicación móvil.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
   * *Dado* que el administrador ha iniciado sesión, *cuando* crea o edita la información de un usuario y guarda los cambios, *entonces* el sistema actualiza la base de datos y refleja los datos del usuario en la lista global de usuarios.
-  * *Dado* que el administrador gestiona una cuenta existente, *cuando* le asigna o cambia un rol autorizado (Administrador, Cajero, Mesero, Cocinero o Cliente) y confirma la acción, *entonces* el sistema actualiza los permisos de dicha cuenta inmediatamente.
+  * *Dado* que el administrador gestiona una cuenta existente, *cuando* le asigna o cambia un rol autorizado (Administrador, Cajero, Mesero o Cocinero) y confirma la acción, *entonces* el sistema actualiza los permisos de dicha cuenta inmediatamente.
   * *Dado* que un usuario no administrador intenta acceder al módulo de gestión de cuentas o asignaciones de roles, *cuando* ingresa a la ruta correspondiente, *entonces* el sistema deniega el acceso y muestra el mensaje "No tienes permiso para realizar esta acción."
   * *Dado* que el administrador crea o edita un usuario con un correo electrónico que ya pertenece a otra cuenta (sin distinguir mayúsculas de minúsculas), *cuando* guarda los cambios, *entonces* el sistema rechaza la operación e indica que el correo ya está registrado.
   * *Dado* que el administrador ha iniciado sesión, *cuando* intenta desactivar su propia cuenta o cambiar su propio rol, *entonces* el sistema rechaza la operación.
   * *Dado* que solo queda un administrador activo, *cuando* se intenta desactivarlo o quitarle el rol de administrador, *entonces* el sistema rechaza la operación para que siempre exista al menos un administrador activo.
+  * *Dado* que el administrador consulta la lista de usuarios o intenta crear o editar una cuenta con el rol Cliente, *cuando* realiza la acción, *entonces* la lista no incluye las cuentas de cliente y el sistema rechaza crear o editar cuentas de ese rol.
 * **Análisis INVEST:**
   * **I (Independiente):** Depende lógicamente de HU-01 (autenticación).
   * **N (Negociable):** Los campos específicos del formulario de usuario pueden ajustarse.
@@ -881,20 +882,21 @@
 
 ### **HU-50 — Registro de clientes (RF-50)**
 
-* **Historia de usuario:** Como cliente, quiero registrarme con mi nombre, apellido, documento, celular y una contraseña, y aceptar el tratamiento de mis datos, para empezar a acumular mis puntos de fidelidad en pocos minutos.
+* **Historia de usuario:** Como cliente, quiero registrarme desde la app con mi nombre, apellido, documento, celular, correo electrónico y una contraseña, y aceptar el tratamiento de mis datos, para empezar a acumular mis puntos de fidelidad en pocos minutos.
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
-  * *Dado* que el cliente ingresó nombre, apellido, documento, celular y contraseña, y aceptó el tratamiento de datos personales, *cuando* presiona "Registrarme", *entonces* el sistema crea el registro con 0 puntos de fidelidad y muestra "Registro exitoso. ¡Ya puedes empezar a acumular tus puntos de fidelidad!" en menos de 4 minutos desde que inició el formulario.
+  * *Dado* que el cliente ingresó nombre, apellido, documento, celular, correo electrónico y contraseña, y aceptó el tratamiento de datos personales, *cuando* presiona "Registrarme", *entonces* el sistema crea el registro con 0 puntos de fidelidad y muestra "Registro exitoso. ¡Ya puedes empezar a acumular tus puntos de fidelidad!" en menos de 4 minutos desde que inició el formulario.
   * *Dado* que falta algún dato o el cliente no aceptó el tratamiento de datos, *cuando* presiona "Registrarme", *entonces* el sistema no guarda el registro, resalta lo que falta y muestra "Completa todos los datos y acepta el tratamiento de datos personales."
   * *Dado* que ya existe un cliente con ese documento, *cuando* otro registro intenta usarlo, *entonces* el sistema muestra "Este documento ya está registrado."
   * *Dado* que la contraseña tiene menos de 8 o más de 72 caracteres, *cuando* presiona "Registrarme", *entonces* el sistema no guarda el registro y muestra "La contraseña debe tener entre 8 y 72 caracteres."
+  * *Dado* que el correo electrónico no tiene un formato válido o ya pertenece a otra cuenta, *cuando* presiona "Registrarme", *entonces* el sistema no guarda el registro y muestra "Ingresa un correo electrónico válido." o "Este correo ya está registrado.", según el caso.
 * **Análisis INVEST:**
   * **I (Independiente):** Sí. Es el punto de partida de las historias de fidelización.
   * **N (Negociable):** El texto de la autorización y el diseño del formulario se pueden acordar.
   * **V (Valiosa):** Sin registro no hay puntos de fidelidad. Además cumple la Ley 1581.
   * **E (Estimable):** Un formulario con validaciones.
   * **S (Pequeña):** Sí.
-  * **T (Testeable):** Se prueba con registro completo, incompleto, sin autorización y con documento repetido.
+  * **T (Testeable):** Se prueba con registro completo, incompleto, sin autorización, con documento repetido y con correo repetido.
 
 ---
 
@@ -904,7 +906,7 @@
 * **Prioridad:** Alta
 * **Criterios de aceptación:**
   * *Dado* que el cliente está registrado, *cuando* el mesero o el administrador ingresa su documento, *entonces* el sistema muestra su nombre y sus puntos de fidelidad en máximo 2 segundos.
-  * *Dado* que el documento no está registrado, *cuando* el usuario lo busca, *entonces* el sistema muestra "Cliente no encontrado" y ofrece la opción de registrarlo.
+  * *Dado* que el documento no está registrado, *cuando* el usuario lo busca, *entonces* el sistema muestra "Cliente no encontrado" e indica que el cliente puede registrarse desde la app.
 * **Análisis INVEST:**
   * **I (Independiente):** Depende de HU-50, porque necesita clientes registrados.
   * **N (Negociable):** Se puede decidir si se busca por documento completo o parcial.
@@ -1125,3 +1127,22 @@
   * **E (Estimable):** Un formulario, una validación de unicidad y un registro.
   * **S (Pequeña):** Pequeña.
   * **T (Testeable):** Se prueba creando una mesa, repitiendo el nombre, con el campo vacío y con otro rol.
+
+---
+
+### **HU-65 — Recuperación de la contraseña del cliente (RF-65)**
+
+* **Historia de usuario:** Como cliente, quiero recuperar el acceso a mi cuenta con un código enviado a mi correo, para no perder mis puntos de fidelidad si olvido la contraseña.
+* **Prioridad:** Media
+* **Criterios de aceptación:**
+  * *Dado* que un cliente registrado olvidó su contraseña, *cuando* ingresa su número de documento y presiona "Enviar código", *entonces* el sistema envía a su correo un código de 6 dígitos válido durante 15 minutos y muestra "Si el documento está registrado, enviamos un código al correo asociado."
+  * *Dado* que el documento no pertenece a un cliente registrado, *cuando* se solicita el código, *entonces* el sistema muestra el mismo mensaje y no envía ningún correo.
+  * *Dado* que el cliente ingresa el código vigente y una contraseña nueva de entre 8 y 72 caracteres, *cuando* presiona "Cambiar contraseña", *entonces* el sistema actualiza la contraseña, invalida el código y muestra "Tu contraseña se actualizó. Ya puedes iniciar sesión."
+  * *Dado* que el código es incorrecto, ya se usó o venció, *cuando* el cliente intenta cambiar la contraseña, *entonces* el sistema no la cambia y muestra "El código no es válido o venció. Solicita uno nuevo."; tras 5 intentos fallidos con el mismo código, este deja de servir.
+* **Análisis INVEST:**
+  * **I (Independiente):** Depende de HU-50, porque necesita la cuenta del cliente con su correo.
+  * **N (Negociable):** La vigencia del código y el texto del correo se pueden acordar.
+  * **V (Valiosa):** El cliente recupera su cuenta sin intervención del personal.
+  * **E (Estimable):** Dos solicitudes al servidor, un código temporal y el envío de un correo.
+  * **S (Pequeña):** Pequeña.
+  * **T (Testeable):** Se prueba con un código correcto, uno incorrecto, uno vencido, uno ya usado y un documento no registrado.

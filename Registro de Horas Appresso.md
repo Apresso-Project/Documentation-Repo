@@ -61,30 +61,68 @@
 |  |  |  |
 | **Total** | | **11** |
 
+## 2.2.1 — Administración de usuarios
+
+| Nombre      | Semana | Horas  |
+|-------------|:------:|:------:|
+| Diego Gómez |   S3   |   8    |
+| Felipe      |   S4   |   2    |
+|             |        |        |
+|             |        |        |
+|             |        |        |
+|             |        |        |
+| **Total**   |        | **11** |
+
+
 ## 2.3.1 — Control de acceso por rol y acceso remoto del administrador
 
-| Nombre | Semana | Horas |
-|--------|:------:|:-----:|
-| Diego Bolaños | S3 | 11 |
-| Stiven Mujanajinsoy | S3 | 3 |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** | | **14** |
+| Nombre              | Semana | Horas  |
+|---------------------|:------:|:------:|
+| Diego Bolaños       |   S3   |   11   |
+| Stiven Mujanajinsoy |   S3   |   3    |
+| Felipe Salcedo      |   S4   |   4    |
+|                     |        |        |
+|                     |        |        |
+|                     |        |        |
+| **Total**           |        | **14** |
 
 
 ## 3.1.1 — Productos y categorías
 
+| Nombre      | Semana | Horas  |
+|-------------|:------:|:------:|
+| Diego Gómez |   S4   |   3    |
+| Juan Aragón |   S4   |   15   |
+| Felipe      |   S4   |   1    |
+|             |        |        |
+|             |        |        |
+|             |        |        |
+| **Total**   |        | **15** |
+
+## 6.1.1 — Registro de pagos
+
 | Nombre | Semana | Horas |
-|--------|:------:|:-----:|
-| Diego Gómez | S3 |  |
-| Juan Aragón | S3 | 15 |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** | | **15** |
+|--|:------:|:-----:|
+| Diego Gómez |   S4   |   6   |
+|  |        |       |
+|  |        |       |
+|  |        |       |
+|  |        |       |
+|  |        |       |
+| **Total** |        | **6** |
+
+## 7.1.1 — Registro y búsqueda de clientes
+
+| Nombre      | Semana | Horas |
+|-------------|:------:|:-----:|
+| Juan Aragón |   S4   |   7   |
+| Felipe      |   S4   |   3   |
+|             |        |       |
+|             |        |       |
+|             |        |       |
+|             |        |       |
+| **Total**   |        | **6** |
+
 
 ## 8.1.1 — Módulo de configuración de arquitectura del proyecto
 
@@ -100,12 +138,25 @@
 
 ## 8.2.1 — Módulo de sincronización en tiempo real
 
-| Nombre | Semana | Horas |
-|--------|:------:|:-----:|
-| Diego Gómez | S3 | 12 |
-| Juan Aragón | S3 | 12 |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** | | **24** |
+| Nombre      | Semana | Horas  |
+|-------------|:------:|:------:|
+| Diego Gómez |   S3   |   12   |
+| Juan Aragón |   S3   |   12   |
+| Diego Gómez |   S4   |   3    |
+|             |        |        |
+|             |        |        |
+|             |        |        |
+| **Total**   |        | **24** |
+
+## 8.4.1 — Seguridad y cumplimiento
+
+| Nombre      | Semana | Horas |
+|-------------|:------:|:-----:|
+| Juan Aragón |   S4   |   1   |
+| Felipe      |   S4   |   1   |
+|             |        |       |
+|             |        |       |
+|             |        |       |
+|             |        |       |
+| **Total**   |        | **6** |
+

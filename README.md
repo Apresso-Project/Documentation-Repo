@@ -9,8 +9,8 @@ Asignaturas: Introducción a la Gestión de Proyectos de Software + Desarrollo d
 | Archivo | Descripción |
 |---|---|
 | `Acta de Constitución Appresso.md` | Acta de inicio: objetivos, alcance, hitos, riesgos, interesados y aprobaciones |
-| `Requerimientos funcionales y no funcionales de Appresso.md` | RF-01 a RF-62 con criterios de aceptación |
-| `Historias de usuario APPRESSO.md` | HU-01 a HU-62 con análisis INVEST |
+| `Requerimientos funcionales y no funcionales de Appresso.md` | RF-01 a RF-65 con criterios de aceptación |
+| `Historias de usuario APPRESSO.md` | HU-01 a HU-65 con análisis INVEST |
 | `EDT Completa.md` | EDT completa con la descripción y el criterio de aceptación de cada entregable |
 | `EDT y OBS/` | Diccionario de la EDT, diagrama de la EDT (`.puml`) y matriz RACI |
 | `cronograma-Appresso.md` | Actividades, duraciones (4 h/día, L-S), dependencias y ruta crítica |

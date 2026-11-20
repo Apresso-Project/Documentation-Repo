@@ -30,7 +30,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir al administrador gestionar las cuentas de usuario y asignarles los roles autorizados.
+**Descripción:** El sistema deberá permitir al administrador gestionar las cuentas de usuario del personal (administrador, cajero, mesero y cocinero) y asignarles los roles autorizados. Las cuentas de cliente las crea el propio cliente al registrarse (RF-50) y no se gestionan desde este módulo.
 
 **Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, reunión por Meet.
 
@@ -39,11 +39,12 @@
 **Criterios de aceptación:**
 
 1. *Dado* que el administrador ha iniciado sesión, *cuando* crea o edita la información de un usuario y guarda los cambios, *entonces* el sistema actualiza la base de datos y refleja los datos del usuario en la lista global de usuarios.
-2. *Dado* que el administrador gestiona una cuenta existente, *cuando* le asigna o cambia un rol autorizado (Administrador, Cajero, Mesero, Cocinero o Cliente) y confirma la acción, *entonces* el sistema actualiza los permisos de dicha cuenta inmediatamente.
+2. *Dado* que el administrador gestiona una cuenta existente, *cuando* le asigna o cambia un rol autorizado (Administrador, Cajero, Mesero o Cocinero) y confirma la acción, *entonces* el sistema actualiza los permisos de dicha cuenta inmediatamente.
 3. *Dado* que un usuario no administrador intenta acceder al módulo de gestión de cuentas o asignaciones de roles, *cuando* ingresa a la ruta correspondiente, *entonces* el sistema deniega el acceso y muestra el mensaje "No tienes permiso para realizar esta acción."
 4. *Dado* que el administrador crea o edita un usuario con un correo electrónico que ya pertenece a otra cuenta (sin distinguir mayúsculas de minúsculas), *cuando* guarda los cambios, *entonces* el sistema rechaza la operación e indica que el correo ya está registrado.
 5. *Dado* que el administrador ha iniciado sesión, *cuando* intenta desactivar su propia cuenta o cambiar su propio rol, *entonces* el sistema rechaza la operación.
 6. *Dado* que solo queda un administrador activo, *cuando* se intenta desactivarlo o quitarle el rol de administrador, *entonces* el sistema rechaza la operación para que siempre exista al menos un administrador activo.
+7. *Dado* que el administrador consulta la lista de usuarios o intenta crear o editar una cuenta con el rol Cliente, *cuando* realiza la acción, *entonces* la lista no incluye las cuentas de cliente y el sistema rechaza crear o editar cuentas de ese rol.
 
 ---
 
@@ -940,7 +941,7 @@
 
 **Tipo:** Funcional
 
-**Descripción:** El sistema deberá permitir registrar un cliente con nombre, apellido, número de documento, número de celular y una contraseña de entre 8 y 72 caracteres, con la que iniciará sesión junto con su número de documento, exigiendo que acepte el tratamiento de sus datos personales (Ley 1581 de 2012).
+**Descripción:** El sistema deberá permitir que el cliente cree su cuenta desde la app con nombre, apellido, número de documento, número de celular, correo electrónico y una contraseña de entre 8 y 72 caracteres, con la que iniciará sesión junto con su número de documento, exigiendo que acepte el tratamiento de sus datos personales (Ley 1581 de 2012). El correo electrónico se usa para recuperar la contraseña (RF-65).
 
 **Origen:** El cliente Pepito Pérez — dueño; acta de constitución, 29 de septiembre del 2026.
 
@@ -948,10 +949,30 @@
 
 **Criterios de aceptación:**
 
-1. *Dado* que el cliente ingresó nombre, apellido, número de documento, celular y contraseña, y aceptó el tratamiento de datos personales, *cuando* presiona "Registrarme", *entonces* el sistema crea el registro con 0 puntos de fidelidad y muestra "Registro exitoso. ¡Ya puedes empezar a acumular tus puntos de fidelidad!" en menos de 4 minutos desde que inició el formulario.
+1. *Dado* que el cliente ingresó nombre, apellido, número de documento, celular, correo electrónico y contraseña, y aceptó el tratamiento de datos personales, *cuando* presiona "Registrarme", *entonces* el sistema crea el registro con 0 puntos de fidelidad y muestra "Registro exitoso. ¡Ya puedes empezar a acumular tus puntos de fidelidad!" en menos de 4 minutos desde que inició el formulario.
 2. *Dado* que falta algún dato o el cliente no aceptó el tratamiento de datos, *cuando* presiona "Registrarme", *entonces* el sistema no guarda el registro, resalta lo que falta y muestra "Completa todos los datos y acepta el tratamiento de datos personales."
 3. *Dado* que ya existe un cliente con ese número de documento, *cuando* otro registro intenta usar el mismo documento, *entonces* el sistema muestra "Este documento ya está registrado."
 4. *Dado* que la contraseña tiene menos de 8 o más de 72 caracteres, *cuando* presiona "Registrarme", *entonces* el sistema no guarda el registro y muestra "La contraseña debe tener entre 8 y 72 caracteres."
+5. *Dado* que el correo electrónico no tiene un formato válido o ya pertenece a otra cuenta, *cuando* presiona "Registrarme", *entonces* el sistema no guarda el registro y muestra "Ingresa un correo electrónico válido." o "Este correo ya está registrado.", según el caso.
+
+---
+
+### **RF-65 — Recuperación de la contraseña del cliente**
+
+**Tipo:** Funcional
+
+**Descripción:** El sistema deberá permitir que un cliente registrado restablezca su contraseña mediante un código de un solo uso enviado al correo electrónico de su cuenta. Las contraseñas del personal no se recuperan por este medio: las gestiona el administrador (RF-02).
+
+**Origen:** Equipo del proyecto — 19 de noviembre del 2026, reunión de seguimiento.
+
+**Prioridad:** Media
+
+**Criterios de aceptación:**
+
+1. *Dado* que un cliente registrado olvidó su contraseña, *cuando* ingresa su número de documento y presiona "Enviar código", *entonces* el sistema envía a su correo un código de 6 dígitos válido durante 15 minutos y muestra "Si el documento está registrado, enviamos un código al correo asociado."
+2. *Dado* que el documento no pertenece a un cliente registrado, *cuando* se solicita el código, *entonces* el sistema muestra el mismo mensaje del criterio 1 y no envía ningún correo, para no revelar qué documentos están registrados.
+3. *Dado* que el cliente ingresa el código vigente y una contraseña nueva de entre 8 y 72 caracteres, *cuando* presiona "Cambiar contraseña", *entonces* el sistema actualiza la contraseña, invalida el código y muestra "Tu contraseña se actualizó. Ya puedes iniciar sesión."
+4. *Dado* que el código es incorrecto, ya se usó o venció, *cuando* el cliente intenta cambiar la contraseña, *entonces* el sistema no la cambia y muestra "El código no es válido o venció. Solicita uno nuevo."; tras 5 intentos fallidos con el mismo código, este deja de servir.
 
 ---
 
@@ -968,7 +989,7 @@
 **Criterios de aceptación:**
 
 1. *Dado* que el cliente está registrado, *cuando* el mesero o el administrador ingresa su número de documento, *entonces* el sistema muestra su nombre y sus puntos de fidelidad en máximo 2 segundos.
-2. *Dado* que el documento no está registrado, *cuando* el usuario lo busca, *entonces* el sistema muestra "Cliente no encontrado" y ofrece la opción de registrarlo.
+2. *Dado* que el documento no está registrado, *cuando* el usuario lo busca, *entonces* el sistema muestra "Cliente no encontrado" e indica que el cliente puede registrarse desde la app (RF-50).
 
 ---
 
