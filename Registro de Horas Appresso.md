@@ -155,8 +155,8 @@
 | Juan Aragón |   S4   |   1   |
 | Felipe      |   S4   |   1   |
 | Diego Bolaños|  S4   |   2   |
+|David jajoy  |   S4   |    3  |
 |             |        |       |
 |             |        |       |
-|             |        |       |
-| **Total**   |        | **6** |
+| **Total**   |        | **7** |
 
