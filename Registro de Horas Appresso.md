@@ -156,3 +156,12 @@ _S1 y S2 son aproximadas (unas 18 h y unas 40 h acumuladas). Las semanas de las 
 |               |        |       |
 |               |        |       |
 | **Total**     |        | **7** |
+
+## 3.1.1 Consulta de menú / Vista de cocina
+
+| Nombre        | Semana | Horas |
+| ------------- | :----: | :---: |
+| Diego Gomez   |   S4   |   4   |
+|               |        |       |
+|               |        |       |
+| **Total**     |        | **4** |
