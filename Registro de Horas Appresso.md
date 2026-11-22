@@ -16,55 +16,55 @@
 ### Horas por semana de todo el proyecto
 
 | Semana | Corte | Horas de la semana | AC acumulado |
-|:------:|:-----:|:------------------:|:------------:|
-| S1 | 31/10 | 18 | 18 |
-| S2 | 07/11 | 22 | 40 |
-| S3 | 14/11 | 55 | 95 |
+| :----: | :---: | :----------------: | :----------: |
+|   S1   | 31/10 |         18         |      18      |
+|   S2   | 07/11 |         22         |      40      |
+|   S3   | 14/11 |         55         |      95      |
 
-*S1 y S2 son aproximadas (unas 18 h y unas 40 h acumuladas). Las semanas de las horas registradas fueron confirmadas por el gerente el 16/11/2026.*
+_S1 y S2 son aproximadas (unas 18 h y unas 40 h acumuladas). Las semanas de las horas registradas fueron confirmadas por el gerente el 16/11/2026._
 
 ---
 
 ## 1.1.1 — Documentos de inicio y planificación estructural
 
-| Nombre | Semana | Horas |
-|--------|:------:|:-----:|
-| Felipe | S1 | 18 |
-| Felipe | S2 | 10 |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** | | **28** |
+| Nombre    | Semana | Horas  |
+| --------- | :----: | :----: |
+| Felipe    |   S1   |   18   |
+| Felipe    |   S2   |   10   |
+|           |        |        |
+|           |        |        |
+|           |        |        |
+|           |        |        |
+| **Total** |        | **28** |
 
 ## 1.2.1 — Plan temporal, económico y de riesgos
 
-| Nombre | Semana | Horas |
-|--------|:------:|:-----:|
-| Felipe | S2 | 10 |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** | | **10** |
+| Nombre    | Semana | Horas  |
+| --------- | :----: | :----: |
+| Felipe    |   S2   |   10   |
+|           |        |        |
+|           |        |        |
+|           |        |        |
+|           |        |        |
+|           |        |        |
+| **Total** |        | **10** |
 
 ## 2.1.1 — Módulo de autenticación
 
-| Nombre | Semana | Horas |
-|--------|:------:|:-----:|
-| Felipe | S3 | 11 |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** | | **11** |
+| Nombre    | Semana | Horas  |
+| --------- | :----: | :----: |
+| Felipe    |   S3   |   11   |
+|           |        |        |
+|           |        |        |
+|           |        |        |
+|           |        |        |
+|           |        |        |
+| **Total** |        | **11** |
 
 ## 2.2.1 — Administración de usuarios
 
 | Nombre      | Semana | Horas  |
-|-------------|:------:|:------:|
+| ----------- | :----: | :----: |
 | Diego Gómez |   S3   |   8    |
 | Felipe      |   S4   |   2    |
 |             |        |        |
@@ -73,11 +73,10 @@
 |             |        |        |
 | **Total**   |        | **11** |
 
-
 ## 2.3.1 — Control de acceso por rol y acceso remoto del administrador
 
 | Nombre              | Semana | Horas  |
-|---------------------|:------:|:------:|
+| ------------------- | :----: | :----: |
 | Diego Bolaños       |   S3   |   11   |
 | Stiven Mujanajinsoy |   S3   |   3    |
 | Felipe Salcedo      |   S4   |   4    |
@@ -86,12 +85,11 @@
 |                     |        |        |
 | **Total**           |        | **14** |
 
-
 ## 3.1.1 — Productos y categorías
 
 | Nombre      | Semana | Horas  |
-|-------------|:------:|:------:|
-| Diego Gómez |   S4   |   3    |
+| ----------- | :----: | :----: |
+| Diego Gómez |   S4   |   8    |
 | Juan Aragón |   S4   |   15   |
 | Felipe      |   S4   |   1    |
 |             |        |        |
@@ -101,20 +99,20 @@
 
 ## 6.1.1 — Registro de pagos
 
-| Nombre | Semana | Horas |
-|--|:------:|:-----:|
-| Diego Gómez |   S4   |   6   |
-|  |        |       |
-|  |        |       |
-|  |        |       |
-|  |        |       |
-|  |        |       |
-| **Total** |        | **6** |
+| Nombre      | Semana | Horas |
+| ----------- | :----: | :---: |
+| Diego Gómez |   S4   |   9   |
+|             |        |       |
+|             |        |       |
+|             |        |       |
+|             |        |       |
+|             |        |       |
+| **Total**   |        | **6** |
 
 ## 7.1.1 — Registro y búsqueda de clientes
 
 | Nombre      | Semana | Horas |
-|-------------|:------:|:-----:|
+| ----------- | :----: | :---: |
 | Juan Aragón |   S4   |   7   |
 | Felipe      |   S4   |   3   |
 |             |        |       |
@@ -123,23 +121,22 @@
 |             |        |       |
 | **Total**   |        | **6** |
 
-
 ## 8.1.1 — Módulo de configuración de arquitectura del proyecto
 
-| Nombre | Semana | Horas |
-|--------|:------:|:-----:|
-| Felipe | S2 | 2 |
-| Felipe | S3 | 13 |
-| Diego Gómez | S3 | 5 |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** | | **20** |
+| Nombre      | Semana | Horas  |
+| ----------- | :----: | :----: |
+| Felipe      |   S2   |   2    |
+| Felipe      |   S3   |   13   |
+| Diego Gómez |   S3   |   5    |
+|             |        |        |
+|             |        |        |
+|             |        |        |
+| **Total**   |        | **20** |
 
 ## 8.2.1 — Módulo de sincronización en tiempo real
 
 | Nombre      | Semana | Horas  |
-|-------------|:------:|:------:|
+| ----------- | :----: | :----: |
 | Diego Gómez |   S3   |   12   |
 | Juan Aragón |   S3   |   12   |
 | Diego Gómez |   S4   |   3    |
@@ -150,13 +147,12 @@
 
 ## 8.4.1 — Seguridad y cumplimiento
 
-| Nombre      | Semana | Horas |
-|-------------|:------:|:-----:|
-| Juan Aragón |   S4   |   1   |
-| Felipe      |   S4   |   1   |
-| Diego Bolaños|  S4   |   2   |
-|David jajoy  |   S4   |    3  |
-|             |        |       |
-|             |        |       |
-| **Total**   |        | **7** |
-
+| Nombre        | Semana | Horas |
+| ------------- | :----: | :---: |
+| Juan Aragón   |   S4   |   1   |
+| Felipe        |   S4   |   1   |
+| Diego Bolaños |   S4   |   2   |
+| David jajoy   |   S4   |   3   |
+|               |        |       |
+|               |        |       |
+| **Total**     |        | **7** |
