@@ -1,6 +1,6 @@
 # PLAN DE CALIDAD — APPRESSO
 
-> **Estado:** borrador v0.3 (17 de noviembre de 2026).
+> **Estado:** borrador v0.4. Actualizado con la decisión de despliegue interno del 21/11/2026.
 > **Responsable:** Felipe Salcedo (gerente del proyecto).
 > **Fuentes:** criterios de éxito del acta de constitución (objetivos específicos 1, 3, 4 y 6), requerimientos no funcionales y [Seguimiento de Riesgos](Seguimiento%20de%20Riesgos%20Appresso.md).
 
@@ -33,9 +33,9 @@ Un entregable se da por terminado solo si cumple las cinco condiciones:
 2. Tiene pruebas y pasan.
 3. Otra persona lo revisó y lo aprobó.
 4. Está integrado en la rama principal.
-5. Está desplegado donde alguien lo pueda ver funcionando.
+5. Está desplegado donde el equipo pueda comprobar su funcionamiento.
 
-> La condición 5 depende de tener un entorno donde desplegar desde temprano. Es la misma acción que la respuesta al riesgo R-12 (elegir hosting y hacer un despliegue de prueba temprano); el hosting ya se eligió el 10/11 (Render para el backend y Neon para la base de datos), así que falta el despliegue de prueba.
+> El despliegue continuo interno aprobado el 21/11 prepara la demostración de entregables durante el desarrollo. Render aloja el backend y Neon la base de datos. La evidencia de cada despliegue interno permite verificar la condición 5. La versión v1.0 se valida para el piloto con el despliegue final de producción de 8.5.1. Ver [R-12](Seguimiento%20de%20Riesgos%20Appresso.md#3-respuesta-a-cada-riesgo).
 
 ---
 

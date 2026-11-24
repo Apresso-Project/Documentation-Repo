@@ -1,6 +1,6 @@
 # Registro de Horas por Paquete — APPRESSO
 
-> **Estado:** v0.2 (16 de noviembre de 2026).
+> **Estado:** v0.3 (22 de noviembre de 2026).
 > **Lleva el registro:** Felipe Salcedo (gerente del proyecto).
 > **Para qué sirve:** es la fuente del **costo real (AC)** de las [Métricas de Proyecto](Métricas%20de%20Proyecto%20Appresso.md). Cada persona anota las horas que trabajó en cada paquete, por semana; el total de cada tabla y el acumulado por semana alimentan el AC de cada corte.
 
@@ -19,9 +19,10 @@
 |:------:|:-----:|:------------------:|:------------:|
 | S1 | 31/10 | 18 | 18 |
 | S2 | 07/11 | 22 | 40 |
-| S3 | 14/11 | 55 | 95 |
+| S3 | 14/11 | 75 | 115 |
+| S4 | 21/11 | 51 | 166 |
 
-*S1 y S2 son aproximadas (unas 18 h y unas 40 h acumuladas). Las semanas de las horas registradas fueron confirmadas por el gerente el 16/11/2026.*
+*Las semanas de las horas registradas fueron confirmadas por el gerente el 16/11/2026. S3 incluye 20 h anotadas después de su corte (12 h en 8.2.1 y 8 h en 2.2.1).*
 
 ---
 
@@ -71,7 +72,7 @@
 |             |        |        |
 |             |        |        |
 |             |        |        |
-| **Total**   |        | **11** |
+| **Total**   |        | **10** |
 
 
 ## 2.3.1 — Control de acceso por rol y acceso remoto del administrador
@@ -84,7 +85,7 @@
 |                     |        |        |
 |                     |        |        |
 |                     |        |        |
-| **Total**           |        | **14** |
+| **Total**           |        | **18** |
 
 
 ## 3.1.1 — Productos y categorías
@@ -97,7 +98,7 @@
 |             |        |        |
 |             |        |        |
 |             |        |        |
-| **Total**   |        | **15** |
+| **Total**   |        | **19** |
 
 ## 6.1.1 — Registro de pagos
 
@@ -121,7 +122,7 @@
 |             |        |       |
 |             |        |       |
 |             |        |       |
-| **Total**   |        | **6** |
+| **Total**   |        | **10** |
 
 
 ## 8.1.1 — Módulo de configuración de arquitectura del proyecto
@@ -146,7 +147,7 @@
 |             |        |        |
 |             |        |        |
 |             |        |        |
-| **Total**   |        | **24** |
+| **Total**   |        | **27** |
 
 ## 8.4.1 — Seguridad y cumplimiento
 

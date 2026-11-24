@@ -1,6 +1,6 @@
-﻿# PLAN DE RIESGOS — APPRESSO
+# PLAN DE RIESGOS — APPRESSO
 
-> **Estado:** borrador v0.3 (3 de noviembre de 2026). Evaluación inicial. Método de evaluación revisado el 17/11/2026. El [seguimiento](Seguimiento%20de%20Riesgos%20Appresso.md) contiene la evaluación y las respuestas vigentes, y los riesgos R-13 a R-16 (agregados el 12/11), que no están en este plan.
+> **Estado:** borrador v0.3 (3 de noviembre de 2026). Evaluación inicial. Método de evaluación revisado el 17/11/2026. El [seguimiento](Seguimiento%20de%20Riesgos%20Appresso.md) recoge la evaluación y las respuestas vigentes tras CC-03, incluido el despliegue continuo interno, y los riesgos R-13 a R-16 (agregados el 12/11), que no están en este plan.
 > **Responsable:** Felipe Salcedo (entregable 1.2.1 — Plan temporal, económico y de riesgos).
 
 ## 1. Cómo se redactan los riesgos
@@ -29,7 +29,7 @@ lo que provocaría    [efecto sobre el proyecto]
 
 ### R-01 — Plazo de la ruta crítica frente a la fecha de entrega
 
-**Debido a** que el cronograma calcula la ruta crítica en 49 días (calendario de lunes a domingo, CC-02) con holgura cero en 14 entregables, y que el desarrollo inició el 28/10/2026 (Sprint 0) y no el 29/09 que usaba el cronograma como día 0,
+**Debido a** que, antes de CC-03, el cronograma calculaba la ruta crítica en 49 días (calendario de lunes a domingo, CC-02) con holgura cero en 14 entregables, y que el desarrollo inició el 28/10/2026 (Sprint 0) y no el 29/09 que usaba el cronograma como día 0,
 **podría ocurrir que** la fecha de fin proyectada de la ruta crítica supere el 15/12/2026,
 **lo que provocaría** que la v1.0 no esté desplegada ni validada en la prueba piloto en la fecha comprometida.
 
@@ -47,7 +47,7 @@ lo que provocaría    [efecto sobre el proyecto]
 
 ### R-04 — Módulo de caja: cadena larga sin holgura
 
-**Debido a** que 5 de los 14 entregables críticos (6.1.1, 6.3.1, 6.3.2, 6.4.1, 6.5.1) están encadenados en serie, ocupan 15 días sin margen y tienen reglas financieras exigentes (saldos separados, ecuación de cierre),
+**Debido a** que la línea base anterior a CC-03 tenía cinco entregables críticos de caja encadenados en serie, con 15 días sin margen y reglas financieras exigentes (saldos separados y ecuación de cierre),
 **podría ocurrir que** un error o retrabajo en los saldos, los retiros o el cierre de caja se detecte tarde,
 **lo que provocaría** que se retrase el módulo de pruebas (N°29) y, con él, el despliegue y el cierre del proyecto.
 
@@ -77,7 +77,7 @@ lo que provocaría    [efecto sobre el proyecto]
 
 ### R-09 — Alcance amplio frente al tiempo disponible
 
-**Debido a** que el acta compromete siete funcionalidades con 31 entregables y que el documento de requerimientos ya tiene 63 requisitos funcionales (incluyendo notificaciones push, acceso remoto y promociones),
+**Debido a** que la línea base anterior a CC-03 contemplaba 31 entregables y que el documento de requerimientos ya tiene 63 requisitos funcionales (incluyendo notificaciones push, acceso remoto y promociones),
 **podría ocurrir que** el equipo no alcance a implementar todo con calidad en el plazo,
 **lo que provocaría** que se entreguen módulos incompletos o se recorte alcance sin acordarlo antes con el cliente.
 

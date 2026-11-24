@@ -5,7 +5,8 @@
 | Parámetro | Valor |
 |-----------|-------|
 | Fecha de inicio (día 0) | **Miércoles 28 oct 2026** (inicio real del desarrollo) |
-| Fin planificado | **Martes 15 dic 2026** (día 49) |
+| Fin planificado | **Sábado 12 dic 2026** (día 46, CC-03) |
+| Fecha límite de entrega del curso | **Martes 15 dic 2026** |
 | Festivos descontados | **Ninguno**: domingos y festivos son días de trabajo (CC-02) |
 | Calendario | **Lunes a domingo** (7 días/semana) |
 | Dedicación diaria | 4 h/día |
@@ -16,11 +17,13 @@
 
 > **Cambio CC-02 (17/11/2026):** por el plan de acción aprobado el 16/11, domingos y festivos pasan a ser días de trabajo (calendario de lunes a domingo, sin festivos descontados). La secuencia, las duraciones y las dependencias no cambian; los 49 días de la ruta crítica terminan el 15/12/2026 (antes, 28/12), que es la nueva fecha de entrega del curso. Registro en [Métricas de Proyecto](Métricas%20de%20Proyecto%20Appresso.md), sección 2.4.
 
+> **Cambio CC-03 (21/11/2026):** el recorte retira una actividad crítica de 3 días. El cierre de caja (6.5.1) pasa a depender directamente de 6.3.2. Se acuerda iniciar los despliegues internos continuos con Render y Neon en paralelo al desarrollo. El paquete 8.5.1 conserva el despliegue de la v1.0 en producción y la documentación técnica al final. Ver [registro del cambio](Métricas%20de%20Proyecto%20Appresso.md#24-registro-de-cambios-a-las-líneas-base).
+
 ---
 
 ## Parte 1 — Lista de entregables y duraciones
 
-> Cada entregable del Diccionario de la EDT corresponde a una actividad de cronograma (1 entregable = 1 actividad).
+> Cada entregable vigente del Diccionario de la EDT corresponde a una actividad del cronograma. Se conservan los números de actividad de los paquetes vigentes para mantener la trazabilidad.
 
 ### Bloque 1 — Gestión del proyecto
 
@@ -69,7 +72,6 @@
 | 16 | 6.2.1  | Módulo de gestión de transferencias QR | Stiven + Bolaños | 14 | 4 |
 | 17 | 6.3.1  | Módulo de ingresos y retiros directos | Bolaños + Stiven | 8 | 2 |
 | 18 | 6.3.2  | Módulo de solicitudes de retiro, aprobación y trazabilidad | Stiven + Bolaños | 16 | 4 |
-| 19 | 6.4.1  | Módulo de consultas financieras | Bolaños + Stiven | 10 | 3 |
 | 20 | 6.5.1  | Módulo de cierre de caja y cálculo de totales | Bolaños + Stiven | 10 | 3 |
 | 21 | 6.5.2  | Módulo de informe de cierre y apertura de jornada | Bolaños + Stiven | 10 | 3 |
 
@@ -97,15 +99,15 @@
 
 | Concepto | Valor |
 |----------|-------|
-| Total de entregables | 31 |
+| Total de entregables | 30 |
 | Entregables de 2 días (8 h) | 5 |
-| Entregables de 3 días (9–12 h) | 14 |
+| Entregables de 3 días (9–12 h) | 13 |
 | Entregables de 4 días (13–16 h) | 11 |
 | Entregables de 5 días (17–20 h) | 1 |
-| Suma de duraciones (secuencial puro) | 101 días |
-| Semanas equivalentes (secuencial puro) | ≈ 16.8 semanas |
+| Suma de duraciones (secuencial puro) | 98 días |
+| Semanas equivalentes (secuencial puro) | 14 semanas |
 
-> El valor de 101 días es únicamente de referencia: representa la duración total **si todos los entregables se desarrollaran en serie**. El CPM en las Partes 3 y 4 calculará la duración real considerando la paralelización permitida por las dependencias.
+> Los 98 días representan la duración total si todos los entregables se desarrollaran en serie. Las partes 3 y 4 calculan la duración planificada con las dependencias y el trabajo en paralelo.
 
 ---
 
@@ -162,8 +164,7 @@
 | 16 | 6.2.1  | Módulo de gestión de transferencias QR | 15 (6.1.1) |
 | 17 | 6.3.1  | Módulo de ingresos y retiros directos | 15 (6.1.1) |
 | 18 | 6.3.2  | Módulo de solicitudes de retiro, aprobación y trazabilidad | 17 (6.3.1) |
-| 19 | 6.4.1  | Módulo de consultas financieras | 18 (6.3.2) |
-| 20 | 6.5.1  | Módulo de cierre de caja y cálculo de totales | 19 (6.4.1) |
+| 20 | 6.5.1  | Módulo de cierre de caja y cálculo de totales | 18 (6.3.2) |
 | 21 | 6.5.2  | Módulo de informe de cierre y apertura de jornada | 20 (6.5.1) |
 
 ### Bloque 7 — Fidelización de clientes
@@ -192,44 +193,44 @@
 
 > **Convención:** ES = 0 para nodos de inicio. EF = ES + d. LS = LF − d. TF = LS − ES = LF − EF.  
 > **Recorrido adelante:** ES de cada actividad = max(EF de todas sus predecesoras).  
-> **Recorrido atrás:** LF de actividades terminales = duración total del proyecto (49 d). LF de cada actividad = min(LS de todas sus sucesoras).  
+> **Recorrido atrás:** LF de actividades terminales = duración total del proyecto (46 d). LF de cada actividad = min(LS de todas sus sucesoras).
+>
 > **★** = actividad en la ruta crítica (TF = 0).
 
 ### Tabla de recorridos
 
 | N° | Código | d | ES | EF | LS | LF | TF | RC |
 |----|--------|:-:|:--:|:--:|:--:|:--:|:--:|:--:|
-| 1  | 1.1.1  | 4 | 0  | 4  | 42 | 46 | 42 |    |
-| 2  | 1.2.1  | 3 | 4  | 7  | 46 | 49 | 42 |    |
-| 3  | 1.3.1  | 4 | 45 | 49 | 45 | 49 | 0  | ★  |
+| 1  | 1.1.1  | 4 | 0  | 4  | 39 | 43 | 39 |    |
+| 2  | 1.2.1  | 3 | 4  | 7  | 43 | 46 | 39 |    |
+| 3  | 1.3.1  | 4 | 42 | 46 | 42 | 46 | 0  | ★  |
 | 4  | 2.1.1  | 3 | 3  | 6  | 3  | 6  | 0  | ★  |
-| 5  | 2.2.1  | 3 | 6  | 9  | 46 | 49 | 40 |    |
+| 5  | 2.2.1  | 3 | 6  | 9  | 43 | 46 | 37 |    |
 | 6  | 2.3.1  | 4 | 6  | 10 | 6  | 10 | 0  | ★  |
 | 7  | 3.1.1  | 4 | 10 | 14 | 10 | 14 | 0  | ★  |
-| 8  | 3.2.1  | 4 | 14 | 18 | 42 | 46 | 28 |    |
+| 8  | 3.2.1  | 4 | 14 | 18 | 39 | 43 | 25 |    |
 | 9  | 3.3.1  | 4 | 14 | 18 | 14 | 18 | 0  | ★  |
 | 10 | 4.1.1  | 5 | 18 | 23 | 18 | 23 | 0  | ★  |
-| 11 | 4.2.1  | 3 | 23 | 26 | 32 | 35 | 9  |    |
-| 12 | 4.2.2  | 3 | 23 | 26 | 46 | 49 | 23 |    |
-| 13 | 5.1.1  | 3 | 23 | 26 | 44 | 47 | 21 |    |
-| 14 | 5.2.1  | 2 | 26 | 28 | 47 | 49 | 21 |    |
+| 11 | 4.2.1  | 3 | 23 | 26 | 29 | 32 | 6  |    |
+| 12 | 4.2.2  | 3 | 23 | 26 | 43 | 46 | 20 |    |
+| 13 | 5.1.1  | 3 | 23 | 26 | 41 | 44 | 18 |    |
+| 14 | 5.2.1  | 2 | 26 | 28 | 44 | 46 | 18 |    |
 | 15 | 6.1.1  | 3 | 23 | 26 | 23 | 26 | 0  | ★  |
-| 16 | 6.2.1  | 4 | 26 | 30 | 45 | 49 | 19 |    |
+| 16 | 6.2.1  | 4 | 26 | 30 | 42 | 46 | 16 |    |
 | 17 | 6.3.1  | 2 | 26 | 28 | 26 | 28 | 0  | ★  |
 | 18 | 6.3.2  | 4 | 28 | 32 | 28 | 32 | 0  | ★  |
-| 19 | 6.4.1  | 3 | 32 | 35 | 32 | 35 | 0  | ★  |
-| 20 | 6.5.1  | 3 | 35 | 38 | 35 | 38 | 0  | ★  |
-| 21 | 6.5.2  | 3 | 38 | 41 | 46 | 49 | 8  |    |
-| 22 | 7.1.1  | 2 | 10 | 12 | 30 | 32 | 20 |    |
-| 23 | 7.2.1  | 3 | 26 | 29 | 35 | 38 | 9  |    |
-| 24 | 7.2.2  | 2 | 29 | 31 | 43 | 45 | 14 |    |
-| 25 | 7.3.1  | 4 | 31 | 35 | 45 | 49 | 14 |    |
-| 26 | 7.4.1  | 4 | 31 | 35 | 45 | 49 | 14 |    |
+| 20 | 6.5.1  | 3 | 32 | 35 | 32 | 35 | 0  | ★  |
+| 21 | 6.5.2  | 3 | 35 | 38 | 43 | 46 | 8  |    |
+| 22 | 7.1.1  | 2 | 10 | 12 | 27 | 29 | 17 |    |
+| 23 | 7.2.1  | 3 | 26 | 29 | 32 | 35 | 6  |    |
+| 24 | 7.2.2  | 2 | 29 | 31 | 40 | 42 | 11 |    |
+| 25 | 7.3.1  | 4 | 31 | 35 | 42 | 46 | 11 |    |
+| 26 | 7.4.1  | 4 | 31 | 35 | 42 | 46 | 11 |    |
 | 27 | 8.1.1  | 3 | 0  | 3  | 0  | 3  | 0  | ★  |
 | 28 | 8.2.1  | 2 | 3  | 5  | 12 | 14 | 9  |    |
-| 29 | 8.3.1  | 4 | 38 | 42 | 38 | 42 | 0  | ★  |
-| 30 | 8.4.1  | 3 | 12 | 15 | 46 | 49 | 34 |    |
-| 31 | 8.5.1  | 3 | 42 | 45 | 42 | 45 | 0  | ★  |
+| 29 | 8.3.1  | 4 | 35 | 39 | 35 | 39 | 0  | ★  |
+| 30 | 8.4.1  | 3 | 12 | 15 | 43 | 46 | 31 |    |
+| 31 | 8.5.1  | 3 | 39 | 42 | 39 | 42 | 0  | ★  |
 
 ---
 
@@ -239,10 +240,10 @@
 
 La ruta crítica es la **cadena continua de entregables con TF = 0** que va del inicio al fin del proyecto. Cualquier retraso en uno de ellos retrasa la fecha de entrega en la misma cantidad de días.
 
-**Duración total del proyecto: 49 días hábiles**
+**Duración total del proyecto: 46 días de trabajo**
 
 ```
-N°27 → N°4 → N°6 → N°7 → N°9 → N°10 → N°15 → N°17 → N°18 → N°19 → N°20 → N°29 → N°31 → N°3
+N°27 → N°4 → N°6 → N°7 → N°9 → N°10 → N°15 → N°17 → N°18 → N°20 → N°29 → N°31 → N°3
 ```
 
 ### 4.2 Tabla de la ruta crítica
@@ -258,13 +259,12 @@ N°27 → N°4 → N°6 → N°7 → N°9 → N°10 → N°15 → N°17 → N°1
 | 15 | 6.1.1  | Módulo de registro de pagos | 3 | 23 | 26 | 23 | 26 | 0 |
 | 17 | 6.3.1  | Módulo de ingresos y retiros directos | 2 | 26 | 28 | 26 | 28 | 0 |
 | 18 | 6.3.2  | Módulo de solicitudes de retiro, aprobación y trazabilidad | 4 | 28 | 32 | 28 | 32 | 0 |
-| 19 | 6.4.1  | Módulo de consultas financieras | 3 | 32 | 35 | 32 | 35 | 0 |
-| 20 | 6.5.1  | Módulo de cierre de caja y cálculo de totales | 3 | 35 | 38 | 35 | 38 | 0 |
-| 29 | 8.3.1  | Módulo de pruebas | 4 | 38 | 42 | 38 | 42 | 0 |
-| 31 | 8.5.1  | Módulo de despliegue y documentación técnica | 3 | 42 | 45 | 42 | 45 | 0 |
-| 3  | 1.3.1  | Seguimiento, control y cierre del proyecto | 4 | 45 | 49 | 45 | 49 | 0 |
+| 20 | 6.5.1  | Módulo de cierre de caja y cálculo de totales | 3 | 32 | 35 | 32 | 35 | 0 |
+| 29 | 8.3.1  | Módulo de pruebas | 4 | 35 | 39 | 35 | 39 | 0 |
+| 31 | 8.5.1  | Módulo de despliegue y documentación técnica | 3 | 39 | 42 | 39 | 42 | 0 |
+| 3  | 1.3.1  | Seguimiento, control y cierre del proyecto | 4 | 42 | 46 | 42 | 46 | 0 |
 
-**14 entregables críticos de 31 (45 % del total) — suma de duraciones: 49 días**
+**13 entregables críticos de 30 (43 % del total) — suma de duraciones: 46 días**
 
 ### 4.3 Entregables quasi-críticos (holgura baja)
 
@@ -272,21 +272,21 @@ Estos entregables no están en la ruta crítica pero tienen poco margen; un retr
 
 | TF | N° | Código | Nombre |
 |:--:|----|--------|--------|
+| 6  | 11 | 4.2.1  | Módulo de envío, consulta y vinculación de clientes |
+| 6  | 23 | 7.2.1  | Módulo de acumulación y configuración de puntos |
 | 8  | 21 | 6.5.2  | Módulo de informe de cierre y apertura de jornada |
-| 9  | 11 | 4.2.1  | Módulo de envío, consulta y vinculación de clientes |
-| 9  | 23 | 7.2.1  | Módulo de acumulación y configuración de puntos de fidelidad |
 | 9  | 28 | 8.2.1  | Módulo de sincronización en tiempo real |
 
 ### 4.4 Conclusiones para la gestión del proyecto
 
 1. **La ruta crítica sigue pasando íntegramente por el backend.** Los tres primeros entregables críticos (N°27, 4, 6) son de configuración, autenticación y control de acceso. Cualquier retraso en la puesta en marcha de la arquitectura bloquea todo el desarrollo posterior.
 
-2. **El módulo de caja vuelve a dominar la fase central.** Cinco de los catorce entregables críticos (N°15, 17, 18, 19, 20) pertenecen al Bloque 6. La cadena registro de pagos → ingresos/retiros → solicitudes/aprobación/trazabilidad → consulta financiera → cierre ocupa 15 días sin ningún margen (días 23–38).
+2. **Caja concentra cuatro entregables críticos** (N°15, 17, 18 y 20). La cadena de pagos, ingresos y retiros, solicitudes y cierre de caja ocupa 12 días sin holgura (ES 23 a EF 35).
 
-3. **El módulo de pruebas es el cuello de botella final.** N°29 solo puede iniciar cuando terminen el módulo de creación de comandas (N°10), el registro de pagos (N°15), la acumulación de puntos (N°23) y el cierre de caja (N°20). El bloque pruebas → despliegue → cierre (N°29 → 31 → 3) ocupa los días 38 a 49 sin margen.
+3. **El módulo de pruebas es el cuello de botella final.** N°29 solo puede iniciar cuando terminen el módulo de creación de comandas (N°10), el registro de pagos (N°15), la acumulación de puntos (N°23) y el cierre de caja (N°20). El bloque de pruebas, despliegue de producción y cierre (N°29, 31 y 3) ocupa del ES 35 al EF 46, sin holgura.
 
-4. **El frontend tiene holgura amplia.** N°5 (TF=40), N°12 (TF=23), N°13 y N°14 (TF=21), lo que permite priorizar el backend en las primeras semanas sin comprometer la fecha de entrega.
+4. **El frontend tiene holgura amplia.** N°5 (TF=37), N°12 (TF=20), N°13 y N°14 (TF=18), lo que permite priorizar el backend en las primeras semanas sin comprometer la fecha de entrega.
 
-5. **N°21 (informe de cierre y apertura de jornada) es el entregable quasi-crítico con menor margen (TF=8).** Aunque no está en la ruta crítica, cualquier retraso en el módulo de cierre de caja (N°20) lo arrastra directamente.
+5. **N°11 y N°23 tienen la menor holgura fuera de la ruta crítica (TF=6).** El informe de cierre y apertura de jornada (N°21) mantiene 8 días de holgura y depende directamente del cierre de caja.
 
-6. **La documentación de gestión (N°1 y N°2) tiene la holgura máxima (TF=42)**, lo que permite al gerente completarla de forma incremental durante casi todo el proyecto sin afectar la entrega técnica.
+6. **La documentación de gestión (N°1 y N°2) tiene la holgura máxima (TF=39)**, lo que permite al gerente completarla de forma incremental durante casi todo el proyecto sin afectar la entrega técnica.

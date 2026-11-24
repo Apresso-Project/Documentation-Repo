@@ -687,40 +687,6 @@
 
 ---
 
-### **HU-38 — Consulta de caja por el cajero (RF-38)**
-
-* **Historia de usuario:** Como cajero, quiero consultar los pagos y movimientos de caja del día, para verificar lo que se ha registrado y cuadrar mi trabajo.
-* **Prioridad:** Media
-* **Criterios de aceptación:**
-  * *Dado* que el cajero tiene sesión iniciada, *cuando* abre la consulta de caja, *entonces* ve los pagos y movimientos registrados en el día en curso.
-  * *Dado* que el cajero usa la consulta de caja, *cuando* navega por ella, *entonces* no dispone de las acciones reservadas al administrador (registrar ingresos, retiros directos o resolver solicitudes).
-* **Análisis INVEST:**
-  * **I (Independiente):** Depende del inicio de sesión por roles y de los movimientos de otras historias.
-  * **N (Negociable):** Filtros y orden de la lista se pueden acordar.
-  * **V (Valiosa):** El cajero comprueba sus registros sin pedir ayuda.
-  * **E (Estimable):** Una lista filtrada por día y por permisos.
-  * **S (Pequeña):** Cabe en una iteración.
-  * **T (Testeable):** Ambos criterios se verifican directamente.
-
----
-
-### **HU-39 — Consulta financiera por el administrador (RF-39)**
-
-* **Historia de usuario:** Como administrador, quiero consultar los saldos actuales y el historial de movimientos financieros, para conocer la situación de la caja en cualquier momento.
-* **Prioridad:** Alta
-* **Criterios de aceptación:**
-  * *Dado* que el administrador tiene sesión iniciada, *cuando* abre la consulta financiera, *entonces* ve el saldo actual en efectivo y el saldo actual en transferencias por separado.
-  * *Dado* que el administrador consulta el historial, *cuando* lo abre, *entonces* ve todos los ingresos, pagos, retiros y demás movimientos registrados, con su fecha.
-* **Análisis INVEST:**
-  * **I (Independiente):** Depende del inicio de sesión por roles y de los movimientos de otras historias.
-  * **N (Negociable):** El diseño de la pantalla y la forma de ordenar el historial se pueden acordar.
-  * **V (Valiosa):** Da al administrador visibilidad sobre el dinero.
-  * **E (Estimable):** Dos consultas (saldos e historial).
-  * **S (Pequeña):** Cabe en una iteración.
-  * **T (Testeable):** Ambos criterios se verifican directamente.
-
----
-
 ### **HU-40 — Visualización del código QR en dispositivos (RF-40)**
 
 * **Historia de usuario:** Como mesero, cajero o administrador, quiero mostrar el código QR del establecimiento desde mi dispositivo, para que el cliente pueda pagar por transferencia.

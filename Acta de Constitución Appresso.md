@@ -21,7 +21,7 @@ La cafetería registra hoy los pedidos, cuadres de caja a mano, el inventario se
 
 ## Objetivo general:
 
-Entregar, a más tardar el 15 de diciembre del año 2026, la versión v1.0 de Appresso funcionando en la cafetería CaffeBar, con registro de productos, toma de pedidos con envío a cocina, módulo de puntos de fidelidad y pago por QR, y validarla en una prueba piloto de [X] días con al menos [X] pedidos completados de principio a fin sin usar papel. El desarrollo sigue el esquema semver (semver.org): cada módulo funcional que se cierra se etiqueta en el repositorio como una versión interna (v0.x), y el despliegue en producción, que se hace una sola vez, constituye la versión v1.0.
+Entregar, a más tardar el 15 de diciembre del año 2026, la versión v1.0 de Appresso funcionando en la cafetería CaffeBar, con registro de productos, toma de pedidos con envío a cocina, módulo de puntos de fidelidad y pago por QR, y validarla en una prueba piloto de [X] días con al menos [X] pedidos completados de principio a fin sin usar papel. El desarrollo sigue el esquema semver (semver.org). Cada módulo funcional que se cierra se etiqueta como versión interna (v0.x). El 21/11/2026 se aprobó iniciar los despliegues internos continuos con el backend en Render y la base de datos en Neon. El despliegue en producción se reserva para la v1.0 al final del proyecto.
 
 ## Objetivos específicos:
 
@@ -55,6 +55,9 @@ Entregar, a más tardar el 15 de diciembre del año 2026, la versión v1.0 de Ap
 - Pedidos a domicilio o en línea desde fuera de la cafetería.
 - Integración automática con pasarelas de pago externas para validar transferencias (el QR se muestra, la confirmación es manual).
 - Versión para iOS o para otras sucursales, sólo Android.
+- Vistas independientes de consulta de caja del cajero y de consulta financiera del administrador (CC-03). El historial de movimientos y los informes de cierre siguen dentro del alcance.
+
+**Cambio de alcance CC-03 (21/11/2026).** El equipo y el patrocinador aprobaron el recorte de las dos vistas y el inicio del despliegue continuo interno. El [registro de cambios](Métricas%20de%20Proyecto%20Appresso.md#24-registro-de-cambios-a-las-líneas-base) detalla el efecto en plazo y costo.
 
 ## 5. Suposiciones
 

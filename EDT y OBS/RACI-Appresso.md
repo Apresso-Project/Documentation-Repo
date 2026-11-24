@@ -79,7 +79,6 @@
 | 6.2.1 | Módulo de gestión de transferencias QR | C | RA | I | R | I | I | I |  |
 | 6.3.1 | Módulo de ingresos y retiros directos | C | R | I | RA | I | I | I | ★ |
 | 6.3.2 | Módulo de solicitudes de retiro, aprobación y trazabilidad | C | RA | I | R | I | I | I | ★ |
-| 6.4.1 | Módulo de consultas financieras | C | R | I | RA | I | C | I | ★ |
 | 6.5.1 | Módulo de cierre de caja y cálculo de totales | C | R | I | RA | I | C | I | ★ |
 | 6.5.2 | Módulo de informe de cierre y apertura de jornada | C | R | I | RA | I | I | I |  |
 
@@ -109,10 +108,10 @@
 
 | Integrante | R (ejecuta) | A (responde) | C (consulta) | I (informado) |
 |---|:---:|:---:|:---:|:---:|
-| Fel (Felipe) | 4 | 3 | 27 | 0 |
-| Sti (Stiven) | 14 | 7 | 2 | 15 |
-| Seb (Sebastián) | 12 | 6 | 2 | 17 |
-| Bol (Bolaños) | 13 | 6 | 2 | 16 |
-| Góm (Gómez) | 14 | 9 | 2 | 15 |
-| Dav (David) | 1 | 0 | 14 | 16 |
-| CL (Cliente) | 0 | 0 | 7 | 24 |
+| Fel (Felipe) | 4 | 3 | 26 | 0 |
+| Sti (Stiven) | 13 | 7 | 2 | 15 |
+| Seb (Sebastián) | 12 | 6 | 2 | 16 |
+| Bol (Bolaños) | 12 | 5 | 2 | 16 |
+| Góm (Gómez) | 14 | 9 | 2 | 14 |
+| Dav (David) | 1 | 0 | 13 | 16 |
+| CL (Cliente) | 0 | 0 | 7 | 23 |

@@ -1,12 +1,12 @@
 # MÉTRICAS DE PROYECTO — APPRESSO
 
-> **Estado:** borrador v0.3 (17 de noviembre de 2026). Corte actual: **14/11/2026** (sábado de la semana 3). Cambios de la v0.3, por la sustentación de las métricas y el plan de acción del 16/11: calendario de lunes a domingo sin festivos y fin planificado el 15/12 (CC-02), costos directos (dominio y Claude Code) dentro del BAC y el AC, y valores de las secciones 3 a 8 recalculados.
+> **Estado:** borrador v0.5. Último corte medido: **21/11/2026** (S4). La actualización incorpora CC-03, aprobado en la reunión de control del 21/11, y conserva la ejecución acumulada registrada en S1 a S4.
 > **Responsable del registro:** Felipe Salcedo (gerente del proyecto).
 > **Fuentes:** [Cronograma](cronograma-Appresso.md), [Presupuesto](Presupuesto%20Appresso.md), [EDT Completa](EDT%20Completa.md), [Diccionario de la EDT](EDT%20y%20OBS/Diccionario-EDT-Appresso.md), [Plan de Calidad](Plan%20de%20Calidad%20Appresso.md) y [Seguimiento de Riesgos](Seguimiento%20de%20Riesgos%20Appresso.md).
 
-Este archivo define **cómo se mide** el proyecto y registra las métricas de cada corte. La parte de seguimiento (lectura de los resultados y decisiones) se agrega después.
+Este archivo define **cómo se mide** el proyecto y registra las métricas de cada corte. La lectura del corte del 21/11 y las decisiones registradas se recogen en [Seguimiento de Riesgos](Seguimiento%20de%20Riesgos%20Appresso.md), sección 3.1.2.
 
-> **Datos provisionales.** Las cifras marcadas como *provisional* salen del historial del repositorio y de lo que el gerente conoce. Las horas reales (costo real) todavía no están registradas: ver sección 4.
+> **Datos provisionales.** Las cifras marcadas como *provisional* salen del historial del repositorio y de lo que el gerente conoce. Las horas reales (costo real) salen del [Registro de Horas](Registro%20de%20Horas%20Appresso.md).
 
 ---
 
@@ -25,7 +25,7 @@ Si el proyecto se atrasa, la línea base queda igual y la diferencia aparece en 
 | Elemento | Contenido |
 |----------|-----------|
 | Documentos | `EDT Completa.md` y `EDT y OBS/Diccionario-EDT-Appresso.md` |
-| Paquetes de trabajo | 31 entregables en 8 bloques |
+| Paquetes de trabajo | 30 entregables vigentes en 8 bloques (CC-03) |
 | Criterio de terminado | El criterio de aceptación de cada entregable en el diccionario, y las cinco condiciones de la definición de terminado del Plan de Calidad |
 
 ### 2.2 Línea base de tiempo
@@ -35,28 +35,29 @@ Si el proyecto se atrasa, la línea base queda igual y la diferencia aparece en 
 | Documento | `cronograma-Appresso.md`: duración, dependencias y recorridos de cada paquete |
 | Calendario | **Lunes a domingo, 4 h/día. Domingos y festivos son días de trabajo** (CC-02). Antes: lunes a sábado sin festivos (2/11, 16/11, 8/12, 25/12 y 1/1) |
 | **Día 0** | **28/10/2026**, inicio real del desarrollo (cambio CC-01 aprobado, ver 2.4) |
-| Fechas de cada paquete | Inicio y fin tempranos del recorrido hacia adelante (columnas ES y EF del cronograma), convertidos a fechas con el calendario anterior |
-| Fin planificado del proyecto | **15/12/2026** (día 49) |
+| Fechas de cada paquete | Inicio y fin tempranos del recorrido hacia adelante (columnas ES y EF del cronograma), convertidos a fechas con el calendario de siete días |
+| Fin planificado del proyecto | **12/12/2026** (día 46, CC-03) |
+| Fecha límite de entrega del curso | **15/12/2026** |
 
-> Con el calendario de siete días (CC-02), los 49 días de la ruta crítica terminan el 15/12/2026, que es la nueva fecha de entrega del curso (antes 17/12). La secuencia, las duraciones y las dependencias no cambian. Antes de CC-02 el plan terminaba el 28/12 (calendario de lunes a sábado sin festivos).
+> CC-02 situó el fin del plan en el 15/12/2026 con una ruta crítica de 49 días. CC-03 reduce la ruta crítica a 46 días y el fin del plan al 12/12/2026. La entrega del curso sigue prevista para el 15/12.
 
 ### 2.3 Línea base de costo
 
-Es la estimación del presupuesto repartida entre los 31 paquetes (**horas del cronograma × $15.000 por hora**) más los costos directos del proyecto (dominio y Claude Code).
+Es la estimación del presupuesto repartida entre los 30 paquetes vigentes (**horas del cronograma × $15.000 por hora**) más los costos directos del proyecto (dominio y Claude Code).
 
 | Concepto | Valor | ¿Entra en el EV? |
 |----------|------:|:----------------:|
-| 31 paquetes (371 h) | $5.565.000 | Sí |
+| 30 paquetes (361 h) | $5.415.000 | Sí |
 | Dominio (USD 12 × $4.000) | $48.000 | Sí, al incurrirse |
 | Claude Code (plan Pro, 1 licencia, 2 meses: USD 40 × $4.000) | $160.000 | Sí, al incurrirse |
-| **BAC (línea base de costo)** | **$5.773.000** | |
+| **BAC vigente (línea base de costo)** | **$5.623.000** | |
 | Respuestas a riesgos críticos | Pendiente de conciliación (referencia inicial: 96 h, $1.440.000) | No (línea aparte) |
 | Reserva de contingencia | Pendiente de actualizar (referencia inicial: $2.054.500) | No (uso sujeto a aprobación) |
-| Presupuesto total actualizado | Pendiente de validar (referencia inicial: $9.267.500) | — |
+| Presupuesto total de referencia tras CC-03 | $9.117.500, con respuestas a riesgos y reserva pendientes de conciliación | — |
 
 Los gastos de las respuestas a riesgos se siguen en su propia línea; no se mezclan con el EV de los paquetes.
 
-**Costos directos.** No son horas: se pagan en pesos y se consideran **ganados cuando se incurren** (su EV es igual a su AC). Plan: Claude Code, $80.000 el 28/10 y $80.000 el 28/11; dominio, $48.000 antes del despliegue (al terminar 8.5.1, 11/12). *Por confirmar con el gerente:* se supone que el primer pago de Claude Code se hizo el 28/10 y que el dominio aún no se ha comprado.
+**Costos directos.** Se registran en pesos y se consideran **ganados cuando se incurren** (su EV es igual a su AC). Claude Code tiene dos fechas confirmadas: $80.000 pagados el 28/10/2026 y $80.000 programados para el 28/11/2026. El dominio ($48.000) sigue previsto para el 11/12, con la compra y su fecha pendientes de confirmar.
 
 La mano de obra se mide en horas ($15.000 por hora); como las métricas ahora incluyen costos directos, **PV, EV y AC se expresan en pesos**, y las horas se muestran junto a lo que corresponde a mano de obra.
 
@@ -66,24 +67,25 @@ La mano de obra se mide en horas ($15.000 por hora); como las métricas ahora in
 |----|-------|------------|--------|--------|------------|
 | CC-01 | 12/11/2026 | Tiempo | El día 0 pasa del 29/09/2026 al **28/10/2026**. La secuencia, las duraciones y las dependencias no cambian | El cronograma usó como día 0 una fecha anterior al inicio real del desarrollo (R-01). Con el 29/09, el PV a la fecha incluiría trabajo que nunca pudo empezar | **Aprobado el 15/11/2026** por el gerente del proyecto. Las métricas usan el 28/10 |
 | CC-02 | 17/11/2026 | Tiempo y costo | **Tiempo:** el calendario pasa de lunes a sábado sin festivos a **lunes a domingo sin festivos excluidos**; el fin planificado pasa del 28/12 al **15/12/2026** y se recalculan las fechas y el PV de todos los cortes desde el día 0. **Costo:** el **dominio** ($48.000) y **Claude Code** ($160.000) entran al BAC, que pasa de $5.565.000 a **$5.773.000**. La secuencia, las duraciones, las horas y las dependencias no cambian | Plan de acción de la reunión del 16/11 (domingos y festivos como días de trabajo, para recuperar el atraso) y correcciones de la sustentación de métricas (costos omitidos y nueva fecha de entrega del curso, 15/12) | **Calendario:** aprobado por el equipo el 16/11/2026. **Costos directos:** aprobado por el gerente el 17/11/2026. Las métricas usan ambos desde el día 0 |
+| CC-03 | 21/11/2026 | Alcance, tiempo y costo | Se elimina el módulo de consultas financieras de la v1.0 (vistas de RF-38 y RF-39). Se conservan el historial de movimientos de 6.3.2 y los informes de cierre. Quedan 30 paquetes y 361 h, la ruta crítica baja de 49 a 46 días y el BAC de $5.773.000 a $5.623.000. Se aprueba iniciar despliegues internos continuos con Render y Neon. La v1.0 se despliega en producción al final | Recuperar plazo y validar las integraciones del sistema desde el desarrollo | **Aprobado por el equipo y el patrocinador** en la reunión de control del 21/11/2026. Ver [registro de la reunión](Seguimiento%20de%20Riesgos%20Appresso.md#5-registro-de-reuniones) |
 
-No hay más cambios registrados. Un cambio posterior debe indicar el paquete afectado, el efecto en alcance, tiempo y costo, y quién lo aprobó.
+Desde CC-03 se usa la línea base revisada para planificar lo pendiente. Los valores acumulados de PV, EV y AC de S1 a S4 en pesos coinciden con el registro anterior al cambio. Un cambio posterior debe indicar el paquete afectado, el efecto en alcance, tiempo y costo, y quién lo aprobó.
 
 ---
 
 ## 3. Línea base paquete por paquete
 
-Estado al corte del 14/11/2026. **Valor ganado con la regla 0/100:** un paquete terminado vale el 100 % de su costo, y uno no terminado vale 0 %, aunque esté a punto de completarse.
+Estado al corte del 21/11/2026 y fechas del plan vigente tras CC-03. **Valor ganado con la regla 0/100:** un paquete terminado vale el 100 % de su costo, y uno no terminado vale 0 %, aunque esté a punto de completarse.
 
 | Código | Entregable | Horas | BAC | Inicio plan | Fin plan | Estado | EV |
 |--------|-----------|:-----:|----:|:-----------:|:--------:|--------|---:|
 | 1.1.1 | Documentos de inicio y planificación estructural | 13 | $195.000 | 28/10 | 31/10 | Terminado (no estaba al corte del 31/10; sí al del 7/11) | $195.000 |
 | 1.2.1 | Plan temporal, económico y de riesgos | 12 | $180.000 | 01/11 | 03/11 | Terminado (antes del corte del 7/11) | $180.000 |
-| 1.3.1 | Seguimiento, control y cierre del proyecto | 14 | $210.000 | 12/12 | 15/12 | No iniciado | $0 |
+| 1.3.1 | Seguimiento, control y cierre del proyecto | 14 | $210.000 | 09/12 | 12/12 | No iniciado | $0 |
 | 2.1.1 | Módulo de autenticación | 10 | $150.000 | 31/10 | 02/11 | Terminado (12/11) | $150.000 |
-| 2.2.1 | Módulo de administración de usuarios | 10 | $150.000 | 03/11 | 05/11 | No iniciado | $0 |
-| 2.3.1 | Control de acceso por rol y acceso remoto | 16 | $240.000 | 03/11 | 06/11 | En curso (14 h reales) | $0 |
-| 3.1.1 | Gestión de productos y categorías | 14 | $210.000 | 07/11 | 10/11 | No iniciado | $0 |
+| 2.2.1 | Módulo de administración de usuarios | 10 | $150.000 | 03/11 | 05/11 | Terminado (18/11) | $150.000 |
+| 2.3.1 | Control de acceso por rol y acceso remoto | 16 | $240.000 | 03/11 | 06/11 | Terminado (17/11) | $240.000 |
+| 3.1.1 | Gestión de productos y categorías | 14 | $210.000 | 07/11 | 10/11 | Terminado (20/11) | $210.000 |
 | 3.2.1 | Control de existencias | 14 | $210.000 | 11/11 | 14/11 | No iniciado | $0 |
 | 3.3.1 | Consulta del menú y visualización en cocina | 14 | $210.000 | 11/11 | 14/11 | No iniciado | $0 |
 | 4.1.1 | Creación de comandas | 18 | $270.000 | 15/11 | 19/11 | No iniciado | $0 |
@@ -91,31 +93,30 @@ Estado al corte del 14/11/2026. **Valor ganado con la regla 0/100:** un paquete 
 | 4.2.2 | Modificación y cancelación de pedidos | 12 | $180.000 | 20/11 | 22/11 | No iniciado | $0 |
 | 5.1.1 | Visualización de pedidos en cocina | 12 | $180.000 | 20/11 | 22/11 | No iniciado | $0 |
 | 5.2.1 | Gestión de estados y notificación al mesero | 8 | $120.000 | 23/11 | 24/11 | No iniciado | $0 |
-| 6.1.1 | Registro de pagos | 10 | $150.000 | 20/11 | 22/11 | No iniciado | $0 |
+| 6.1.1 | Registro de pagos | 10 | $150.000 | 20/11 | 22/11 | En revisión (6 h reales) | $0 |
 | 6.2.1 | Transferencias QR | 14 | $210.000 | 23/11 | 26/11 | No iniciado | $0 |
 | 6.3.1 | Ingresos y retiros directos | 8 | $120.000 | 23/11 | 24/11 | No iniciado | $0 |
 | 6.3.2 | Solicitudes de retiro, aprobación y trazabilidad | 16 | $240.000 | 25/11 | 28/11 | No iniciado | $0 |
-| 6.4.1 | Consultas financieras | 10 | $150.000 | 29/11 | 01/12 | No iniciado | $0 |
-| 6.5.1 | Cierre de caja y cálculo de totales | 10 | $150.000 | 02/12 | 04/12 | No iniciado | $0 |
-| 6.5.2 | Informe de cierre y apertura de jornada | 10 | $150.000 | 05/12 | 07/12 | No iniciado | $0 |
-| 7.1.1 | Registro y búsqueda de clientes | 8 | $120.000 | 07/11 | 08/11 | No iniciado | $0 |
+| 6.5.1 | Cierre de caja y cálculo de totales | 10 | $150.000 | 29/11 | 01/12 | No iniciado | $0 |
+| 6.5.2 | Informe de cierre y apertura de jornada | 10 | $150.000 | 02/12 | 04/12 | No iniciado | $0 |
+| 7.1.1 | Registro y búsqueda de clientes | 8 | $120.000 | 07/11 | 08/11 | Terminado (20/11) | $120.000 |
 | 7.2.1 | Acumulación y configuración de puntos | 12 | $180.000 | 23/11 | 25/11 | No iniciado | $0 |
 | 7.2.2 | Consulta de puntos | 8 | $120.000 | 26/11 | 27/11 | No iniciado | $0 |
 | 7.3.1 | Recompensas y canjes | 14 | $210.000 | 28/11 | 01/12 | No iniciado | $0 |
 | 7.4.1 | Promociones y notificaciones de fidelización | 16 | $240.000 | 28/11 | 01/12 | No iniciado | $0 |
 | 8.1.1 | Configuración de arquitectura del proyecto | 12 | $180.000 | 28/10 | 30/10 | Terminado (10/11, *provisional*) | $180.000 |
-| 8.2.1 | Sincronización en tiempo real | 8 | $120.000 | 31/10 | 01/11 | En curso (PR en revisión) | $0 |
-| 8.3.1 | Pruebas | 16 | $240.000 | 05/12 | 08/12 | No iniciado | $0 |
-| 8.4.1 | Seguridad y cumplimiento normativo | 10 | $150.000 | 09/11 | 11/11 | No iniciado | $0 |
-| 8.5.1 | Despliegue y documentación técnica | 10 | $150.000 | 09/12 | 11/12 | No iniciado | $0 |
-| | Costos directos incurridos (Claude Code, 1.er pago; el dominio aún no se compra; *por confirmar*) | | $80.000 | | | | $80.000 |
-| | **Total (BAC)** | | **$5.773.000** | | | | **$785.000** |
+| 8.2.1 | Sincronización en tiempo real | 8 | $120.000 | 31/10 | 01/11 | Terminado (16/11) | $120.000 |
+| 8.3.1 | Pruebas | 16 | $240.000 | 02/12 | 05/12 | No iniciado | $0 |
+| 8.4.1 | Seguridad y cumplimiento normativo | 10 | $150.000 | 09/11 | 11/11 | En curso (7 h reales) | $0 |
+| 8.5.1 | Despliegue y documentación técnica | 10 | $150.000 | 06/12 | 08/12 | No iniciado | $0 |
+| | Costos directos incurridos (Claude Code, pago del 28/10 confirmado) | | $80.000 | | | | $80.000 |
+| | **Total (BAC vigente)** | | **$5.623.000** | | | | **$1.625.000** |
 
-Los 31 paquetes suman 371 h ($5.565.000) y su EV al corte es $705.000 (47 h).
+Los 30 paquetes vigentes suman 361 h ($5.415.000) y su EV al corte es $1.545.000 (103 h).
 
-Las fechas de inicio y fin son las tempranas del cronograma, con el calendario de lunes a domingo (CC-02). Un paquete sin holgura no puede moverse sin afectar la fecha final.
+Las fechas de inicio y fin son las tempranas del cronograma, con el calendario de lunes a domingo y el recorte de CC-03. Un paquete sin holgura no puede moverse sin afectar la fecha final.
 
-> Estados *provisional*: las fechas de cierre de 1.1.1 y 1.2.1 salen de lo informado por el equipo (1.1.1 no estaba terminado al corte del 31/10; al del 7/11 ya estaban terminados 1.1.1 y 1.2.1, pero no 8.1.1). 8.1.1 se tomó como terminado por la fusión de sus PR del 9 y 10/11. Hay que confirmar las fechas con el equipo.
+> Estados *provisional*: las fechas de cierre de 1.1.1 y 1.2.1 salen de lo informado por el equipo (1.1.1 no estaba terminado al corte del 31/10; al del 7/11 ya estaban terminados 1.1.1 y 1.2.1, pero no 8.1.1). 8.1.1 se tomó como terminado por la fusión de sus PR del 9 y 10/11. Los de S4 usan la fecha en que su PR entró a `main` (2.2.1, la de su última pantalla). Hay que confirmar las fechas con el equipo.
 
 ---
 
@@ -127,45 +128,52 @@ Las fechas de inicio y fin son las tempranas del cronograma, con el calendario d
 | **EV** | Valor ganado | Cuánto trabajo está hecho de verdad, valorado con el plan | Suma del BAC de los paquetes **terminados** (regla 0/100), más los costos directos incurridos |
 | **AC** | Costo real | Cuánto se ha gastado de verdad para llegar hasta aquí | Horas reales trabajadas × $15.000, de **todos** los paquetes con trabajo, estén o no terminados, más los costos directos pagados |
 
-### 4.1 Corte del 14/11/2026 (día 18)
+### 4.1 Corte del 21/11/2026 (día 25)
+
+Los porcentajes de esta tabla usan el BAC de $5.773.000 con el que se registró el corte. La sección 4.3 muestra los porcentajes sobre el BAC vigente de CC-03.
 
 | Métrica | Mano de obra | Costos directos | Total | % del BAC |
 |---------|:------------:|----------------:|------:|:---------:|
-| PV | 141 h · $2.115.000 | $80.000 | **$2.195.000** | 38,0 % |
-| EV | 47 h · $705.000 | $80.000 | **$785.000** | 13,6 % |
-| AC | 95 h · $1.425.000 | $80.000 | **$1.505.000** | 26,1 % |
+| PV | 159 h · $2.385.000 | $80.000 | **$2.465.000** | 42,7 % |
+| EV | 103 h · $1.545.000 | $80.000 | **$1.625.000** | 28,1 % |
+| AC | 166 h · $2.490.000 | $80.000 | **$2.570.000** | 44,5 % |
 
-- **PV:** con el calendario de siete días, 12 paquetes debían estar terminados al 14/11: 8.1.1, 1.1.1, 8.2.1, 2.1.1, 1.2.1, 2.2.1, 2.3.1, 7.1.1, 3.1.1, 8.4.1, 3.2.1 y 3.3.1 (141 h). Con el calendario anterior eran 10 paquetes y 113 h.
-- **EV:** 4 paquetes terminados: 1.1.1, 1.2.1, 8.1.1 y 2.1.1 (47 h). Se supone que desde el 12/11 no se cerró ningún otro paquete (por confirmar).
-- **AC:** horas reales registradas por persona y semana en [Registro de Horas](Registro%20de%20Horas%20Appresso.md) (las de S1 y S2 son aproximadas), valoradas a $15.000 por hora, más $80.000 de Claude Code (supuesto por confirmar). Incluye los paquetes con trabajo, terminados o no.
-- **Antes de CC-02** (lunes a sábado y solo mano de obra), al 14/11: PV 113 h ($1.695.000), EV 47 h ($705.000), AC 95 h ($1.425.000), SPI 0,42 y CPI 0,49.
+- **PV:** 13 paquetes debían estar terminados al 21/11: 8.1.1, 1.1.1, 8.2.1, 2.1.1, 1.2.1, 2.2.1, 2.3.1, 7.1.1, 3.1.1, 8.4.1, 3.2.1, 3.3.1 y 4.1.1 (159 h).
+- **EV:** 9 paquetes terminados (103 h): los 4 que ya lo estaban (1.1.1, 1.2.1, 8.1.1 y 2.1.1) y 5 de S4 (8.2.1, 2.3.1, 2.2.1, 3.1.1 y 7.1.1). 6.1.1 (en revisión) y 8.4.1 (en curso) valen 0 %. De los planificados faltan 8.4.1, 3.2.1, 3.3.1 y 4.1.1.
+- **AC:** horas reales registradas por persona y semana en [Registro de Horas](Registro%20de%20Horas%20Appresso.md), valoradas a $15.000 por hora, más $80.000 de Claude Code pagados el 28/10. Incluye los paquetes con trabajo, terminados o no.
+- **Antes de CC-02** (lunes a sábado y solo mano de obra), al 14/11: PV 113 h ($1.695.000), EV 47 h ($705.000), AC 95 h ($1.425.000), SPI 0,42 y CPI 0,49 (con las horas registradas entonces).
 
-| Paquete | Horas plan | Horas reales (estimadas) | AC | Estado |
+| Paquete | Horas plan | Horas reales | AC | Estado |
 |---------|:----------:|:------------------------:|---:|--------|
 | 1.1.1 | 13 | 28 | $420.000 | Terminado |
 | 1.2.1 | 12 | 10 | $150.000 | Terminado |
 | 8.1.1 | 12 | 20 | $300.000 | Terminado |
 | 2.1.1 | 10 | 11 | $165.000 | Terminado |
-| 8.2.1 | 8 | 12 | $180.000 | En curso |
-| 2.3.1 | 16 | 14 | $210.000 | En curso |
-| **Mano de obra** | **71** | **95** | **$1.425.000** | |
+| 8.2.1 | 8 | 27 | $405.000 | Terminado |
+| 2.3.1 | 16 | 18 | $270.000 | Terminado |
+| 2.2.1 | 10 | 10 | $150.000 | Terminado |
+| 3.1.1 | 14 | 19 | $285.000 | Terminado |
+| 7.1.1 | 8 | 10 | $150.000 | Terminado |
+| 6.1.1 | 10 | 6 | $90.000 | En revisión |
+| 8.4.1 | 10 | 7 | $105.000 | En curso |
+| **Mano de obra** | **123** | **166** | **$2.490.000** | |
 | Claude Code (1.er pago) | | | $80.000 | |
-| **Total** | | | **$1.505.000** | |
+| **Total** | | | **$2.570.000** | |
 
-De las 95 h, 69 corresponden a los 4 paquetes terminados (47 h planificadas) y 26 a paquetes en curso, que por la regla 0/100 todavía no suman valor ganado. Las 22 h netas de los paquetes terminados por encima del plan son horas extra por aprobar (ver [Presupuesto](Presupuesto%20Appresso.md), sección 7).
+De las 166 h, 153 corresponden a los 9 paquetes terminados (103 h planificadas) y 13 a los dos que aún no terminan, que por la regla 0/100 todavía no suman valor ganado. El 23/11 se registró la aprobación de 52 h extra trabajadas al corte. El ahorro de 2 h en 1.2.1 deja una desviación neta de 50 h ($750.000) en los paquetes terminados. El mayor excedente viene de 8.2.1 (+19 h), 1.1.1 (+15 h) y 8.1.1 (+8 h). Ver [Presupuesto](Presupuesto%20Appresso.md), sección 7.1.
 
 ### 4.2 Variaciones e índices
 
 Las variaciones dicen **cuánto**, en términos absolutos. Los índices dicen **qué tan grave**, y permiten comparar entre semanas y entre proyectos. Por debajo de 1, el proyecto va peor de lo previsto.
 
-| Métrica | Fórmula | Lectura | Corte 14/11 |
+| Métrica | Fórmula | Lectura | Corte 21/11 |
 |---------|---------|---------|-------------|
-| Variación de cronograma (SV) | EV − PV | Negativa: se hizo menos de lo previsto | $785.000 − $2.195.000 = **−$1.410.000** |
-| Variación de costo (CV) | EV − AC | Negativa: se gastó más de lo que vale lo hecho | $785.000 − $1.505.000 = **−$720.000** |
-| Índice de cronograma (SPI) | EV / PV | Menor que 1: se avanza a menos del ritmo planificado | 785 / 2.195 = **0,36** |
-| Índice de costo (CPI) | EV / AC | Menor que 1: se gasta más de lo que vale lo hecho | 785 / 1.505 = **0,52** |
+| Variación de cronograma (SV) | EV − PV | Negativa: se hizo menos de lo previsto | $1.625.000 − $2.465.000 = **−$840.000** |
+| Variación de costo (CV) | EV − AC | Negativa: se gastó más de lo que vale lo hecho | $1.625.000 − $2.570.000 = **−$945.000** |
+| Índice de cronograma (SPI) | EV / PV | Menor que 1: se avanza a menos del ritmo planificado | 1.625 / 2.465 = **0,66** |
+| Índice de costo (CPI) | EV / AC | Menor que 1: se gasta más de lo que vale lo hecho | 1.625 / 2.570 = **0,63** |
 
-Un SPI de 0,36 dice que se avanza al 36 % del ritmo planificado. Un CPI de 0,52 dice que cada peso gastado ha producido 52 centavos de valor ganado.
+Un SPI de 0,66 dice que se avanza al 66 % del ritmo planificado. Un CPI de 0,63 dice que cada peso gastado ha producido 63 centavos de valor ganado.
 
 **Reglas de interpretación**
 
@@ -180,9 +188,10 @@ Un SPI de 0,36 dice que se avanza al 36 % del ritmo planificado. Un CPI de 0,52 
 |:-----:|:------------:|---------|:------------:|---------|
 | S1 (31/10) | $80.000 − $455.000 = **−$375.000** | Atrasado | $80.000 − $350.000 = **−$270.000** | Sobre presupuesto |
 | S2 (07/11) | $455.000 − $1.295.000 = **−$840.000** | Atrasado | $455.000 − $680.000 = **−$225.000** | Sobre presupuesto |
-| S3 (14/11) | $785.000 − $2.195.000 = **−$1.410.000** | Atrasado | $785.000 − $1.505.000 = **−$720.000** | Sobre presupuesto |
+| S3 (14/11) | $785.000 − $2.195.000 = **−$1.410.000** | Atrasado | $785.000 − $1.805.000 = **−$1.020.000** | Sobre presupuesto |
+| S4 (21/11) | $1.625.000 − $2.465.000 = **−$840.000** | Atrasado | $1.625.000 − $2.570.000 = **−$945.000** | Sobre presupuesto |
 
-En los tres cortes ambas variaciones son negativas: el proyecto está atrasado y sobre presupuesto. El AC de S1 y S2 es aproximado, así que su CV también lo es.
+En los cuatro cortes ambas variaciones son negativas: el proyecto está atrasado y sobre presupuesto. En S4 el atraso bajó por primera vez (de −$1.410.000 a −$840.000) y el sobrecosto se redujo frente a S3 (de −$1.020.000 a −$945.000). El AC de S3 (115 h) incluye 20 h anotadas después de su corte. Con las 95 h registradas en ese momento, su CV era −$720.000 y su CPI, 0,52.
 
 **Semáforo RAG para SPI y CPI**
 
@@ -200,28 +209,29 @@ En proyectos reales se usan umbrales de color para alertar rápidamente. Los ín
 |:-----:|:---:|:--------:|:---:|:--------:|
 | S1 (31/10) | 0,18 | 🔴 | 0,23 | 🔴 |
 | S2 (07/11) | 0,35 | 🔴 | 0,67 | 🔴 |
-| S3 (14/11) | 0,36 | 🔴 | 0,52 | 🔴 |
+| S3 (14/11) | 0,36 | 🔴 | 0,43 | 🔴 |
+| S4 (21/11) | 0,66 | 🔴 | 0,63 | 🔴 |
 
-Los dos índices están en **rojo** en los tres cortes. Por la regla del semáforo, la acción es una intervención inmediata. El CPI de S1 y S2 es aproximado (usa el AC estimado).
+Los dos índices están en **rojo** en los cuatro cortes, aunque en S4 ambos mejoraron frente a S3. Por la regla del semáforo, la acción es una intervención inmediata.
 
 ### 4.3 Curva de trabajo acumulado
 
-Eje Y: trabajo acumulado en % del BAC ($5.773.000). Eje X: semanas (lunes a domingo), con el corte al sábado. Las semanas se numeran desde la del 26/10 (el proyecto empezó el miércoles 28/10). Con el calendario de siete días el plan termina el 15/12, así que el PV llega al 100 % en el corte S8 (19/12).
+Eje Y: trabajo acumulado en % del BAC vigente ($5.623.000). La serie conserva los importes en pesos de S1 a S4 y usa el mismo denominador para todos los cortes. Eje X: semanas de lunes a domingo con corte al sábado. El plan vigente llega al 100 % en S7 (12/12).
 
 | Semana | Corte | Día | PV | **PV %** | EV | **EV %** | AC |
 |:------:|:-----:|:---:|---:|:--------:|---:|:--------:|----|
-| S1 | 31/10 | 4 | $455.000 | 7,9 % | $80.000 | 1,4 % | ≈ $350.000 · 6,1 % |
-| S2 | 07/11 | 11 | $1.295.000 | 22,4 % | $455.000 | 7,9 % | ≈ $680.000 · 11,8 % |
-| S3 | 14/11 | 18 | $2.195.000 | 38,0 % | $785.000 | 13,6 % | $1.505.000 · 26,1 % |
-| S4 | 21/11 | 25 | $2.465.000 | 42,7 % | | | |
-| S5 | 28/11 | 32 | $4.225.000 | 73,2 % | | | |
-| S6 | 05/12 | 39 | $4.975.000 | 86,2 % | | | |
-| S7 | 12/12 | 46 | $5.563.000 | 96,4 % | | | |
-| S8 | 19/12 | 53 | $5.773.000 | 100 % | | | |
+| S1 | 31/10 | 4 | $455.000 | 8,1 % | $80.000 | 1,4 % | $350.000 · 6,2 % |
+| S2 | 07/11 | 11 | $1.295.000 | 23,0 % | $455.000 | 8,1 % | $680.000 · 12,1 % |
+| S3 | 14/11 | 18 | $2.195.000 | 39,0 % | $785.000 | 14,0 % | $1.805.000 · 32,1 % |
+| S4 | 21/11 | 25 | $2.465.000 | 43,8 % | $1.625.000 | 28,9 % | $2.570.000 · 45,7 % |
+| S5 | 28/11 | 32 | $4.225.000 | 75,1 % |  |  |  |
+| S6 | 05/12 | 39 | $5.215.000 | 92,7 % |  |  |  |
+| S7 | 12/12 | 46 | $5.623.000 | 100 % |  |  |  |
+| S8 | 19/12 | 53 | $5.623.000 | 100 % |  |  |  |
 
 **Gráfica:** [`metricas-grafico-Appresso.html`](metricas-grafico-Appresso.html) (se abre en el navegador) dibuja las tres curvas, PV, EV y AC, por semana, y una tabla con las variaciones y los índices de cada corte. Sus datos están en un arreglo al inicio del archivo, que se actualiza en cada corte. El AC se dibuja en los cortes que tienen horas reales registradas.
 
-En cada corte se agregan el EV y el AC de la semana. El EV de S1 y S2 es *provisional*, según lo informado por el equipo: en S1 el paquete 1.1.1 aún no estaba terminado (0 h de EV en mano de obra); en S2 ya estaban terminados 1.1.1 y 1.2.1, pero no la arquitectura (8.1.1). El AC de S1 (unas 18 h) y el de S2 (unas 40 h) son aproximados, según lo informado por el equipo. Todos los cortes incluyen $80.000 de Claude Code (por confirmar); en S5 el PV suma el segundo pago (28/11) y en S7, el dominio.
+En cada corte se agregan el EV y el AC de la semana. El EV de S1 y S2 es *provisional*, según lo informado por el equipo: en S1 el paquete 1.1.1 aún no estaba terminado (0 h de EV en mano de obra); en S2 ya estaban terminados 1.1.1 y 1.2.1, pero no la arquitectura (8.1.1). Para el AC se registran 18 h acumuladas en S1 y 40 h en S2. Los cortes S1 a S4 incluyen los $80.000 de Claude Code pagados el 28/10. En S5 el PV suma el segundo pago programado para el 28/11 y en S7 suma el dominio.
 
 ### 4.4 Cómo se actualiza
 
@@ -238,7 +248,7 @@ Con lo ocurrido hasta el corte se estima cómo terminará el proyecto en **costo
 
 | Sigla | Nombre | Qué dice | Fórmula |
 |-------|--------|----------|---------|
-| **BAC** | Presupuesto al terminar | El presupuesto de los 31 paquetes y de los costos directos (sección 2.3) | $5.773.000 |
+| **BAC** | Presupuesto al terminar | El presupuesto de los 30 paquetes vigentes y de los costos directos (sección 2.3) | $5.623.000 |
 | **EAC** | Estimado al terminar | Cuánto costará el proyecto completo | Ver abajo (dos escenarios) |
 | **ETC** | Estimado para terminar | Cuánto falta por gastar | EAC − AC |
 | **VAC** | Desviación al terminar | Cuánto se pasará (o ahorrará) frente al BAC | BAC − EAC |
@@ -247,21 +257,21 @@ Con lo ocurrido hasta el corte se estima cómo terminará el proyecto en **costo
 **Escenario A: el rendimiento actual se mantiene.** EAC = BAC / CPI.
 **Escenario B: lo ocurrido fue una anomalía y lo que falta sale según el plan.** EAC = AC + (BAC − EV).
 
-Corte del 14/11/2026 (BAC $5.773.000, EV $785.000, AC $1.505.000, CPI 0,52):
+Pronóstico con la línea base de CC-03 y la ejecución al 21/11/2026 (BAC $5.623.000, EV $1.625.000, AC $2.570.000, CPI 0,63). Para las fórmulas se usa el índice sin redondear.
 
 | Métrica | Escenario A | Escenario B |
 |---------|:-----------:|:-----------:|
-| **EAC** | ≈ $11.068.000 | $6.493.000 |
-| **ETC** (EAC − AC) | ≈ $9.563.000 | $4.988.000 |
-| **VAC** (BAC − EAC) | ≈ −$5.295.000 | −$720.000 |
-| **TCPI** | 1,17 | 1,00 |
+| **EAC** | ≈ $8.893.000 | $6.568.000 |
+| **ETC** (EAC − AC) | ≈ $6.323.000 | $3.998.000 |
+| **VAC** (BAC − EAC) | ≈ −$3.270.000 | −$945.000 |
+| **TCPI** | 1,31 | 1,00 |
 
-- **TCPI (1,17):** para terminar dentro del BAC habría que rendir un 17 % mejor que lo presupuestado de aquí en adelante, cuando hasta hoy se rinde al 52 %. Con ese rendimiento no es alcanzable. Un TCPI mayor que 1 indica que el BAC está en riesgo, y el escenario B lo trata como si el rendimiento volviera al plan (TCPI = 1,00).
-- **El escenario A es muy pesimista:** el CPI sale de solo 4 paquetes terminados, y 1.1.1 costó 28 h contra 13 planificadas.
-- **El escenario B es muy optimista:** nada indica que el rendimiento se corrija solo.
+- **TCPI (1,31):** para terminar dentro del BAC habría que rendir un 31 % mejor que lo presupuestado de aquí en adelante, cuando hasta hoy se rinde al 63 %. Con ese rendimiento no es alcanzable. Un TCPI mayor que 1 indica que el BAC está en riesgo, y el escenario B lo trata como si el rendimiento volviera al plan (TCPI = 1,00).
+- **El escenario A es pesimista:** el CPI sale de 9 paquetes terminados, y dos concentran la mayor parte del exceso: 8.2.1 costó 27 h contra 8 planificadas y 1.1.1, 28 h contra 13.
+- **El escenario B es optimista:** el CPI mejoró en S4 (de 0,43 a 0,63), pero sigue lejos de 1.
 - **El resultado probable queda entre los dos.** Se reportan ambos para mostrar el rango.
-- **Horas extra:** lo que exceda el BAC en mano de obra son horas extra que el patrocinador debe aprobar antes de cubrirlas con la reserva (ver [Presupuesto](Presupuesto%20Appresso.md), sección 7). La reserva de contingencia se registra por separado del BAC y está pendiente de actualización.
-- **Datos aproximados:** el AC es una estimación del equipo, y cada pronóstico se recalcula en cada corte con el CPI y el AC acumulados.
+- **Horas extra:** la aprobación registrada para S4 ya está reflejada en el seguimiento del AC. La aplicación a la reserva se registra por separado del BAC. Ver [Presupuesto](Presupuesto%20Appresso.md), sección 7.
+- Cada pronóstico se recalcula en cada corte con el CPI y el AC acumulados.
 
 ---
 
@@ -277,12 +287,13 @@ Se relacionan por la **Ley de Little**: tiempo de ciclo = trabajo en curso ÷ ri
 
 **Se incluye en el tablero:** trabajo en curso, medido en paquetes (después, en subtareas de Jira). El ritmo y el tiempo de ciclo se calculan con las fechas de Jira cuando haya datos suficientes.
 
-| Dato | Corte 14/11 |
+| Dato | Corte 21/11 |
 |------|-------------|
-| Paquetes en curso | **2** (2.3.1 y 8.2.1) |
-| Paquetes terminados desde el 28/10 | 4 (1.1.1, 1.2.1, 8.1.1 y 2.1.1), en 15 días hábiles |
+| Paquetes en curso | **2** (6.1.1, en revisión, y 8.4.1) |
+| Paquetes terminados desde el 28/10 | 9 (1.1.1, 1.2.1, 8.1.1, 2.1.1, 8.2.1, 2.3.1, 2.2.1, 3.1.1 y 7.1.1), en 25 días |
+| Paquetes terminados en la semana | 5 en S4 |
 
-*Provisional.* Con tan pocos paquetes terminados, el ritmo y el tiempo de ciclo todavía no son confiables.
+*Provisional.* Varios de los terminados en S4 venían de semanas anteriores, así que el ritmo y el tiempo de ciclo todavía no son confiables.
 
 ---
 
@@ -317,7 +328,7 @@ Se cuenta como defecto lo que una revisión de código, una prueba o el piloto e
 
 ## 7. Métricas de entrega (DORA)
 
-Frecuencia de despliegue, tiempo desde el cambio hasta producción, porcentaje de despliegues que fallan y tiempo de restauración. **No se incluyen en el tablero por ahora:** todavía no hay despliegue en Render, así que no medirían nada. Se revisan cuando exista el primer despliegue (8.5.1).
+El 21/11 se aprobó iniciar despliegues internos continuos del backend en Render con base de datos en Neon. Al contar con ejecuciones registradas, se podrá medir la frecuencia, el tiempo entre el cambio y el despliegue interno, la proporción de fallos y el tiempo de restauración de ese entorno. Las métricas de producción se registrarán por separado desde la publicación de la v1.0.
 
 ---
 
@@ -325,12 +336,12 @@ Frecuencia de despliegue, tiempo desde el cambio hasta producción, porcentaje d
 
 Un grupo de cada tipo, para que optimizar una dimensión no destruya otra.
 
-| Grupo | Métrica | Corte 14/11/2026 |
+| Grupo | Métrica | Corte 21/11/2026 |
 |-------|---------|------------------|
-| Avance | SPI | **0,36** 🔴 (EV $785.000 / PV $2.195.000) |
-| Costo o esfuerzo | CPI | **0,52** 🔴 (EV $785.000 / AC $1.505.000) |
-| Flujo | Trabajo en curso | **2** paquetes |
-| Calidad | Defectos encontrados por entrega (después, defectos que llegan al usuario) | 5 en 8.2.1 |
+| Avance | SPI | **0,66** 🔴 (EV $1.625.000 / PV $2.465.000) |
+| Costo o esfuerzo | CPI | **0,63** 🔴 (EV $1.625.000 / AC $2.570.000) |
+| Flujo | Trabajo en curso | **2** paquetes (6.1.1 y 8.4.1) |
+| Calidad | Defectos encontrados por entrega (después, defectos que llegan al usuario) | 5 en 8.2.1; las entregas de S4 están por registrar |
 
 ---
 
@@ -369,8 +380,8 @@ El tablero (sección 8) se revisa **cada semana, en una reunión de seguimiento*
 
 ## 10. Pendientes de este documento
 
-- A partir de S4, tomar el AC del registro de horas semana a semana. El AC de S1 (unas 18 h) y S2 (unas 40 h) sigue siendo aproximado.
-- Confirmar con el gerente las fechas de pago de Claude Code (se supuso el 28/10) y del dominio (se supuso sin comprar al 14/11); si cambian, se recalculan EV y AC.
-- Aprobar con el patrocinador las horas extra (22 h netas al 14/11).
-- Plan de acción del 16/11: en la siguiente reunión se decide el recorte del proyecto según cómo evolucionen estas métricas; si hay recorte, se registra como CC-03.
-- Parte de seguimiento: leer estas métricas y decidir qué hacer.
+- Anotar las horas antes de cada corte. En S3 se registraron 20 h después del corte.
+- Confirmar la compra y la fecha de pago del dominio. Incorporar el gasto en EV y AC cuando se incurra.
+- Registrar los defectos encontrados en las entregas de S4 (sección 6.1).
+- Registrar la evidencia de los primeros despliegues internos y, cuando haya datos, medir su desempeño en la sección 7.
+- Continuar el seguimiento semanal y registrar las decisiones en el [Seguimiento de Riesgos](Seguimiento%20de%20Riesgos%20Appresso.md).

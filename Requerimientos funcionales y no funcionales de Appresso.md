@@ -740,40 +740,6 @@
 
 ---
 
-### **RF-38 — Consulta de caja por el cajero**
-
-**Tipo:** Funcional
-
-**Descripción:** El sistema deberá permitir al cajero consultar los pagos y movimientos de caja del día, conforme a los permisos de su rol.
-
-**Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, llamada por Meet.
-
-**Prioridad:** Media
-
-**Criterios de aceptación:**
-
-1. *Dado* que un cajero tiene sesión iniciada, *cuando* abre la consulta de caja, *entonces* ve los pagos y movimientos registrados en el día en curso.
-2. *Dado* que un cajero usa la consulta de caja, *cuando* navega por ella, *entonces* no dispone de las acciones reservadas al administrador (registrar ingresos, retiros directos o resolver solicitudes).
-
----
-
-### **RF-39 — Consulta financiera por el administrador**
-
-**Tipo:** Funcional
-
-**Descripción:** El sistema deberá permitir al administrador consultar los saldos actuales y el historial de ingresos, pagos, retiros y demás movimientos financieros registrados.
-
-**Origen:** El cliente Pepito Pérez — 29 de septiembre del 2026, llamada por Meet.
-
-**Prioridad:** Alta
-
-**Criterios de aceptación:**
-
-1. *Dado* que el administrador tiene sesión iniciada, *cuando* abre la consulta financiera, *entonces* ve el saldo actual en efectivo y el saldo actual en transferencias por separado.
-2. *Dado* que el administrador consulta el historial, *cuando* lo abre, *entonces* ve todos los ingresos, pagos, retiros y demás movimientos registrados, con su fecha.
-
----
-
 ### **RF-40 — Visualización del código QR en dispositivos**
 
 **Tipo:** Funcional

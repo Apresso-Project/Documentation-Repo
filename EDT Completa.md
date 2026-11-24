@@ -1,38 +1,38 @@
 @startwbs
 * 0. Appresso (100 %)
-     ** 1. Gestión del proyecto (11 %)
+     ** 1. Gestión del proyecto (10,8 %)
      *** 1.1 Inicio y planificación estructural
      **** 1.1.1 Documentos de inicio y planificación estructural
      *** 1.2 Planificación temporal, económica y de riesgos
      **** 1.2.1 Plan temporal, económico y de riesgos
      *** 1.3 Seguimiento, control y cierre
      **** 1.3.1 Seguimiento, control y cierre del proyecto
-     ** 2. Gestión de usuarios y permisos (10 %)
+     ** 2. Gestión de usuarios y permisos (10,0 %)
      *** 2.1 Autenticación
      **** 2.1.1 Módulo de autenticación
      *** 2.2 Administración de usuarios
      **** 2.2.1 Módulo de administración de usuarios
      *** 2.3 Control de acceso y acceso remoto
      **** 2.3.1 Control de acceso por rol y acceso remoto del administrador
-     ** 3. Catálogo e inventario (11 %)
+     ** 3. Catálogo e inventario (11,6 %)
      *** 3.1 Gestión de productos y categorías
      **** 3.1.1 Módulo de gestión de productos y categorías
      *** 3.2 Control de existencias
      **** 3.2.1 Módulo de control de existencias
      *** 3.3 Consulta del menú y visualización en cocina
      **** 3.3.1 Módulo de consulta del menú y visualización en cocina
-     ** 4. Comandas y pedidos (11 %)
+     ** 4. Comandas y pedidos (11,6 %)
      *** 4.1 Creación de comandas
      **** 4.1.1 Módulo de creación de comandas
      *** 4.2 Gestión de pedidos
      **** 4.2.1 Módulo de envío, consulta y vinculación de clientes
      **** 4.2.2 Módulo de modificación y cancelación de pedidos
-     ** 5. Pantalla de cocina (5 %)
+     ** 5. Pantalla de cocina (5,5 %)
      *** 5.1 Visualización de pedidos
      **** 5.1.1 Módulo de visualización de pedidos en cocina
      *** 5.2 Gestión de estados de preparación
      **** 5.2.1 Módulo de gestión de estados y notificación al mesero
-     ** 6. Módulo de caja (21 %)
+     ** 6. Módulo de caja (18,8 %)
      *** 6.1 Registro de pagos
      **** 6.1.1 Módulo de registro de pagos
      *** 6.2 Gestión de transferencias
@@ -41,11 +41,11 @@
      **** 6.3.1 Módulo de ingresos y retiros directos
      **** 6.3.2 Módulo de solicitudes de retiro, aprobación y trazabilidad
      *** 6.4 Consulta financiera
-     **** 6.4.1 Módulo de consultas financieras
+     **** Módulo de consultas financieras (eliminado por CC-03)
      *** 6.5 Cierre y apertura de jornada
      **** 6.5.1 Módulo de cierre de caja y cálculo de totales
      **** 6.5.2 Módulo de informe de cierre y apertura de jornada
-     ** 7. Fidelización de clientes (16 %)
+     ** 7. Fidelización de clientes (16,1 %)
      *** 7.1 Registro y búsqueda de clientes
      **** 7.1.1 Módulo de registro y búsqueda de clientes
      *** 7.2 Puntos de fidelidad
@@ -55,7 +55,7 @@
      **** 7.3.1 Módulo de recompensas y canjes
      *** 7.4 Promociones y notificaciones
      **** 7.4.1 Módulo de promociones y notificaciones de fidelización
-     ** 8. Infraestructura y calidad (15 %)
+     ** 8. Infraestructura y calidad (15,5 %)
      *** 8.1 Arquitectura y configuración
      **** 8.1.1 Módulo de configuración de arquitectura del proyecto
      *** 8.2 Sincronización en tiempo real
@@ -298,7 +298,7 @@
 
 ---
 
-**Código:** 6.4.1
+**Estado:** Eliminado del alcance de la v1.0 en la reunión de control del 21/11/2026 (CC-03).
 **Nombre:** Módulo de consultas financieras
 **Descripción:** Entregable que incluye dos vistas de consulta diferenciadas por rol: (1) vista de solo lectura del cajero con los pagos y movimientos de la jornada actual, sin las opciones reservadas al administrador; y (2) vista completa del administrador con los saldos actuales de efectivo y transferencias por separado y el historial íntegro de movimientos con sus detalles.
 **Criterio de aceptación:** El cajero ve los movimientos del día y no dispone de las opciones de registrar ingresos, retiros directos ni resolver solicitudes. El administrador ve los saldos actualizados al momento y el historial completo; los saldos coinciden con la suma de movimientos del período.
@@ -314,7 +314,7 @@
 **Criterio de aceptación:** El cierre queda registrado con fecha y el usuario que lo ejecutó; los totales de ingresos, egresos y saldos finales coinciden con la suma de los movimientos del día. La suma de base y retiro no puede superar el efectivo disponible; si la supera, el sistema rechaza la acción con el mensaje correspondiente.
 **Responsable:** Diego Bolaños (Backend) / Stiven Mujanajinsoy (Android)
 **Esfuerzo estimado:** 10 h
-**Depende de:** 6.4.1
+**Depende de:** 6.3.2
 
 ---
 
@@ -428,7 +428,7 @@
 
 **Código:** 8.5.1
 **Nombre:** Módulo de despliegue y documentación técnica
-**Descripción:** Entregable que cierra el ciclo de entrega del sistema: (1) despliegue del backend en el servidor de producción con configuración de variables de entorno, certificados SSL y copias de seguridad automáticas de la base de datos; y (2) documento técnico con los pasos para clonar, configurar y ejecutar el proyecto en un entorno nuevo y descripción de la arquitectura para futuros mantenedores.
+**Descripción:** Entregable de cierre que cubre el despliegue de la v1.0 en producción con variables de entorno, certificado TLS y copias de seguridad de base de datos. Incluye la documentación de arquitectura y los pasos para clonar, configurar y ejecutar el proyecto. Los despliegues internos continuos con Render y Neon se inician durante el desarrollo por el acuerdo del 21/11/2026 (CC-03).
 **Criterio de aceptación:** El backend responde en producción con HTTPS antes del 15 de diciembre de 2026; las copias de seguridad están programadas y verificadas. Un nuevo integrante puede levantar el entorno siguiendo el documento sin asistencia adicional; la arquitectura está descrita con los diagramas necesarios.
 **Responsable:** Diego Gómez (Backend) / Felipe Salcedo (Documentación)
 **Esfuerzo estimado:** 10 h
@@ -445,7 +445,7 @@
 | 3. Catálogo e inventario | 3 | 42 h |
 | 4. Comandas y pedidos | 3 | 42 h |
 | 5. Pantalla de cocina | 2 | 20 h |
-| 6. Módulo de caja | 7 | 78 h |
+| 6. Módulo de caja | 6 | 68 h |
 | 7. Fidelización de clientes | 5 | 58 h |
 | 8. Infraestructura y calidad | 5 | 56 h |
-| **Total** | **31** | **371 h** |
+| **Total** | **30** | **361 h** |

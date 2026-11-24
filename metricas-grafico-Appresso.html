@@ -25,7 +25,7 @@ th{color:var(--muted);font-weight:600}
 </head>
 <body>
 <h1>Curva de trabajo acumulado — Appresso</h1>
-<p class="sub">Eje Y: trabajo acumulado en % del BAC ($5.773.000: 371 h de mano de obra y costos directos). Eje X: semanas (lunes a domingo), con el corte al sábado. Regla 0/100: un paquete terminado vale 100 %, uno sin terminar vale 0 %.</p>
+<p class="sub">Eje Y: trabajo acumulado en % del BAC vigente ($5.623.000: 361 h de mano de obra y costos directos, CC-03). Eje X: semanas (lunes a domingo), con el corte al sábado. Regla 0/100: un paquete terminado vale 100 %, uno sin terminar vale 0 %.</p>
 <div class="legend">
   <span><i class="sw" style="border-color:var(--pv)"></i>PV — valor planificado</span>
   <span><i class="sw" style="border-color:var(--ev)"></i>EV — valor ganado</span>
@@ -41,17 +41,17 @@ th{color:var(--muted);font-weight:600}
 // ---- DATOS: se agrega o completa una fila en cada corte semanal ----
 // semana, corte (sábado), pv = valor planificado acumulado, ev = valor ganado acumulado, ac = costo real acumulado.
 // Todo en pesos e incluye los costos directos (Claude Code y dominio). ev / ac en null = todavía sin dato.
-// Calendario de lunes a domingo (CC-02): el plan termina el 15/12, así que el PV llega al 100 % en S8.
-const BAC = 5773000;
+// CC-03: el plan termina el 12/12 (S7). Se conservan los importes de los cortes S1 a S4.
+const BAC = 5623000;
 const D = [
-  {s:'S1', corte:'31/10', pv:455000,  ev:80000,  ac:350000},   // AC aproximado (unas 18 h + Claude Code)
-  {s:'S2', corte:'07/11', pv:1295000, ev:455000, ac:680000},   // 1.1.1 y 1.2.1 terminados; 8.1.1 no. AC aproximado (unas 40 h + Claude Code)
-  {s:'S3', corte:'14/11', pv:2195000, ev:785000, ac:1505000},  // AC: 95 h estimadas por el equipo + Claude Code
-  {s:'S4', corte:'21/11', pv:2465000, ev:null,   ac:null},
+  {s:'S1', corte:'31/10', pv:455000,  ev:80000,  ac:350000},   // AC: 18 h + Claude Code
+  {s:'S2', corte:'07/11', pv:1295000, ev:455000, ac:680000},   // EV: 1.1.1 y 1.2.1. AC: 40 h acumuladas + Claude Code
+  {s:'S3', corte:'14/11', pv:2195000, ev:785000, ac:1805000},  // AC: 115 h registradas (20 h anotadas después del corte) + Claude Code
+  {s:'S4', corte:'21/11', pv:2465000, ev:1625000, ac:2570000}, // 9 paquetes terminados (103 h). AC: 166 h registradas + Claude Code
   {s:'S5', corte:'28/11', pv:4225000, ev:null,   ac:null},     // incluye el segundo pago de Claude Code
-  {s:'S6', corte:'05/12', pv:4975000, ev:null,   ac:null},
-  {s:'S7', corte:'12/12', pv:5563000, ev:null,   ac:null},     // incluye el dominio
-  {s:'S8', corte:'19/12', pv:5773000, ev:null,   ac:null},
+  {s:'S6', corte:'05/12', pv:5215000, ev:null,   ac:null},
+  {s:'S7', corte:'12/12', pv:5623000, ev:null,   ac:null},     // incluye el dominio
+  {s:'S8', corte:'19/12', pv:5623000, ev:null,   ac:null},
 ];
 // -------------------------------------------------------------------
 
@@ -132,7 +132,7 @@ function tabla() {
   });
   t.innerHTML = h;
   document.getElementById('nota').textContent =
-    'El EV de S1 y S2 es provisional (según lo informado por el equipo). El AC de S1 (unas 18 h), S2 (unas 40 h) y S3 (95 h) son estimaciones del equipo, más $80.000 de Claude Code (por confirmar). Para actualizar: editar el arreglo D al inicio del script en cada corte (valores acumulados, en pesos).';
+    'Los porcentajes usan el BAC de CC-03 en todos los cortes. El EV de S1 y S2 es provisional según lo informado por el equipo. El AC usa 18 h en S1, 40 h acumuladas en S2, 115 h en S3 y 166 h en S4. S3 incluye 20 h anotadas después del corte. El AC de S1 a S4 incluye $80.000 de Claude Code pagados el 28/10. El segundo pago está programado para el 28/11. Para actualizar, editar el arreglo D al inicio del script en cada corte (valores acumulados, en pesos).';
 }
 
 dibujar();

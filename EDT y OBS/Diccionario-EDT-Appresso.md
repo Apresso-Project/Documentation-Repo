@@ -208,7 +208,7 @@
 
 ---
 
-**Código:** 6.4.1
+**Estado:** Eliminado del alcance de la v1.0 en la reunión de control del 21/11/2026 (CC-03).
 **Nombre:** Módulo de consultas financieras
 **Descripción:** Entregable que incluye dos vistas de consulta diferenciadas por rol: (1) vista de solo lectura del cajero con los pagos y movimientos de la jornada actual, sin las opciones reservadas al administrador; y (2) vista completa del administrador con los saldos actuales de efectivo y transferencias por separado y el historial íntegro de movimientos con sus detalles.
 **Criterio de aceptación:** El cajero ve los movimientos del día y no dispone de las opciones de registrar ingresos, retiros directos ni resolver solicitudes. El administrador ve los saldos actualizados al momento y el historial completo; los saldos coinciden con la suma de movimientos del período.
@@ -224,7 +224,7 @@
 **Criterio de aceptación:** El cierre queda registrado con fecha y el usuario que lo ejecutó; los totales de ingresos, egresos y saldos finales coinciden con la suma de los movimientos del día. La suma de base y retiro no puede superar el efectivo disponible; si la supera, el sistema rechaza la acción con el mensaje correspondiente.
 **Responsable:** Diego Bolaños (Backend) / Stiven Mujanajinsoy (Android)
 **Esfuerzo estimado:** 10 h
-**Depende de:** 6.4.1
+**Depende de:** 6.3.2
 
 ---
 
@@ -338,7 +338,7 @@
 
 **Código:** 8.5.1
 **Nombre:** Módulo de despliegue y documentación técnica
-**Descripción:** Entregable que cierra el ciclo de entrega del sistema: (1) despliegue del backend en el servidor de producción con configuración de variables de entorno, certificados SSL y copias de seguridad automáticas de la base de datos; y (2) documento técnico con los pasos para clonar, configurar y ejecutar el proyecto en un entorno nuevo y descripción de la arquitectura para futuros mantenedores.
+**Descripción:** Entregable de cierre que cubre el despliegue de la v1.0 en producción con variables de entorno, certificado TLS y copias de seguridad de base de datos. Incluye la documentación de arquitectura y los pasos para clonar, configurar y ejecutar el proyecto. Los despliegues internos continuos con Render y Neon se inician durante el desarrollo por el acuerdo del 21/11/2026 (CC-03).
 **Criterio de aceptación:** El backend responde en producción con HTTPS antes del 15 de diciembre de 2026; las copias de seguridad están programadas y verificadas. Un nuevo integrante puede levantar el entorno siguiendo el documento sin asistencia adicional; la arquitectura está descrita con los diagramas necesarios.
 **Responsable:** Diego Gómez (Backend) / Felipe Salcedo (Documentación)
 **Esfuerzo estimado:** 10 h
@@ -355,7 +355,7 @@
 | 3. Catálogo e inventario | 3 | 42 h |
 | 4. Comandas y pedidos | 3 | 42 h |
 | 5. Pantalla de cocina | 2 | 20 h |
-| 6. Módulo de caja | 7 | 78 h |
+| 6. Módulo de caja | 6 | 68 h |
 | 7. Fidelización de clientes | 5 | 58 h |
 | 8. Infraestructura y calidad | 5 | 56 h |
-| **Total** | **31** | **371 h** |
+| **Total** | **30** | **361 h** |

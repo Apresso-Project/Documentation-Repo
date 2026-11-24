@@ -1,21 +1,21 @@
 # PRESUPUESTO — APPRESSO
 
-> **Estado:** borrador v0.3 (17 de noviembre de 2026), por aprobar por el patrocinador. Cambios frente a la v0.2 (correcciones de la sustentación de métricas): se agrega el costo de Claude Code a los costos directos y se aclara que las horas por encima del plan son horas extra que deben aprobarse (sección 7). Cambio de la v0.1 a la v0.2: el hosting pasó a planes gratuitos (Neon y Render).
+> **Estado:** borrador v0.5. Incorpora el cambio CC-03 aprobado el 21/11/2026. Se actualiza la línea base de costo por el recorte. Las respuestas a riesgos, la reserva y el costo presupuestal total siguen en conciliación.
 > **Responsable:** Felipe Salcedo (entregable 1.2.1 — Plan temporal, económico y de riesgos).
 > **Moneda:** pesos colombianos (COP).
-> **Fuentes:** [Cronograma](cronograma-Appresso.md) (horas por entregable) y [Plan de Riesgos](Plan%20de%20Riesgos%20Appresso.md) (estimación inicial) y [Seguimiento de Riesgos](Seguimiento%20de%20Riesgos%20Appresso.md) (respuestas y exposición vigentes).
+> **Fuentes:** [Cronograma](cronograma-Appresso.md) (horas por entregable), [Métricas del Proyecto](Métricas%20de%20Proyecto%20Appresso.md) y [Registro de Horas](Registro%20de%20Horas%20Appresso.md) (costo real), [Plan de Riesgos](Plan%20de%20Riesgos%20Appresso.md) (estimación inicial) y [Seguimiento de Riesgos](Seguimiento%20de%20Riesgos%20Appresso.md) (respuestas y exposición vigentes).
 
 ## 1. Supuestos
 
-> **Estos valores son supuestos del gerente, no datos del cliente ni cotizaciones.** Hay que reemplazarlos por los valores reales antes de la aprobación. Cambiar una fila de esta tabla recalcula todo el presupuesto.
+> Los importes de referencia se validan al aprobar el presupuesto. La tabla registra las decisiones y fechas ya confirmadas.
 
 | Supuesto | Valor | Observación |
 |----------|:-----:|-------------|
 | Tarifa única por hora-persona | **$15.000** | Referencia para un desarrollador junior en Colombia. Es la misma para todo el equipo, incluido el gerente y el tester. |
-| Horas por entregable | Las del cronograma | Se toma el esfuerzo (h) de cada entregable. Total: **371 h**. |
-| Hosting: backend en Render y base de datos en Neon | **$0** | Planes gratuitos elegidos el 10/11/2026. Si resultan insuficientes (R-14), se agrega el costo de un plan de pago. |
+| Horas por entregable | Las del cronograma | Se toma el esfuerzo (h) de cada entregable. Total vigente: **361 h** (CC-03). |
+| Hosting: backend en Render y base de datos en Neon | **$0** | Planes gratuitos elegidos el 10/11/2026. El 21/11 se aprobó utilizarlos para los despliegues internos continuos. Si la configuración requiere gastos adicionales, se registran y se validan en R-12 o R-14. |
 | Dominio | USD 12 al año | Dominio .com. Si se prefiere .co, el valor es mayor. |
-| Claude Code | USD 20 al mes (plan Pro), 2 meses | Una sola licencia, que paga el gerente. Cubre el desarrollo asistido de octubre a diciembre. Se paga el 28/10 y el 28/11 (por confirmar con el gerente). |
+| Claude Code | USD 20 al mes (plan Pro), 2 meses | Una sola licencia a cargo del gerente. Primer pago realizado el **28/10/2026** y segundo pago programado para el **28/11/2026**. Ambas fechas están confirmadas. |
 | Certificado HTTPS | $0 | Incluido en el hosting (por confirmar en Render). |
 | Tasa de cambio | $4.000 por USD | Referencia; actualizar con la tasa del día de la compra. |
 | Reserva para costos directos | 25 % | Cubre costos directos no previstos, como pasar a un plan de pago si los gratuitos no bastan (R-12, R-14). |
@@ -78,10 +78,9 @@ Costo = horas del cronograma × tarifa por hora.
 | 6.2.1 | Módulo de gestión de transferencias QR | 14 | $210.000 |
 | 6.3.1 | Módulo de ingresos y retiros directos | 8 | $120.000 |
 | 6.3.2 | Módulo de solicitudes de retiro, aprobación y trazabilidad | 16 | $240.000 |
-| 6.4.1 | Módulo de consultas financieras | 10 | $150.000 |
 | 6.5.1 | Módulo de cierre de caja y cálculo de totales | 10 | $150.000 |
 | 6.5.2 | Módulo de informe de cierre y apertura de jornada | 10 | $150.000 |
-| | **Subtotal** | **78** | **$1.170.000** |
+| | **Subtotal** | **68** | **$1.020.000** |
 
 ### Bloque 7 — Fidelización de clientes
 
@@ -109,15 +108,15 @@ Costo = horas del cronograma × tarifa por hora.
 
 | Bloque | Horas | Costo | % del costo de entregables |
 |--------|:-----:|------:|:--------------------------:|
-| 1. Gestión del proyecto | 39 | $585.000 | 10,5 % |
-| 2. Usuarios y permisos | 36 | $540.000 | 9,7 % |
-| 3. Catálogo e inventario | 42 | $630.000 | 11,3 % |
-| 4. Comandas y pedidos | 42 | $630.000 | 11,3 % |
-| 5. Pantalla de cocina | 20 | $300.000 | 5,4 % |
-| 6. Módulo de caja | 78 | $1.170.000 | 21,0 % |
-| 7. Fidelización de clientes | 58 | $870.000 | 15,6 % |
-| 8. Infraestructura y calidad | 56 | $840.000 | 15,1 % |
-| **Total** | **371** | **$5.565.000** | **100 %** |
+| 1. Gestión del proyecto | 39 | $585.000 | 10,8 % |
+| 2. Usuarios y permisos | 36 | $540.000 | 10,0 % |
+| 3. Catálogo e inventario | 42 | $630.000 | 11,6 % |
+| 4. Comandas y pedidos | 42 | $630.000 | 11,6 % |
+| 5. Pantalla de cocina | 20 | $300.000 | 5,5 % |
+| 6. Módulo de caja | 68 | $1.020.000 | 18,8 % |
+| 7. Fidelización de clientes | 58 | $870.000 | 16,1 % |
+| 8. Infraestructura y calidad | 56 | $840.000 | 15,5 % |
+| **Total** | **361** | **$5.415.000** | **100 %** |
 
 ---
 
@@ -143,9 +142,9 @@ Entran en la línea base de costo (BAC) junto con la mano de obra. Se pagan en p
 | Concepto | Cálculo | Costo |
 |----------|---------|------:|
 | Hosting (Render + Neon, planes gratuitos) | Gratuito | $0 |
-| Dominio | USD 12 × $4.000 | $48.000 |
+| Dominio | USD 12 × $4.000. Compra planificada para el 11/12, pendiente de confirmar | $48.000 |
 | Certificado HTTPS | Incluido en el hosting | $0 |
-| Claude Code (plan Pro, 1 licencia) | USD 20 × 2 meses × $4.000 | $160.000 |
+| Claude Code (plan Pro, 1 licencia) | USD 20 × 2 meses × $4.000. Al corte del 21/11 se registra el pago de $80.000 del 28/10. El segundo está programado para el 28/11 | $160.000 |
 | | **Total** | **$208.000** |
 
 ---
@@ -162,22 +161,33 @@ El cálculo inicial combinó la exposición residual estimada de los cinco riesg
 
 ---
 
-## 6. Presupuesto inicial y estado vigente
+## 6. Presupuesto de referencia tras CC-03
 
 | Concepto | Costo | % del total |
 |----------|------:|:-----------:|
-| Entregables del cronograma (371 h) | $5.565.000 | 60,0 % |
-| Respuestas a los riesgos críticos (96 h) | $1.440.000 | 15,5 % |
-| Costos directos (dominio y Claude Code; el hosting es gratuito) | $208.000 | 2,2 % |
-| **Estimación de costos** | **$7.213.000** | **77,8 %** |
-| Reserva de contingencia | $2.054.500 | 22,2 % |
-| **Presupuesto total de referencia (estimación inicial de riesgos)** | **$9.267.500** | **100 %** |
+| Entregables vigentes del cronograma (361 h) | $5.415.000 | 59,4 % |
+| Respuestas a riesgos críticos (96 h, referencia inicial) | $1.440.000 | 15,8 % |
+| Costos directos (dominio y Claude Code) | $208.000 | 2,3 % |
+| **Estimación de costos** | **$7.063.000** | **77,5 %** |
+| Reserva de contingencia (referencia inicial) | $2.054.500 | 22,5 % |
+| **Presupuesto total de referencia** | **$9.117.500** | **100 %** |
 
-- **Horas totales de referencia:** 371 h de entregables + 96 h de respuestas + 133,5 h de reserva = **600,5 h**.
+- **Horas totales de referencia:** 361 h de entregables + 96 h de respuestas + 133,5 h de reserva = **590,5 h**.
 - **Reserva de gestión:** no se incluye. Los imprevistos que no estén en el plan de riesgos requieren una decisión del patrocinador.
-- **Sensibilidad a la tarifa del cálculo de referencia:** cada $1.000 de cambio en la tarifa por hora cambia el presupuesto en $600.500, porque las horas son 600,5 h (los costos directos no dependen de la tarifa).
-- **Línea base de costo para las métricas (BAC):** 371 h de entregables ($5.565.000) + costos directos ($208.000) = **$5.773.000**. Las respuestas a riesgos y la reserva siguen fuera del BAC.
-- **Actualización pendiente de cuantificar:** costo de recuperación de R-01, R-02 y R-10, respuestas y exposición residual de los críticos abiertos (R-05, R-11, R-12 y R-13), y gastos directos asociados. El total actualizado queda pendiente de validar y aprobar. El cálculo histórico permite reconstruir la estimación original.
+- **Sensibilidad a la tarifa del cálculo de referencia:** cada $1.000 de cambio en la tarifa por hora cambia el presupuesto en $590.500, porque las horas son 590,5 h (los costos directos no dependen de la tarifa).
+- **Línea base de costo para las métricas (BAC):** 361 h de entregables ($5.415.000) + costos directos ($208.000) = **$5.623.000**. CC-03 reduce el BAC anterior de $5.773.000 en $150.000. Las respuestas a riesgos y la reserva siguen fuera del BAC.
+- **Actualización pendiente de cuantificar:** costo de recuperación de R-01, R-02 y R-10, respuestas y exposición residual de los críticos abiertos (R-05, R-11, R-12 y R-13), y gastos directos asociados. El total actualizado queda pendiente de validar y aprobar. El presupuesto de referencia anterior fue $9.267.500. La reducción de $150.000 corresponde al recorte de 10 h, con los importes iniciales de riesgos y reserva sujetos a conciliación.
+
+### 6.1 Seguimiento de costos al 21/11/2026
+
+| Indicador | Mano de obra | Costos directos | Total |
+|-----------|:------------:|----------------:|------:|
+| Valor planificado (PV) | 159 h · $2.385.000 | $80.000 | **$2.465.000** |
+| Valor ganado (EV) | 103 h · $1.545.000 | $80.000 | **$1.625.000** |
+| Costo real (AC) | 166 h · $2.490.000 | $80.000 | **$2.570.000** |
+
+- El costo real equivalía al **44,5 %** del BAC del corte. Sobre el BAC vigente tras CC-03 representa el **45,7 %**. La variación de costo (CV) es **−$945.000** y el CPI es **0,63**, frente a 0,43 al corte anterior.
+- El pronóstico de costo final (EAC) con el BAC de CC-03 es **$6.568.000** si el trabajo restante sale según lo planificado, y **$8.893.000** si se mantiene el rendimiento acumulado. Son los escenarios de las métricas para el BAC, con la reserva y las respuestas a riesgos en líneas aparte.
 
 ---
 
@@ -186,5 +196,25 @@ El cálculo inicial combinó la exposición residual estimada de los cinco riesg
 - **Reserva de contingencia:** solo se gasta cuando un riesgo se materializa (estado *Materializado* en el [seguimiento de riesgos](Seguimiento%20de%20Riesgos%20Appresso.md)). Cada uso aprobado se anota con el riesgo, el paquete, las horas o el gasto directo y la fecha. Si el costo es compartido, se registra una sola vez con todos los riesgos relacionados.
 - **Revisión:** en cada reunión de seguimiento se compara el esfuerzo real con las horas del cronograma. Si un bloque supera su subtotal, se registra como cambio.
 - **Cierre de riesgos:** al cerrar un riesgo, la reserva que le correspondía queda liberada.
-- **Horas extra:** las horas reales por encima de las horas de un paquete en el cronograma son horas extra, es decir, costo no presupuestado en la línea base. **No se cubren con la reserva sin aprobación:** el patrocinador debe aprobarlas antes, con el paquete, las horas y el motivo. Al corte del 14/11, los cuatro paquetes terminados llevan 22 h netas sobre lo planeado (69 h reales frente a 47 h; $330.000): 1.1.1 (+15 h), 8.1.1 (+8 h), 2.1.1 (+1 h) y 1.2.1 (−2 h). Están pendientes de aprobación.
+- **Horas extra:** las horas trabajadas por encima del plan de cada paquete se registran en el costo real. Para aplicarlas a la reserva se registra el uso aprobado con el riesgo, el paquete y las horas correspondientes.
+
+### 7.1 Horas extra trabajadas al corte del 21/11/2026
+
+Aprobación registrada el **23/11/2026**. El excedente de los paquetes terminados se detalla a continuación, con la tarifa de $15.000 por hora.
+
+| Paquete | Horas plan | Horas reales | Diferencia | Costo de la diferencia |
+|---------|-----------:|-------------:|-----------:|-----------------------:|
+| 1.1.1 | 13 | 28 | +15 h | +$225.000 |
+| 2.1.1 | 10 | 11 | +1 h | +$15.000 |
+| 2.3.1 | 16 | 18 | +2 h | +$30.000 |
+| 3.1.1 | 14 | 19 | +5 h | +$75.000 |
+| 7.1.1 | 8 | 10 | +2 h | +$30.000 |
+| 8.1.1 | 12 | 20 | +8 h | +$120.000 |
+| 8.2.1 | 8 | 27 | +19 h | +$285.000 |
+| **Horas extra aprobadas** | | | **+52 h** | **+$780.000** |
+| 1.2.1 (ahorro) | 12 | 10 | −2 h | −$30.000 |
+| 2.2.1 | 10 | 10 | 0 h | $0 |
+| **Desviación neta de paquetes terminados** | **103** | **153** | **+50 h** | **+$750.000** |
+
+Los $750.000 netos ya están dentro del AC. Los $195.000 restantes de la desviación de costo corresponden a 13 h en 6.1.1 y 8.4.1, que todavía no generan EV. La aprobación queda registrada en el seguimiento del costo real del 21/11. Para comparar con el presupuesto restante se usa el BAC vigente de $5.623.000.
 
