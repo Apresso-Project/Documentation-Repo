@@ -130,14 +130,14 @@ _Al corte de S3 se habían registrado 55 h en la semana y 95 h acumuladas. El to
 
 ## 7.1.1 — Registro y búsqueda de clientes
 
-| Nombre      | Semana | Horas |
-| ----------- | :----: | :---: |
-| Juan Aragón |   S4   |   7   |
-| Felipe      |   S4   |   3   |
-|             |        |       |
-|             |        |       |
-|             |        |       |
-|             |        |       |
+| Nombre      | Semana | Horas  |
+| ----------- | :----: | :----: |
+| Juan Aragón |   S4   |   7    |
+| Felipe      |   S4   |   3    |
+|             |        |        |
+|             |        |        |
+|             |        |        |
+|             |        |        |
 | **Total**   |        | **10** |
 
 ## 8.1.1 — Módulo de configuración de arquitectura del proyecto
@@ -182,5 +182,14 @@ _Al corte de S3 se habían registrado 55 h en la semana y 95 h acumuladas. El to
 | --------- | :----: | :---: |
 | Felipe    |   S5   |   5   |
 | **Total** |        | **5** |
+
+## 4.1.1 — Creación de comandas y mesas
+
+| Nombre      | Semana | Horas |
+| ----------- | :----: | :---: |
+| Diego Gomez |   S5   |   4   |
+|             |        |       |
+|             |        |       |
+| **Total**   |        | **7** |
 
 _Las 5 h corresponden al despliegue interno adelantado por CC-03, fuera del alcance del despliegue final de producción de 8.5.1. Se incluyen en las horas reales trabajadas._
