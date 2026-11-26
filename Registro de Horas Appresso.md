@@ -189,7 +189,6 @@ _Al corte de S3 se habían registrado 55 h en la semana y 95 h acumuladas. El to
 | ----------- | :----: | :---: |
 | Diego Gomez |   S5   |   4   |
 |             |        |       |
-|             |        |       |
-| **Total**   |        | **7** |
+| **Total**   |        | **4** |
 
 _Las 5 h corresponden al despliegue interno adelantado por CC-03, fuera del alcance del despliegue final de producción de 8.5.1. Se incluyen en las horas reales trabajadas._
