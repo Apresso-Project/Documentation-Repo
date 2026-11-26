@@ -4,6 +4,12 @@ Documentación del proyecto **Appresso** — aplicación móvil Android para la 
 
 Asignaturas: Introducción a la Gestión de Proyectos de Software + Desarrollo de Aplicaciones Móviles, Universidad del Valle, sede Tuluá. Principal responsable: Andrés Felipe Salcedo Buitrago.
 
+## Alcance y despliegue vigentes
+
+- El equipo y el patrocinador aprobaron el **21/11/2026 (CC-03)** retirar las vistas independientes de consulta de caja del cajero y consulta financiera del administrador (RF-38 y RF-39). La EDT y su diccionario conservan el paquete como eliminado. Se mantienen el historial de movimientos y los informes de cierre. [Decisiones de la reunión](Seguimiento%20de%20Riesgos%20Appresso.md#313-decisiones-de-la-reunión-de-control-del-21112026)
+- Se acordó iniciar los despliegues internos continuos con **Render y Neon** durante el desarrollo. El despliegue de la **v1.0 en producción** queda en **8.5.1**. Se debe registrar la evidencia del entorno interno para R-12 y de las pruebas tras inactividad para R-14. [Seguimiento de riesgos](Seguimiento%20de%20Riesgos%20Appresso.md#3-respuesta-a-cada-riesgo)
+- El código y las guías técnicas viven en [Appresso-App](https://github.com/Apresso-Project/Appresso-App). El [índice de pruebas en teléfono](https://github.com/Apresso-Project/Appresso-App/blob/main/android/README.md#pruebas-en-teléfono-y-evidencia) enlaza las tablas de roles, tiempo real, cocina, Keystore y supresión.
+
 ## Contenido del repositorio
 
 | Archivo | Descripción |

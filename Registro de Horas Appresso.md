@@ -1,6 +1,6 @@
 # Registro de Horas por Paquete — APPRESSO
 
-> **Estado:** v0.3 (22 de noviembre de 2026).
+> **Estado:** v0.4 (26 de noviembre de 2026).
 > **Lleva el registro:** Felipe Salcedo (gerente del proyecto).
 > **Para qué sirve:** es la fuente del **costo real (AC)** de las [Métricas de Proyecto](Métricas%20de%20Proyecto%20Appresso.md). Cada persona anota las horas que trabajó en cada paquete, por semana; el total de cada tabla y el acumulado por semana alimentan el AC de cada corte.
 
@@ -21,9 +21,9 @@
 |   S2   | 07/11 |         22         |      40      |
 |   S3   | 14/11 |         75         |     115      |
 |   S4   | 21/11 |         59         |     174      |
-|   S5   | 28/11 |          9         |     183      |
+|   S5   | 28/11 |         21         |     195      |
 
-_S1 y S2 son aproximadas (unas 18 h y unas 40 h acumuladas). Las semanas de las horas registradas fueron confirmadas por el gerente el 16/11/2026._
+_Las semanas de las horas registradas fueron confirmadas por el gerente el 16/11/2026._
 
 _Al corte de S3 se habían registrado 55 h en la semana y 95 h acumuladas. El total actualizado de S3 incluye 20 h anotadas después del corte (12 h en 8.2.1 y 8 h en 2.2.1). Al corte de S4 se registraron 51 h en la semana y 166 h acumuladas. El total actualizado de S4 incorpora 5 h adicionales en 3.1.1 (Productos y categorías) y 3 h adicionales en 6.1.1. Las horas de S5 son parciales._
 
@@ -101,6 +101,21 @@ _Al corte de S3 se habían registrado 55 h en la semana y 95 h acumuladas. El to
 |             |        |        |
 | **Total**   |        | **24** |
 
+## 3.2.1 — Control de existencias
+
+| Nombre    | Semana | Horas |
+| --------- | :----: | :---: |
+| Felipe    |   S5   |   6   |
+| **Total** |        | **6** |
+
+## 3.3.1 — Consulta del menú y visualización en cocina
+
+| Nombre      | Semana | Horas  |
+| ----------- | :----: | :----: |
+| Diego Gómez |   S5   |   9    |
+| Felipe      |   S5   |   1    |
+| **Total**   |        | **10** |
+
 ## 6.1.1 — Registro de pagos
 
 | Nombre      | Semana | Horas |
@@ -161,11 +176,11 @@ _Al corte de S3 se habían registrado 55 h en la semana y 95 h acumuladas. El to
 |               |        |       |
 | **Total**     |        | **7** |
 
-## 3.1.1 Consulta de menú / Vista de cocina
+## 8.5.1 — Despliegue y documentación técnica
 
-| Nombre      | Semana | Horas |
-| ----------- | :----: | :---: |
-| Diego Gomez |   S5   |   9   |
-|             |        |       |
-|             |        |       |
-| **Total**   |        | **9** |
+| Nombre    | Semana | Horas |
+| --------- | :----: | :---: |
+| Felipe    |   S5   |   5   |
+| **Total** |        | **5** |
+
+_Las 5 h corresponden al despliegue interno adelantado por CC-03, fuera del alcance del despliegue final de producción de 8.5.1. Se incluyen en las horas reales trabajadas._
