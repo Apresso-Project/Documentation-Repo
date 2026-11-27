@@ -21,7 +21,7 @@
 |   S2   | 07/11 |         22         |      40      |
 |   S3   | 14/11 |         75         |     115      |
 |   S4   | 21/11 |         59         |     174      |
-|   S5   | 28/11 |         21         |     195      |
+|   S5   | 28/11 |         30         |     204      |
 
 _Las semanas de las horas registradas fueron confirmadas por el gerente el 16/11/2026._
 
@@ -189,6 +189,7 @@ _Al corte de S3 se habían registrado 55 h en la semana y 95 h acumuladas. El to
 | ----------- | :----: | :---: |
 | Diego Gomez |   S5   |   4   |
 | David jajoy |   S5   |   4   |
-| **Total**   |        | **8** |
+| Felipe      |   S5   |   1   |
+| **Total**   |        | **9** |
 
 _Las 5 h corresponden al despliegue interno adelantado por CC-03, fuera del alcance del despliegue final de producción de 8.5.1. Se incluyen en las horas reales trabajadas._
